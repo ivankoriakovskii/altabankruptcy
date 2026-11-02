@@ -1,0 +1,467 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Карта собственников Alta banka</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Sofia+Sans+Extra+Condensed:wght@800&display=swap">
+<style>
+/* Layout: two strands merge into one line of years; that line drives a tree of circles below it.
+   A ring around each circle is the owner's share, its colour is the sector, a click opens the slip. */
+:root {
+  --paper: #F2F3F7; --sheet: #FCFCFE; --ink: #131829; --ink-2: #464D63; --ink-3: #626980;
+  --rule: #CBD0DC; --line: #9AA1B4; --pecat: #2C38A0; --stecaj: #B3261E;
+  --fin: #3F5BC4; --fin-t: #FFFFFF; --build: #0B8F87; --build-t: #10131C;
+  --retail: #B0761A; --retail-t: #10131C; --other: #7A55C7; --other-t: #FFFFFF;
+  --display: "Sofia Sans Extra Condensed", "Arial Narrow", "Roboto Condensed", sans-serif;
+  --body: "Golos Text", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", "SFMono-Regular", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --paper: #12151F; --sheet: #1B1F2C; --ink: #E8EAF2; --ink-2: #B7BCCD; --ink-3: #9097AB;
+  --rule: #2F3447; --line: #5A637B; --pecat: #A7B0FF; --stecaj: #FF8D7E;
+  --fin: #5D78E0; --fin-t: #10131C; --build: #149C93; --build-t: #10131C;
+  --retail: #B98322; --retail-t: #10131C; --other: #9575DC; --other-t: #10131C; color-scheme: dark;
+} }
+:root[data-theme="dark"] {
+  --paper: #12151F; --sheet: #1B1F2C; --ink: #E8EAF2; --ink-2: #B7BCCD; --ink-3: #9097AB;
+  --rule: #2F3447; --line: #5A637B; --pecat: #A7B0FF; --stecaj: #FF8D7E;
+  --fin: #5D78E0; --fin-t: #10131C; --build: #149C93; --build-t: #10131C;
+  --retail: #B98322; --retail-t: #10131C; --other: #9575DC; --other-t: #10131C; color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--paper); color: var(--ink); font: 400 1rem/1.5 var(--body); }
+a { color: var(--pecat); text-underline-offset: 2px; }
+a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--pecat); outline-offset: 2px; }
+.wrap { max-width: 1340px; margin-inline: auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 26px 48px; display: grid; gap: 40px; }
+.wrap > * { min-width: 0; }
+h1, h2 { font-family: var(--display); font-weight: 800; text-transform: uppercase; line-height: .96; text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(3rem, 8vw, 5.6rem); }
+h2 { font-size: clamp(2.2rem, 4.6vw, 3.2rem); }
+p { margin: 0; }
+header { display: grid; gap: 12px; }
+.lede { font-size: 1.12rem; max-width: 62ch; }
+.status { font: 400 .78rem/1.5 var(--mono); color: var(--ink-3); max-width: 90ch; }
+
+.stage { display: grid; gap: 16px; }
+.stage > * { min-width: 0; }
+#scrub { display: block; width: 100%; overflow: visible; }
+.lane { fill: none; stroke-linecap: round; }
+.lane--bank { stroke: var(--ink-3); stroke-width: 3; }
+.lane--biz { stroke: var(--pecat); stroke-width: 3; }
+.lane--main { stroke: var(--pecat); stroke-width: 5; }
+.lane-t { font: 400 11px var(--mono); fill: var(--ink-3); }
+.stop { cursor: pointer; outline: none; }
+.stop .hit { fill: transparent; }
+.stop .dot { fill: var(--sheet); stroke: var(--pecat); stroke-width: 2.5; transition: r .2s; }
+.stop.bank .dot { stroke: var(--ink-3); }
+.stop.past .dot { fill: var(--pecat); }
+.stop.bank.past .dot { fill: var(--ink-3); }
+.stop.end .dot { stroke: var(--stecaj); }
+.stop.end.past .dot { fill: var(--stecaj); }
+.stop.on .dot { r: 11px; }
+.stop .yr { font: 500 12px var(--mono); fill: var(--ink-3); text-anchor: middle; }
+.stop.on .yr { fill: var(--ink); font-weight: 500; }
+.stop:hover .dot { stroke-width: 4; }
+.stop:focus-visible .dot { stroke: var(--ink); stroke-width: 4; }
+.cap { display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 4px 16px; align-items: center; background: var(--sheet); border: 1px solid var(--rule); border-radius: 3px; padding: 10px 14px; min-height: 76px; }
+.capy { font: 800 2.5rem/1 var(--display); }
+.cap p { font-size: .96rem; line-height: 1.4; max-width: 86ch; }
+#play { font: 500 .78rem/1 var(--mono); color: var(--pecat); background: transparent; border: 1.5px solid currentColor; border-radius: 3px; padding: 9px 11px; cursor: pointer; white-space: nowrap; }
+#play:hover { background: var(--paper); }
+
+.board { display: grid; gap: 20px; align-items: start; }
+.board > * { min-width: 0; }
+#graph { display: block; width: 100%; }
+.l { fill: none; stroke: var(--line); stroke-width: 1.6; transition: opacity .35s; }
+.l.dash { stroke-dasharray: 5 5; }
+.l.on { stroke: var(--pecat); stroke-width: 2.6; }
+.n { cursor: pointer; outline: none; transition: opacity .35s; }
+.ghost { opacity: .11; }
+.n.ghost { pointer-events: none; cursor: default; }
+.track { fill: none; stroke: var(--rule); stroke-width: 3; }
+.n.unk .track { stroke: var(--line); stroke-dasharray: 3 4; }
+.arc { fill: none; stroke-width: 3; stroke-linecap: butt; transition: stroke-dasharray .6s ease; }
+.n.red .track, .n.red .arc { stroke: var(--stecaj); }
+.disc { stroke-width: 2; }
+.pct { font-family: var(--display); font-weight: 800; text-anchor: middle; dominant-baseline: central; }
+.sel { fill: none; stroke: var(--pecat); stroke-width: 2; opacity: 0; }
+.n.picked .sel, .n:focus-visible .sel, .n:hover .sel { opacity: 1; }
+.nm { font: 600 13.5px var(--body); fill: var(--ink); }
+.nm.big { font-size: 15px; }
+.wh { font: 400 11px var(--mono); fill: var(--ink-3); }
+.fl { font: 500 10.5px var(--mono); fill: var(--stecaj); text-transform: uppercase; letter-spacing: .04em; }
+.keys { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 8px 20px; font-size: .82rem; color: var(--ink-2); }
+.keys li { display: inline-flex; align-items: center; gap: 7px; }
+.keys svg { flex: none; }
+
+.slip { background: var(--sheet); border: 1px solid var(--ink); border-radius: 3px; padding: 15px; display: grid; gap: 10px; }
+.slip > * { min-width: 0; }
+.slip[hidden] { display: none; }
+.chain { font: 400 .72rem/1.45 var(--mono); color: var(--ink-3); }
+.slip h3 { font: 800 1.85rem/1 var(--display); text-transform: uppercase; margin: 0; padding-right: 26px; }
+.when { font: 500 .8rem/1.4 var(--mono); color: var(--ink-2); }
+.pts { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: .9rem; line-height: 1.42; }
+.src { font-size: .76rem; color: var(--ink-3); white-space: normal; }
+.src a { color: inherit; }
+.src a:hover { color: var(--pecat); }
+.x { position: absolute; top: 8px; right: 8px; width: 34px; height: 34px; background: transparent; border: 0; color: var(--ink-2); font-size: 20px; line-height: 1; cursor: pointer; display: none; }
+
+.steps { display: grid; gap: 18px; }
+.rings { display: grid; gap: 18px 24px; grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 560px) { .rings { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1100px) { .rings { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+.ring { display: grid; grid-template-columns: 72px minmax(0, 1fr); gap: 12px; align-items: center; }
+.ring svg { display: block; }
+.ring b { display: block; font: 500 .8rem/1.35 var(--mono); }
+.ring span { display: block; font-size: .88rem; line-height: 1.35; color: var(--ink-2); margin-top: 2px; }
+
+details { font-size: .86rem; }
+summary { cursor: pointer; font-weight: 600; }
+.srcs { list-style: none; margin: 12px 0 0; padding: 0; columns: 2 300px; column-gap: 28px; }
+.srcs li { break-inside: avoid; padding-bottom: 8px; line-height: 1.35; }
+.srcs small { display: block; color: var(--ink-3); font: 400 .7rem/1.4 var(--mono); }
+.note { font-size: .82rem; color: var(--ink-2); max-width: 86ch; margin-top: 12px; }
+
+@media (max-width: 1239px) {
+  .slip { position: fixed; z-index: 15; left: 0; right: 0; bottom: 0; max-height: 58vh; overflow-y: auto; border-radius: 6px 6px 0 0; border-width: 1px 0 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); box-shadow: 0 -8px 26px rgba(10, 14, 28, .22); }
+  .x { display: block; right: max(8px, env(safe-area-inset-right, 0px)); }
+}
+@media (min-width: 1240px) {
+  .board { grid-template-columns: minmax(0, 1fr) 330px; gap: 24px; }
+  .slip { position: sticky; top: calc(env(safe-area-inset-top, 0px) + 12px); max-height: calc(100vh - 24px); overflow-y: auto; }
+}
+@media (max-width: 620px) {
+  .cap { grid-template-columns: auto minmax(0, 1fr); }
+  #play { grid-column: 1 / -1; justify-self: start; }
+  .capy { font-size: 2.1rem; }
+}
+@media (prefers-reduced-motion: reduce) { .l, .n, .arc, .stop .dot { transition: none; } }
+</style>
+
+<div class="wrap">
+  <header>
+    <h1>Кому принадлежала Alta banka</h1>
+    <p class="lede">С 2023 года у банка один акционер, Alta Group. Ею полностью владеет Давор Мацура. На схеме его компании, доли и годы покупки.</p>
+    <p class="status">Данные на 2 ноября 2026. В ночь на 31 октября НБС отозвала лицензию банка. Расследование идёт, суд дело не рассматривал.</p>
+  </header>
+
+  <section class="stage" aria-label="Схема собственности по годам">
+    <svg id="scrub" role="group" aria-label="Шкала лет: выберите год"></svg>
+    <div class="cap"><span class="capy" id="capY"></span><p id="capT" aria-live="polite"></p><button type="button" id="play">▶ Показать по годам</button></div>
+    <div class="board">
+      <div id="gw"><svg id="graph" role="group" aria-label="Схема владения: Давор Мацура, его компании и их доли"></svg></div>
+      <aside class="slip" id="slip" aria-live="polite"></aside>
+    </div>
+    <ul class="keys" aria-label="Обозначения">
+      <li><svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="var(--rule)" stroke-width="3"/><circle cx="12" cy="12" r="10" fill="none" stroke="var(--ink-2)" stroke-width="3" pathLength="100" stroke-dasharray="51 100" transform="rotate(-90 12 12)"/></svg>Кольцо показывает долю. «Контр.»: полный контроль, процент не назван</li>
+      <li><svg width="64" height="14" viewBox="0 0 64 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="var(--fin)"/><circle cx="24" cy="7" r="6" fill="var(--retail)"/><circle cx="41" cy="7" r="6" fill="var(--build)"/><circle cx="58" cy="7" r="6" fill="var(--other)"/></svg>Финансы, розница, стройка и недвижимость, прочее</li>
+      <li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7" fill="var(--sheet)" stroke="var(--fin)" stroke-width="2"/></svg>Пустой кружок: актив или неконтрольный пакет</li>
+      <li><svg width="30" height="8" viewBox="0 0 30 8" aria-hidden="true"><line x1="0" y1="4" x2="30" y2="4" stroke="var(--line)" stroke-width="2" stroke-dasharray="5 5"/></svg>Пунктир: прямой владелец не подтверждён</li>
+      <li><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><circle cx="9" cy="9" r="7" fill="none" stroke="var(--stecaj)" stroke-width="3"/></svg>Лицензия отозвана или введено внешнее управление</li>
+    </ul>
+  </section>
+
+  <section class="steps">
+    <h2>Как группа получила банк</h2>
+    <div class="rings" id="rings"></div>
+  </section>
+
+  <section>
+    <details><summary>Источники</summary><ul class="srcs" id="srcs"></ul></details>
+    <p class="note">Выписки из реестра APR напрямую не запрашивались. Годы покупки Alta Gold, Alta Holding, Alta Pass и Campari International найти не удалось, поэтому на схеме они появляются только в последнем году. Совладельцы-физлица без публичной роли не названы.</p>
+  </section>
+</div>
+
+<script>
+const S = {
+  cw:['CompanyWall','Карточка Alta banka: Alta Group 100%','https://www.companywall.rs/firma/alta-banka/MMDoG7qq'],
+  form:['Форма банка','Органы управления на 31.03.2026','https://altabanka.rs/static/uploads/2026/04/Obrazac-OP-31.03.2026.pdf'],
+  gtc:['Условия Alta Group','Общие условия института электронных денег, 2025','https://altapay.rs/wp-content/uploads/2025/05/General-Terms-and-Conditions-applicable-from-May-6th-2025.pdf'],
+  cbcg:['Реестр ЦБ Черногории','Alta Pay Group Podgorica в реестре платёжных институтов','https://www.cbcg.me/slike_i_fajlovi/eng/fajlovi/fajlovi_platni_promet/registar/platne/reg_alta_pay_group_eng.pdf'],
+  nbs:['НБС, 30.10','Отзыв лицензии Alta banka','https://nbs.rs/sr/scripts/showcontent/index.html?id=21849'],
+  nbs2:['НБС, 31.10','Передача управления Агентству по страхованию вкладов','https://www.nbs.rs/sr_RS/scripts/showcontent/index.html?id=21851'],
+  jtok:['Прокуратура (текст в Telegraf)','Заявление о задержании, 02.11.2026','https://www.telegraf.rs/vesti/hronika/4425319-oglasio-se-jtok-uhapseno-rukovodstvo-alta-banke-na-celu-sa-macurom-sumnjice-se-za-iznosenje-milijardi'],
+  dan:['Danas','Заявление адвоката, 02.11.2026','https://www.danas.rs/vesti/ekonomija/advokat-vlasnika-alta-banke-davor-macura-sutra-izlazi-pred-nadlezno-tuzilastvo-ne-znamo-sta-mu-se-stavlja-na-teret/'],
+  forbes:['Forbes Srbija','Какие компании есть у Давора Мацуры, 31.10.2026','https://forbes.n1info.rs/novac/alta-banka-drzi-3-trzista-koje-sve-kompanije-ima-davor-macura/'],
+  forbes2:['Forbes Srbija, Procoopac','Доли в Procoopac и господдержка отеля Union','https://forbes.n1info.rs/novac/i-alta-grupa-davora-macure-medju-dobitnicima-podsticaja-za-expo-hotele-preko-firme-procoopac/'],
+  ne1:['Nova Ekonomija','Od menjačnice do imperije, 22.09.2026','https://novaekonomija.rs/vesti-iz-zemlje/od-menjacnice-do-imperije-sta-sve-poseduje-davor-macura-vlasnik-alta-banke'],
+  kam1:['Kamatica','Покупки группы и их финансирование, 31.10.2026','https://www.kamatica.com/analiza/od-kupovine-banaka-do-idea-marketa-gde-se-sve-sirilo-poslovno-carstvo-vlasnika-alta-banke-i-ko-je-finansirao-velike-poslove/80946'],
+  biz:['BIZLife','Uspon i pad ALTA banke, 02.11.2026','https://bizlife.rs/od-menjacnice-preko-bankarskog-vrha-pa-do-stecaja-uspon-i-pad-alta-banke/'],
+  rts:['RTS','Хронология, 31.10.2026','https://www.rts.rs/lat/vesti/ekonomija/6073522/alta-banka-stecaj-kriza-racuni-krediti-uspon-pad-hronologija-.html'],
+  ned1:['Nedeljnik','Kako je nastala Alta banka, 31.10.2026','https://www.nedeljnik.rs/kako-je-nastala-alta-banka-i-kako-je-poslovala-do-oduzimanja-dozvole-za-godinu-dana-40-vise-klijenata/'],
+  ned2:['Nedeljnik, Addiko','Связь Addiko и Alta, 01.11.2026','https://www.nedeljnik.rs/addiko-banka-porucila-da-nema-izlozenost-prema-alta-banci-kakva-je-njihova-veza-i-zasto-se-beogradska-banka-oglasila/'],
+  ned3:['Nedeljnik, регуляторы','Решения ЦБ Черногории и Северной Македонии, 01.11.2026','https://www.nedeljnik.rs/oduzeta-dozvola-za-alta-pay-u-crnoj-gori-uvedena-prinudna-uprava-u-alta-banci-u-severnoj-makedoniji/'],
+  srp:['Srpskainfo','Банк из югославского банка, 01.11.2026','https://srpskainfo.com/biznis/alta-banka-nastala-iz-jugoslovenske-banke-osnovana-jos-1979-godine-a-evo-kako-je-promijenila-ime-i-vlasnika/'],
+  n1a:['N1, оферта 2021','Alta Pay выкупает оставшиеся 36,1%, 23.08.2021','https://n1info.rs/biznis/alta-pay-grupa-otkupljuje-preostalih-361-odsto-akcija-alta-banke/'],
+  b92a:['B92','Ещё 12% акций банка, 27.09.2021','https://www.b92.net/biz/vesti/srbija/vlasnik-alta-banke-kupio-jos-12-odsto-akcija-u-nekadasnjoj-jubmes-banci-1928742'],
+  mom:['Momentum','Больше 90% акций банка, 05.06.2023','https://momentum.rs/vesti/alta-pay-uspeo-da-namakne-preko-90-akcija-u-alta-banci/'],
+  n1imt:['N1, IMT','Комплекс IMT и 100% ABL Solvent по данным APR, 22.11.2021','https://n1info.rs/biznis/kompleks-imt-kupila-firma-ciji-vlasnik-ima-vecinski-udeo-u-alta-banci/'],
+  b92r:['B92, Alta Retail','Alta Retail покупает Idea, 04.2026','https://www.b92.net/biz/srbija/vesti/225979/alta-retail-kupuje-idea-markete-u-srbiji/vest'],
+  n1i:['N1, Idea','Покупка Idea и ещё четырёх компаний, 04.2026','https://n1info.rs/biznis/alta-retail-davora-macure-kupuje-idea-markete/'],
+  zoil:['Biznis.rs, ZOIL','Alta grupa preuzela makedonski ZOIL, 11.08.2026','https://biznis.rs/novac/alta-grupa-preuzela-makedonski-zoil/'],
+  adk:['Biznis.rs, Addiko 2024','Борьба за пакет Addiko','https://biznis.rs/vesti/region/isticu-ponude-za-addiko-ko-je-ostao-a-ko-ispao-iz-trke-za-preuzimanje-akcija/'],
+  adk2:['Biznis.rs, Addiko 2026','1 878 167 акций, 9,63%','https://biznis.rs/novac/nlb-povecao-ponudu-za-kupovinu-addiko-banke-na-335-evra-po-akciji'],
+};
+const links = keys => keys.map(k => `<a href="${S[k][2]}" target="_blank" rel="noopener">${S[k][0]}</a>`).join(' · ');
+
+const STOPS = [
+  [1979, 'В Белграде создан JUBMES, югославский банк для финансирования экспорта. С Мацурой он пока не связан.'],
+  [2008, 'Давор Мацура открывает обменный пункт Alta в Земуне.'],
+  [2014, 'Дело переходит в компанию. В 2016 году она получает лицензию на платёжные услуги.'],
+  [2019, 'В мае компания, теперь Alta Pay Group, покупает у государства 28,51% JUBMES примерно за €5 млн. В марте 2020 банк становится Alta banka.'],
+  [2021, 'В сентябре группа доводит долю в банке до 76,06%. В августе Мацуре переходит ABL Solvent, в ноябре она покупает комплекс IMT за ≈€70,6 млн.'],
+  [2023, 'Группа выкупает оставшихся акционеров и получает 100% банка. Банк уходит с биржи.'],
+  [2024, 'Банк покупает Alta Leasing. Группа покупает пакет Addiko Bank AG и выходит в Черногорию. К концу года у неё 51% Procoopac.'],
+  [2025, 'В октябре банк покупает 88,09% Stopanska banka Bitola. Alta Pay Group получает имя Alta Group.'],
+  [2026, 'Группа покупает страховщика ZOIL и, через новую Alta Retail, сети Idea, Roda и Mercator. В ночь на 31 октября НБС отзывает лицензию банка.'],
+];
+const LAST = 2026;
+
+const TREE = { id:'macura', name:'Давор Мацура', sec:'person', since:2008, when:'с 2008 года', big:1, notes:[
+    ['Основатель группы. Начал в 2008 году с обменного пункта в Земуне. Председатель совета директоров банка (Upravni odbor).',['biz','form']],
+    ['Forbes Srbija называет Alta Group и ещё пять компаний записанными на него напрямую.',['forbes']],
+    ['2 ноября 2026 задержан на срок до 48 часов по подозрению в злоупотреблении положением. Обвинительного акта нет, суд дело не рассматривал. Защита заявляет, что он в Сербии и не сбежал.',['jtok','dan']],
+  ], kids:[
+  { id:'group', names:[[2014,'Компания Мацуры'],[2019,'Alta Pay Group'],[2025,'Alta Group d.o.o.']], sec:'fin', share:100, since:2014, when:'компания с 2014 года', big:1, notes:[
+      ['Единственный акционер банка, 100% у Мацуры. С марта 2019 называлась Alta Pay Group, с 2025 года Alta Group.',['forbes','cw','biz']],
+      ['Сама работает как институт электронных денег под брендом Alta Pay.',['gtc']],
+    ], kids:[
+    { id:'banka', names:[[1979,'JUBMES'],[2021,'Alta banka a.d.']], sec:'fin', born:1979, since:2019, shares:[[2019,28.51],[2021,76.06],[2023,100]], when:'покупка в 2019–2023', flag:'лицензия отозвана', big:1, notes:[
+        ['Основан в 1979 году как JUBMES. С марта 2020 называется Alta banka.',['ned1']],
+        ['Доля группы: 28,51% в мае 2019, 76,06% в сентябре 2021, 100% в 2023 году.',['n1a','n1imt','kam1']],
+        ['После сделки 2019 года вторым по величине акционером в реестре числилась СФР Югославия, страна, которой нет с 1992 года.',['srp']],
+        ['Лицензия отозвана в ночь на 31 октября 2026. Управление передано Агентству по страхованию вкладов.',['nbs','nbs2']],
+      ], kids:[
+      { id:'leasing', name:'Alta Leasing', sec:'fin', share:100, since:2024, when:'куплена в 2024', h:74, notes:[
+          ['Банк купил 100% Vantage Leasing и переименовал компанию. Цена публично не подтверждена.',['kam1']] ]},
+      { id:'bitola', name:'Alta banka AD Bitola', sec:'fin', since:2025, shares:[[2025,88.09],[2026,95]], label:{2026:'>95%'}, when:'куплен в октябре 2025', flag:'временное управление', h:84, notes:[
+          ['Бывшая Stopanska banka Bitola. В октябре 2025 банк получил 88,09%, под оферту резервировали ≈€22,8 млн. В 2026 году доля превысила 95%.',['kam1','biz']],
+          ['1 ноября 2026 центробанк Северной Македонии ввёл временное управление.',['ned3']] ]},
+    ]},
+    { id:'procoopac', name:'Procoopac', sec:'build', share:51, since:2024, edge:'dash', when:'не позже декабря 2024', h:72, notes:[
+        ['Forbes Srbija: 51% у Alta Pay Group, 49% у совладельца-физлица. Nova Ekonomija пишет, что доля идёт через Alta banka. Точную цепочку покажет выписка APR.',['forbes2','forbes','ne1']],
+        ['Договор о господдержке реконструкции отеля Union, ≈€3 млн, датирован 20 декабря 2024. Дату покупки доли источники не называют.',['forbes2']] ]},
+    { id:'gold', name:'Alta Gold', sec:'other', unknown:1, since:null, when:'год и доля не найдены', h:62, notes:[
+        ['Инвестиционное золото и ювелирные изделия. Forbes Srbija: принадлежит Мацуре через Alta Group.',['forbes','ne1']] ]},
+    { id:'osig', name:'Alta osiguranje AD Skopje', sec:'fin', share:100, since:2026, edge:'dash', when:'куплен в августе 2026', h:62, notes:[
+        ['Бывшая ZOIL Makedonija. Куплены все акции, 60 000 штук, примерно за €1,7 млн. Покупателем названа Alta Grupa, конкретное юрлицо не указано.',['zoil','kam1']] ]},
+    { id:'mne', name:'Alta Pay Group Podgorica', sec:'fin', unknown:1, since:2024, edge:'dash', when:'в реестре ЦБ с января 2024', flag:'разрешение отозвано', h:72, notes:[
+        ['Forbes Srbija называет компанию частью группы. Прямой владелец и доля в найденных источниках не указаны.',['forbes','cbcg']],
+        ['1 ноября 2026 ЦБ Черногории отозвал разрешение на платёжные услуги. Компания не банк и вклады не принимает.',['ned3']] ]},
+    { id:'addiko', name:'Addiko Bank AG, Австрия', sec:'fin', hollow:1, share:9.63, label:{0:'9,63%'}, since:2024, when:'пакет куплен в марте 2024', h:72, notes:[
+        ['9,63% акций и финансовые инструменты ещё на 19,96%, всего заявлено 29,59%. Это не прямое владение всем пакетом.',['adk','kam1','ned2','adk2']],
+        ['15 мая 2026 Alta Group объявила, что предложит свои акции в оферту Raiffeisen Bank International. Сделка не закрыта.',['adk2','ned2']] ]},
+  ]},
+  { id:'retail', name:'Alta Retail d.o.o.', sec:'retail', share:100, since:2026, when:'создана в 2026', big:1, notes:[
+      ['Новая компания под покупку активов Fortenova. 100% у Мацуры.',['b92r','n1i']] ], kids:[
+    { id:'idea', name:'Idea, Roda, Mercator', sec:'retail', share:100, label:{0:'контр.'}, since:2026, when:'сентябрь–октябрь 2026', h:72, notes:[
+        ['Idea marketi d.o.o.: более 300 магазинов Idea, 33 Roda, 2 гипермаркета Mercator. Продавец Fortenova, покупатель получает полный контроль.',['n1i']],
+        ['≈€40 млн за капитал и ≈€100 млн долга. Откуда деньги, публично не подтверждено.',['kam1']],
+        ['По RTS и Nova Ekonomija сделка оформлена в сентябре, по Kamatica и Nedeljnik завершена в октябре.',['rts','ne1','kam1','ned1']] ]},
+    { id:'ideaplus', name:'Ещё 4 компании Fortenova', sec:'retail', share:100, label:{0:'контр.'}, since:2026, when:'вместе с Idea', h:72, notes:[
+        ['M-Profil SPV (недвижимость), Super kartica, ENNA Fruit (овощи и фрукты), mStart Business Solutions (ИТ).',['ne1','forbes']] ]},
+  ]},
+  { id:'abl', name:'ABL Solvent d.o.o.', sec:'build', share:100, since:2021, when:'с августа 2021', big:1, notes:[
+      ['По данным APR, которые приводит N1, 100% у Мацуры. Перешла к нему в августе 2021.',['n1imt','kam1']],
+      ['Купила у Агентства по страхованию вкладов требования банков-банкротов за ≈€51 млн при балансовой стоимости ≈€1,82 млрд.',['kam1']] ], kids:[
+    { id:'imt', name:'Комплекс IMT, Новый Белград', sec:'build', hollow:1, asset:1, since:2021, when:'ноябрь 2021, ≈€70,6 млн', h:124, notes:[
+        ['Бывший завод, куплен из банкротства за 8,3 млрд RSD. Теперь здесь строят жилой комплекс.',['n1imt','kam1']],
+        ['По данным VOICE, кредит на ≈€60 млн дала AIK banka. Подтверждения, что кредитором была Alta banka, нет.',['kam1']] ]},
+  ]},
+  { id:'campari', name:'Campari International', sec:'build', share:100, since:null, when:'год не найден', h:56, small:1, notes:[
+      ['Мацура единственный владелец. Строительство.',['ne1']] ]},
+  { id:'holding', name:'Alta Holding', sec:'other', unknown:1, since:null, when:'год и доля не найдены', h:56, small:1, notes:[
+      ['Forbes Srbija: записана на Мацуру напрямую. Холдинг.',['forbes']] ]},
+  { id:'pass', name:'Alta Pass', sec:'other', unknown:1, since:null, when:'год и доля не найдены', h:56, small:1, notes:[
+      ['Forbes Srbija: записана на Мацуру напрямую. Оптовая торговля.',['forbes','ne1']] ]},
+]};
+
+const FLAT = [], parent = {};
+(function walk(n, p, d){ n.d = d; parent[n.id] = p; FLAT.push(n); (n.kids || []).forEach(k => walk(k, n, d + 1)); })(TREE, null, 0);
+const byId = Object.fromEntries(FLAT.map(n => [n.id, n]));
+const nameAt = (n, y) => { if (!n.names) return n.name; let r = n.names[0][1]; n.names.forEach(([a, b]) => { if (a <= y) r = b; }); return r; };
+function shareAt(n, y){
+  let v = n.share ?? null;
+  if (n.shares) { v = null; n.shares.forEach(([a, b]) => { if (a <= y) v = b; }); }
+  let t = '';
+  if (n.unknown) t = '?';
+  else if (n.asset) t = 'актив';
+  else if (v != null) t = (n.label && (n.label[y] || n.label[0])) || (String(v).replace('.', ',') + '%');
+  return { v, t };
+}
+const isVis = (n, y) => y === LAST || ((n.born ?? n.since) != null && (n.born ?? n.since) <= y);
+const linkVis = (n, y) => y === LAST || (n.since != null && n.since <= y);
+const finalName = n => nameAt(n, LAST);
+
+/* Layout: wide = left-to-right tree, narrow = indented list; both use real pixels so text keeps its size */
+function layout(W){
+  const P = {};
+  if (W >= 860) {
+    const xs = [.066, .272, .5, .715].map(f => Math.round(W * f));
+    const R = n => n.id === 'macura' ? 46 : n.id === 'group' ? 38 : n.id === 'banka' ? 36 : n.id === 'retail' ? 30 : n.id === 'abl' ? 28 : n.small ? 19 : 23;
+    let c = 16;
+    (function place(n){
+      if (n.kids) { n.kids.forEach(place); P[n.id] = { x: xs[n.d], y: (P[n.kids[0].id].y + P[n.kids[n.kids.length - 1].id].y) / 2, r: R(n), below: true }; }
+      else { const h = n.h || 72; P[n.id] = { x: xs[n.d], y: c + h / 2, r: R(n), below: false }; c += h; }
+    })(TREE);
+    return { P, H: c + 22, wide: true };
+  }
+  let y = 26;
+  FLAT.forEach(n => {
+    const r = n.id === 'macura' ? 23 : (n.big ? 21 : 18);
+    P[n.id] = { x: 25 + n.d * 27, y, r, below: false };
+    y += 60 + (n.flag ? 13 : 0);
+  });
+  return { P, H: y - 14, wide: false };
+}
+
+const svg = document.getElementById('graph'), gw = document.getElementById('gw');
+let year = LAST, picked = null, built = 0;
+function discColor(n){
+  if (n.sec === 'person') return ['var(--ink)', 'var(--paper)'];
+  if (n.hollow) return ['var(--sheet)', 'var(--ink)'];
+  return [`var(--${n.sec})`, `var(--${n.sec}-t)`];
+}
+function build(){
+  const W = gw.clientWidth; if (!W) return; built = W;
+  const { P, H, wide } = layout(W);
+  svg.setAttribute('viewBox', `0 0 ${W} ${H}`); svg.setAttribute('height', H);
+  let s = '';
+  FLAT.forEach(n => {
+    const p = parent[n.id]; if (!p) return;
+    const a = P[p.id], b = P[n.id];
+    const d = wide
+      ? (() => { const x1 = a.x + a.r, x2 = b.x - b.r, m = (x1 + x2) / 2; return `M${x1} ${a.y}C${m} ${a.y} ${m} ${b.y} ${x2} ${b.y}`; })()
+      : `M${a.x} ${a.y + a.r}V${b.y}H${b.x - b.r}`;
+    s += `<path class="l${n.edge === 'dash' ? ' dash' : ''}" data-l="${n.id}" d="${d}"/>`;
+  });
+  FLAT.forEach(n => {
+    const q = P[n.id], [fill, ink] = discColor(n), rin = q.r - 2, rd = q.r - 6;
+    const fs = n.id === 'macura' ? (wide ? 26 : 15) : Math.max(12, Math.round(q.r * .52));
+    const stroke = n.sec === 'person' ? 'var(--ink)' : `var(--${n.sec})`;
+    const lx = q.below ? q.x : q.x + q.r + 10;
+    const anchor = q.below ? 'middle' : 'start';
+    const ly = q.below ? q.y + q.r + 18 : q.y - (n.flag ? 8 : 2);
+    s += `<g class="n" data-id="${n.id}" role="button" tabindex="0">`
+      + `<circle class="sel" cx="${q.x}" cy="${q.y}" r="${q.r + 4}"/>`
+      + (n.sec === 'person' || n.asset ? '' : `<circle class="track" cx="${q.x}" cy="${q.y}" r="${rin}"/><circle class="arc" cx="${q.x}" cy="${q.y}" r="${rin}" stroke="${stroke}" pathLength="100" stroke-dasharray="0 100" transform="rotate(-90 ${q.x} ${q.y})"/>`)
+      + `<circle class="disc" cx="${q.x}" cy="${q.y}" r="${n.sec === 'person' ? q.r : rd}" fill="${fill}"${n.hollow ? ` stroke="${stroke}"` : ''}/>`
+      + `<text class="pct" x="${q.x}" y="${q.y}" font-size="${fs}" fill="${ink}"></text>`
+      + `<text class="nm${n.big && wide ? ' big' : ''}" x="${lx}" y="${ly}" text-anchor="${anchor}"></text>`
+      + `<text class="wh" x="${lx}" y="${ly + 15}" text-anchor="${anchor}">${n.when}</text>`
+      + (n.flag ? `<text class="fl" x="${lx}" y="${ly + 30}" text-anchor="${anchor}">${n.flag}</text>` : '')
+      + `</g>`;
+  });
+  svg.innerHTML = s;
+  apply();
+}
+function apply(){
+  if (!svg.firstChild) return;
+  FLAT.forEach(n => {
+    const g = svg.querySelector(`.n[data-id="${n.id}"]`), vis = isVis(n, year), sh = shareAt(n, year);
+    g.classList.toggle('ghost', !vis);
+    g.setAttribute('tabindex', vis ? '0' : '-1');
+    g.classList.toggle('unk', !!n.unknown);
+    g.classList.toggle('red', year === LAST && !!n.flag);
+    g.classList.toggle('picked', picked === n.id);
+    const nm = nameAt(n, year);
+    g.querySelector('.nm').textContent = nm;
+    g.querySelector('.pct').textContent = n.id === 'macura' ? 'ДМ' : sh.t;
+    const arc = g.querySelector('.arc');
+    if (arc) arc.setAttribute('stroke-dasharray', `${n.unknown ? 0 : (sh.v || 0)} 100`);
+    const fl = g.querySelector('.fl');
+    if (fl) fl.style.display = year === LAST ? '' : 'none';
+    g.setAttribute('aria-label', `${nm}${sh.v != null ? ', доля ' + sh.t : ''}, ${n.when}`);
+    const l = svg.querySelector(`.l[data-l="${n.id}"]`);
+    if (l) l.classList.toggle('ghost', !linkVis(n, year));
+  });
+  svg.querySelectorAll('.l.on').forEach(e => e.classList.remove('on'));
+  for (let x = picked && byId[picked]; x && parent[x.id]; x = parent[x.id]) svg.querySelector(`.l[data-l="${x.id}"]`).classList.add('on');
+}
+
+/* Year line: the bank strand and the business strand merge in 2019 */
+const scrub = document.getElementById('scrub');
+function buildScrub(){
+  const W = scrub.parentElement.clientWidth; if (!W) return;
+  const pad = 24, step = (W - pad * 2) / (STOPS.length - 1), X = i => Math.round(pad + i * step);
+  const hi = 24, mid = 44, lo = 64, H = 96;
+  const m = (X(2) + X(3)) / 2;
+  let s = `<path class="lane lane--bank" d="M${X(0)} ${lo}H${X(2)}C${m} ${lo} ${m} ${mid} ${X(3)} ${mid}"/>`
+    + `<path class="lane lane--biz" d="M${X(1)} ${hi}H${X(2)}C${m} ${hi} ${m} ${mid} ${X(3)} ${mid}"/>`
+    + `<path class="lane lane--main" d="M${X(3)} ${mid}H${X(STOPS.length - 1)}"/>`
+    + `<text class="lane-t" x="${X(1) + 12}" y="${hi - 11}">Бизнес Мацуры</text>`
+    + `<text class="lane-t" x="${X(0) + 12}" y="${lo - 7}">Банк JUBMES</text>`;
+  STOPS.forEach(([y], i) => {
+    const cy = i === 0 ? lo : i < 3 ? hi : mid;
+    const cls = ['stop', i === 0 ? 'bank' : '', y === LAST ? 'end' : ''].join(' ');
+    s += `<g class="${cls}" data-y="${y}" role="button" tabindex="0" aria-label="${y} год"><circle class="hit" cx="${X(i)}" cy="${cy}" r="20"/><circle class="dot" cx="${X(i)}" cy="${cy}" r="7.5"/><text class="yr" x="${X(i)}" y="${H - 4}">${y}</text></g>`;
+  });
+  scrub.setAttribute('viewBox', `0 0 ${W} ${H}`); scrub.setAttribute('height', H);
+  scrub.innerHTML = s;
+  markScrub();
+}
+function markScrub(){
+  scrub.querySelectorAll('.stop').forEach(g => {
+    const y = +g.dataset.y;
+    g.classList.toggle('past', y <= year);
+    g.classList.toggle('on', y === year);
+    g.setAttribute('aria-pressed', String(y === year));
+  });
+}
+function setYear(y){
+  year = y;
+  document.getElementById('capY').textContent = y;
+  document.getElementById('capT').textContent = STOPS.find(s => s[0] === y)[1];
+  markScrub(); apply();
+}
+
+/* Slip */
+const slip = document.getElementById('slip');
+const wideSlip = matchMedia('(min-width: 1240px)');
+function chainText(n){ const out = []; for (let x = n; x; x = parent[x.id]) out.unshift(finalName(x)); return out.join(' → '); }
+function pick(id){
+  picked = id; const n = byId[id], sh = shareAt(n, LAST);
+  slip.innerHTML = `<button type="button" class="x" id="x" aria-label="Закрыть">×</button>`
+    + (parent[id] ? `<p class="chain">${chainText(n)}</p>` : '')
+    + `<h3>${finalName(n)}</h3>`
+    + `<p class="when">${sh.v == null ? '' : sh.t === 'контр.' ? 'Полный контроль. ' : `Доля ${sh.t}. `}${n.when[0].toUpperCase() + n.when.slice(1)}</p>`
+    + `<ul class="pts">${n.notes.map(([t, k]) => `<li>${t} <span class="src">${links(k)}</span></li>`).join('')}</ul>`;
+  slip.hidden = false;
+  document.getElementById('x').onclick = () => { slip.hidden = true; picked = null; apply(); };
+  apply();
+}
+function hit(e){ const g = e.target.closest('.n'); if (g && !g.classList.contains('ghost')) pick(g.dataset.id); }
+svg.addEventListener('click', hit);
+svg.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); hit(e); } });
+function stopPlay(){ clearInterval(timer); timer = null; playBtn.textContent = '▶ Показать по годам'; }
+function chooseYear(e){ const g = e.target.closest('.stop'); if (g) { stopPlay(); setYear(+g.dataset.y); } }
+scrub.addEventListener('click', chooseYear);
+scrub.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); chooseYear(e); } });
+
+/* Play through the years */
+const playBtn = document.getElementById('play'); let timer = null;
+playBtn.addEventListener('click', () => {
+  if (timer) { stopPlay(); return; }
+  let i = 0; setYear(STOPS[0][0]); playBtn.textContent = '■ Остановить';
+  timer = setInterval(() => { i++; setYear(STOPS[i][0]); if (i === STOPS.length - 1) stopPlay(); }, 2200);
+});
+
+/* Static parts */
+const STEPS = [
+  [28.51, '28,51%', 'Май 2019', 'Покупка у государства, 7 207 RSD за акцию, ≈€5 млн', ['n1a','kam1']],
+  [76.06, '76,06%', 'Сентябрь 2021', 'Оферта миноритариям, 4 350 RSD за акцию. Деньги: кредит AIK banka', ['b92a','n1imt','kam1']],
+  [90, '>90%', 'Июнь 2023', 'Ещё одна оферта, 3 759 RSD за акцию', ['mom']],
+  [100, '100%', '2023', 'Принудительный выкуп остатка, банк уходит с биржи', ['kam1','rts']],
+];
+document.getElementById('rings').innerHTML = STEPS.map(([v, t, d, x, k]) =>
+  `<div class="ring"><svg width="72" height="72" viewBox="0 0 72 72" role="img" aria-label="${t}"><circle cx="36" cy="36" r="33" fill="none" stroke="var(--rule)" stroke-width="4"/><circle cx="36" cy="36" r="33" fill="none" stroke="var(--fin)" stroke-width="4" pathLength="100" stroke-dasharray="${v} 100" transform="rotate(-90 36 36)"/><circle cx="36" cy="36" r="27" fill="var(--fin)"/><text class="pct" x="36" y="36" font-size="18" fill="var(--fin-t)">${t}</text></svg><div><b>${d}</b><span>${x}</span><span class="src">${links(k)}</span></div></div>`).join('');
+document.getElementById('srcs').innerHTML = Object.values(S).map(s => `<li><a href="${s[2]}" target="_blank" rel="noopener">${s[0]}</a><small>${s[1]}</small></li>`).join('');
+
+buildScrub();
+build();
+setYear(LAST);
+if (wideSlip.matches) pick('banka'); else slip.hidden = true;
+new ResizeObserver(() => { if (gw.clientWidth !== built) { buildScrub(); build(); } }).observe(gw);
+</script>
+
+</body></html>
