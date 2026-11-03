@@ -166,7 +166,8 @@ summary { cursor: pointer; font-weight: 600; }
 .tile span { font-size: .84rem; line-height: 1.3; color: var(--ink-2); }
 .tile b { font: 800 1.95rem/1.05 var(--display); }
 .tile small { font: 400 .72rem/1.4 var(--mono); color: var(--ink-3); }
-.tile .src { margin-top: 3px; }
+.tm { display: block; height: 5px; margin: 5px 0 3px; background: var(--paper); border-radius: 3px; overflow: hidden; }
+.tm i { display: block; height: 100%; border-radius: 3px; }
 .paper { border-left: 4px solid var(--stecaj); padding: 4px 0 4px 14px; font-size: 1rem; line-height: 1.45; max-width: 78ch; }
 
 /* Cash chart */
@@ -408,6 +409,7 @@ summary { cursor: pointer; font-weight: 600; }
   <section class="sec">
     <div class="sec-h"><h2 data-i="h2p"></h2><p class="sub" data-i="subp"></p></div>
     <div class="tiles" id="tiles"></div>
+    <p class="src" id="tilesS"></p>
     <p class="paper" id="paper"></p>
   </section>
 
@@ -939,7 +941,7 @@ Object.assign(U, {
   d1: L('1\u00A0627', '1.627'),
   scaleA: L('Масштаб: депозиты, наличность и сумма из заявления прокуратуры', 'Razmere: depoziti, gotovina i iznos iz saopštenja tužilaštva'),
   h2p: L('Основные параметры банка', 'Osnovni parametri banke'),
-  subp: L('Первые четыре показателя на 30 сентября 2026, остальные на 30 июня: это последний полный баланс. Отчёта за сентябрь на сайте банка нет, цифры приводят Forbes Srbija и bife.ba.', 'Prva četiri pokazatelja su na dan 30. septembra 2026, a ostali na dan 30. juna: to je poslednji potpun bilans. Izveštaja za septembar nema na sajtu banke, a brojke navode Forbes Srbija i bife.ba.'),
+  subp: L('На 30 сентября 2026, где дата другая, она указана. Полоска показывает размер относительно активов.', 'Na dan 30. septembra 2026, a gde je datum drugačiji, on je naveden. Traka pokazuje veličinu u odnosu na aktivu.'),
   h2g: L('Как росла наличность', 'Kako je rasla gotovina'),
   subg: L('По этой строке банк далеко опережал пять крупнейших банков, а кредитовал меньше. При этом она росла медленнее баланса: её доля в активах упала с 47,7% в 2022 до ≈38% в 2026. Значения на конец года.', 'Na toj stavci banka je bila daleko ispred pet najvećih banaka, a kreditirala je manje. Ipak, rasla je sporije od bilansa: udeo u aktivi pao je sa 47,7% u 2022. na oko 38% u 2026. Vrednosti su na kraju godine.'),
   kc: L('Наличные и средства в НБС (gotovina), млн €', 'Gotovina i sredstva kod centralne banke, mil. €'),
@@ -975,17 +977,18 @@ const SCALE_NOTE = [L('Круги показывают масштаб, их пл
                       'Krugovi pokazuju razmere, površina im je srazmerna iznosu. To su različiti pokazatelji na različite datume. U bilansu banke druga stavka se zove „gotovina i sredstva kod centralne banke”, pa nije isto što i sadržaj trezora. Strukture u pronađenim izvorima nema. Anonimni bankari u Forbesu kažu da je veći deo takve stavke na računu kod NBS i da ne može da se iznese. Prema računici Forbesa taj iznos bi težio oko 9 tona u novčanicama od 5.000 dinara ili oko 1,7 tona u novčanicama od 500 €.'), ['bs26','danas25','fq3']];
 
 const TILES = [
-  [L('Активы','Aktiva'), L('≈€1,98 млрд','≈1,98 mlrd €'), L('В июне: €1,84 млрд, 9-е место, ≈2,9% сектора','U junu: 1,84 mlrd €, 9. mesto, ≈2,9% sektora'), ['bife','bs26','fnight']],
-  [L('Депозиты клиентов','Depoziti klijenata'), L('€1,63 млрд','1,63 mlrd €'), L('В июне: €1,47 млрд','U junu: 1,47 mlrd €'), ['fq3','bs26']],
-  [L('Кредиты клиентам','Krediti klijentima'), L('€953 млн','953 mil. €'), L('≈59% депозитов. В июне: €904 млн','≈59% depozita. U junu: 904 mil. €'), ['fq3','bs26']],
-  [L('Наличные и средства в НБС','Gotovina i sredstva kod CB'), L('€754 млн','754 mil. €'), L('≈38% активов. В июне: €713 млн','≈38% aktive. U junu: 713 mil. €'), ['fq3','bs26']],
-  [L('Капитал','Kapital'), L('€238 млн','238 mil. €'), L('Адекватность капитала 17,92%','Adekvatnost kapitala 17,92%'), ['bs26','op26']],
-  [L('Ликвидность по отчёту','Likvidnost prema izveštaju'), 'LCR 140%', L('NSFR 185%. На конец 2025: LCR 150%, NSFR 190%','NSFR 185%. Na kraju 2025: LCR 150%, NSFR 190%'), ['op26','rep25']],
-  [L('Прибыль за полугодие','Dobit za prvo polugodište'), L('€2,1 млн','2,1 mil. €'), L('Годом ранее больше €8 млн','Godinu dana ranije više od 8 mil. €'), ['fcash','bife']],
-  [L('Клиенты, конец 2025','Klijenti, kraj 2025.'), '66 481', L('56 390 граждан, 10 091 компания','56.390 građana, 10.091 firma'), ['ned1']],
+  [L('Активы','Aktiva'), L('≈€1,98 млрд','≈1,98 mlrd €'), L('+€140 млн с июня, 9-е место в секторе','+140 mil. € od juna, 9. mesto u sektoru'), 100, '--line'],
+  [L('Депозиты клиентов','Depoziti klijenata'), L('€1,63 млрд','1,63 mlrd €'), L('+€155 млн с июня','+155 mil. € od juna'), 82.2, '--dep'],
+  [L('Кредиты клиентам','Krediti klijentima'), L('€953 млн','953 mil. €'), L('+€50 млн с июня','+50 mil. € od juna'), 48.2, '--build'],
+  [L('Наличные и средства в НБС','Gotovina i sredstva kod CB'), L('€754 млн','754 mil. €'), L('+€40 млн с июня','+40 mil. € od juna'), 38.1, '--fin'],
+  [L('Капитал, июнь','Kapital, jun'), L('€238 млн','238 mil. €'), L('Адекватность 17,92%','Adekvatnost 17,92%')],
+  [L('Ликвидность, июнь','Likvidnost, jun'), 'LCR 140%', 'NSFR 185%'],
+  [L('Прибыль, I полугодие','Dobit, I polugodište'), L('€2,1 млн','2,1 mil. €'), L('Годом ранее больше €8 млн','Godinu dana ranije više od 8 mil. €')],
+  [L('Клиенты, конец 2025','Klijenti, kraj 2025.'), '66 481', L('56 390 граждан, 10 091 компания','56.390 građana, 10.091 firma')],
 ];
-const PAPER = [L('В июне банк на бумаге был ликвиден: все нормативы выше минимумов. На 30 сентября внебалансовые позиции ≈€1,49 млрд. 31 октября четыре вице-губернатора НБС написали, что реальное состояние «drastično» отличалось от отчётов банка. Цифр они не назвали.',
-                 'U junu je banka na papiru bila likvidna: svi pokazatelji bili su iznad minimuma. Na dan 30. septembra vanbilansne pozicije su oko 1,49 mlrd €. Četiri viceguvernera NBS napisala su 31. oktobra da je stvarno stanje „drastično” odstupalo od izveštaja banke. Brojke nisu naveli.'), ['bife','vg']];
+const TILES_S = ['fq3','bife','bs26','op26','fcash','fnight','ned1'];
+const PAPER = [L('В июне банк на бумаге был ликвиден, все нормативы выше минимумов. 31 октября четыре вице-губернатора НБС написали, что реальное состояние «drastično» отличалось от отчётов, цифр не назвали. Внебаланс на 30 сентября: ≈€1,49 млрд.',
+                 'U junu je banka na papiru bila likvidna, svi pokazatelji bili su iznad minimuma. Četiri viceguvernera NBS napisala su 31. oktobra da je stvarno stanje „drastično” odstupalo od izveštaja, a brojke nisu naveli. Vanbilans na dan 30. septembra: oko 1,49 mlrd €.'), ['bife','vg']];
 
 const CASH = [
   { x:'2022', c:26.3, d:48.44, l:15.2, a:55.17 },
@@ -1417,8 +1420,9 @@ function renderCash(){
   document.getElementById('scaleT').innerHTML = SCALE.map(([k, a, b, s]) =>
     `<div><span class="mk dot--${k}"></span><b>${T(a)}</b><p>${T(b)} <span class="src">${links(s)}</span></p></div>`).join('')
     + `<p class="fine">${T(SCALE_NOTE[0])} <span class="src">${links(SCALE_NOTE[1])}</span></p>`;
-  document.getElementById('tiles').innerHTML = TILES.map(([a, b, c, s]) =>
-    `<div class="tile"><span>${T(a)}</span><b>${T(b)}</b><small>${T(c)}</small><span class="src">${links(s)}</span></div>`).join('');
+  document.getElementById('tiles').innerHTML = TILES.map(([a, b, c, w, col]) =>
+    `<div class="tile"><span>${T(a)}</span><b>${T(b)}</b>${w ? `<em class="tm"><i style="width:${w}%;background:var(${col})"></i></em>` : ''}<small>${T(c)}</small></div>`).join('');
+  document.getElementById('tilesS').innerHTML = links(TILES_S);
   document.getElementById('paper').innerHTML = `${T(PAPER[0])} <span class="src">${links(PAPER[1])}</span>`;
   document.getElementById('chartS').innerHTML = links(['fcash','fq3','bife']);
   const th = CASH.map(p => `<th scope="col">${T(p.x)}</th>`).join('');
