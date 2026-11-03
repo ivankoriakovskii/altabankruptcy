@@ -242,6 +242,8 @@ summary { cursor: pointer; font-weight: 600; }
 .tl-b { display: grid; gap: 5px; min-width: 0; }
 .tl-w { font: 500 .84rem/1.4 var(--mono); }
 .tl-b ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .94rem; line-height: 1.42; max-width: 78ch; }
+.tl-lq { display: grid; gap: 8px; margin-top: 4px; padding: 10px 12px; background: var(--sheet); border: 1px solid var(--rule); border-left: 4px solid var(--fin); border-radius: 3px; font-size: .9rem; line-height: 1.42; max-width: 78ch; }
+.tl-lq b { display: block; font: 500 .72rem/1.4 var(--mono); text-transform: uppercase; letter-spacing: .04em; color: var(--ink-2); }
 .tl-sep { font: 800 1.35rem/1 var(--display); text-transform: uppercase; padding: 4px 0 14px 28px; }
 .tl > li.tl-sep::before { top: 0; }
 .tl > li.tl-sep { display: block; }
@@ -257,7 +259,7 @@ summary { cursor: pointer; font-weight: 600; }
   .twin { grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr); }
   .tl > li { grid-template-columns: 16px 132px minmax(0, 1fr); }
   .tl-b { display: contents; }
-  .tl-b > ul { grid-column: 3; }
+  .tl-b > ul, .tl-lq { grid-column: 3; }
   .tl-w { grid-column: 2; padding-top: 1px; }
 }
 
@@ -323,7 +325,8 @@ summary { cursor: pointer; font-weight: 600; }
 .steps6 b { display: block; font: 500 .84rem/1.4 var(--mono); }
 .steps6 p { font-size: .88rem; line-height: 1.4; color: var(--ink-2); }
 @media (min-width: 720px) {
-  .who, .res { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .who { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .res { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .sl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .wf-r { grid-template-columns: minmax(0, 300px) minmax(0, 1fr) 96px; }
   .wf-t { grid-column: 2; grid-row: 1; }
@@ -1251,11 +1254,17 @@ const TL = [
   { d:L('2 ноября','2. novembar'), hot:1, end:1, it:[
     [L('Прокуратура: трое задержаны на срок до 48 часов. Подозрение: незаконная выгода около €385 млн, деньги выносили из хранилища. N1 и защитник подтверждают, что среди задержанных Davor Macura.','Tužilaštvo: troje zadržano do 48 sati. Sumnja: protivpravna korist oko 385 mil. €, novac je iznošen iz trezora. N1 i branilac potvrđuju da je među zadržanima Davor Macura.'),['n1jtok','nejtok','dan']],
     [L('Защитник Isa Spahović: Davor Macura в Сербии и не сбежал, в чём его обвиняют, защита узнает у прокурора 3 ноября.','Branilac Isa Spahović: Davor Macura je u Srbiji i nije pobegao, a šta mu se stavlja na teret odbrana će saznati pred tužiocem 3. novembra.'),['dan']],
-    [L('НБС: банковский сектор ликвиден, при необходимости вмешается на валютном рынке.','NBS: bankarski sektor je likvidan, a po potrebi će intervenisati na deviznom tržištu.'),['rfe2']] ]},
+    [L('НБС: банковский сектор ликвиден, при необходимости вмешается на валютном рынке.','NBS: bankarski sektor je likvidan, a po potrebi će intervenisati na deviznom tržištu.'),['rfe2']] ],
+    lq:[L('Прокуратура сообщила о незаконной выгоде ≈€385 млн: деньги выносили из хранилища. НБС пишет о значительном ухудшении состояния и ликвидности, без цифр. Итог описи наличных не опубликован.','Tužilaštvo je saopštilo protivpravnu korist od oko 385 mil. €: novac je iznošen iz trezora. NBS piše o značajnom pogoršanju stanja i likvidnosti, bez brojki. Rezultat popisa gotovine nije objavljen.'),
+        L('До €50 000 без изменений. Если этих денег нет в массе, она меньше на ≈€385 млн: в среднем сценарии выплата сверх лимита падает с «почти всё» до ≈55%.','Do 50.000 € bez promene. Ako tog novca nema u masi, ona je manja za oko 385 mil. €: u srednjem scenariju isplata iznad limita pada sa „skoro sve” na oko 55%.'),
+        ['n1jtok','rfe2']] },
   { d:L('3 ноября','3. novembar'), hot:1, end:1, it:[
     [L('Суд открывает банкротство, управляющий: Агентство по страхованию депозитов. Следующий шаг: опись имущества.','Sud otvara stečaj, stečajni upravnik je Agencija za osiguranje depozita. Sledeći korak je popis imovine.'),['danas3','tanjug3','bloom3']],
     [L('Выплаты до €50 000 пойдут через Poštanska štedionica, дату и отделения Агентство опубликует до 6 ноября. Срок начала: 7 рабочих дней.','Isplate do 50.000 € idu preko Poštanske štedionice, a datum i ekspoziture Agencija objavljuje do 6. novembra. Rok za početak je 7 radnih dana.'),['danas3','mondo3']],
-    [L('Davor Macura вызван на допрос в прокуратуру. Адвокат: сам явился по вызову и скрываться не пытался. Результат допроса и мера в найденных источниках пока не указаны.','Davor Macura je pozvan na saslušanje u tužilaštvo. Advokat: sam se odazvao pozivu i nije pokušao da se sakrije. Rezultat saslušanja i mera u pronađenim izvorima još nisu navedeni.'),['tel3']] ]},
+    [L('Davor Macura вызван на допрос в прокуратуру. Адвокат: сам явился по вызову и скрываться не пытался. Результат допроса и мера в найденных источниках пока не указаны.','Davor Macura je pozvan na saslušanje u tužilaštvo. Advokat: sam se odazvao pozivu i nije pokušao da se sakrije. Rezultat saslušanja i mera u pronađenim izvorima još nisu navedeni.'),['tel3']] ],
+    lq:[L('Стали известны цифры на 30 сентября: наличные и НБС €754 млн (+€40 млн с июня), депозиты €1,63 млрд (+€155 млн). Суммы оттока и итога описи нет. Банкиры в Forbes считают, что большая часть такой строки лежит на счёте в НБС и вынести её нельзя: это мнение, не факт.','Poznati su podaci na dan 30. septembra: gotovina i NBS 754 mil. € (+40 mil. € od juna), depoziti 1,63 mlrd € (+155 mil. €). Iznosa odliva i rezultata popisa nema. Bankari u Forbesu smatraju da je veći deo takve stavke na računu kod NBS i da ne može da se iznese: to je mišljenje, ne činjenica.'),
+        L('До €50 000 без изменений. Новая база поднимает средний сценарий: масса ≈€945 млн вместо ≈€845 млн, сверх лимита ≈55% вместо ≈35%. Это пересчёт по сентябрьским цифрам, а не улучшение: реальную сумму покажет опись имущества.','Do 50.000 € bez promene. Nova osnova podiže srednji scenario: masa oko 945 mil. € umesto oko 845 mil. €, iznad limita oko 55% umesto oko 35%. To je preračun po septembarskim brojkama, a ne poboljšanje: stvarni iznos pokazaće popis imovine.'),
+        ['fq3','bloom3']] },
 ];
 const UNK = [
   [L('Когда выносили деньги, сколько именно наличными и куда они делись. Прокуратура назвала сумму незаконной выгоды и конечную дату. Банкиры в Forbes сомневаются, что столько можно было держать и вынести наличными.','Kada je novac iznošen, koliko je tačno izneto u gotovini i gde je završio. Tužilaštvo je navelo iznos protivpravne koristi i krajnji datum. Bankari u Forbesu sumnjaju da je toliko moglo da se drži i iznese u gotovini.'),['n1jtok','fq3']],
@@ -1324,7 +1333,7 @@ const BAL_NOTE = [L('Неаудированный баланс на 30 июня:
                     'Nerevidirani bilans na dan 30. juna: rezerva kapitala 238 mil. €. Viceguverneri NBS pišu da je stvarnost drastično odstupala od izveštaja, pa je to gornja granica, a ne iznos u kasi. Klasa u statusu neizmirenja u tabeli kapitalnih zahteva: oko 3,5 mil. € ponderisano rizikom, a bruto iznosa loših kredita nema.'), ['bs26','op26','vg','fq3']];
 const SEPT = [L('К 30 сентября','Do 30. septembra'), [L('Наличные и НБС €754 млн','Gotovina i NBS 754 mil. €'), L('Депозиты €1,63 млрд','Depoziti 1,63 mlrd €'), L('Кредиты €953 млн','Krediti 953 mil. €')]];
 const WHO = [
-  ['--build', L('До €50 000 у застрахованных','Do 50.000 € kod osiguranih'), L('Платит фонд','Isplaćuje fond'), L('Через Poštanska štedionica, с гарантией Республики. Не хватит фонда: бюджет или займы по решению правительства. Крупные компании и госорганы не застрахованы.','Preko Poštanske štedionice, uz jemstvo Republike. Ako fond nije dovoljan: budžet ili zaduživanje po odluci Vlade. Velika pravna lica i državni organi nisu osigurani.')],
+  ['--build', L('До €50 000 у застрахованных','Do 50.000 € kod osiguranih'), L('Платит фонд','Isplaćuje fond'), L('Через Poštanska štedionica, с гарантией Республики. Не хватит фонда: бюджет или займы по решению правительства.','Preko Poštanske štedionice, uz jemstvo Republike. Ako fond nije dovoljan: budžet ili zaduživanje po odluci Vlade.')],
   ['--other', L('Сверх €50 000','Iznad 50.000 €'), L('Из массы','Iz stečajne mase'), L('Требование надо подать в суд в срок. Возврат зависит от собранных денег.','Potraživanje treba prijaviti sudu na vreme. Povraćaj zavisi od naplaćenog novca.')],
   ['--retail', L('Если у вас кредит','Ako imate kredit'), L('Платить дальше','Nastavljate da plaćate'), L('Долг остаётся, куда платить, скажет Агентство. Не прекращайте платежи сами. Вклад в залоге не застрахован, если долг не меньше вклада. Зачёт возможен не всегда: спросите юриста.','Dug ostaje, a kuda da plaćate saopštiće Agencija. Ne prekidajte plaćanje sami. Depozit dat kao obezbeđenje nije osiguran ako dug nije manji od depozita. Prebijanje nije uvek moguće: pitajte pravnika.')],
 ];
@@ -1334,9 +1343,7 @@ const LAD = [
   ['1', 'pay1', L('Сверх €50 000 у застрахованных','Iznad 50.000 € kod osiguranih'), L('Граждане, включая нерезидентов, предприниматели, микро-, малые и средние компании-резиденты.','Građani, uključujući nerezidente, preduzetnici, mikro, mala i srednja pravna lica rezidenti.')],
   ['2', '', L('Налоги, публичные платежи','Javni prihodi'), L('Со сроком в последние 3 месяца до банкротства.','Dospeli u poslednja 3 meseca pre stečaja.')],
   ['3', '', L('НБС','NBS'), L('Включая кредиты, не покрытые залогом.','Uključujući kredite nepokrivene obezbeđenjem.')],
-  ['4', '', L('Остальные депозиты','Ostali depoziti'), L('Вне страхования: крупные компании, госорганы, связанные лица. Без банков и финорганизаций.','Van osiguranja: velika pravna lica, državni organi, povezana lica. Bez banaka i finansijskih institucija.')],
-  ['5', '', L('Прочие кредиторы','Ostali poverioci'), L('Все, кроме очередей 6–7.','Svi osim redova 6–7.')],
-  ['6–7', '', L('Субординированные, акционеры','Subordinirani, akcionari'), L('Последними. Субординированных долгов на 30 июня не было.','Poslednji. Subordiniranih obaveza na dan 30. juna nije bilo.')],
+  ['4–7', '', L('Все остальные','Svi ostali'), L('Остальные кредиторы, затем акционеры. Субординированных долгов на 30 июня не было.','Ostali poverioci, zatim akcionari. Subordiniranih obaveza na dan 30. juna nije bilo.')],
 ];
 const LAD_NOTE = [L('Первая очередь в законе описана общей фразой: требования, оставшиеся после выплаты застрахованных вкладов. Так её читают юристы Injac. Требования утверждают Агентство и суд. Проект закона 2026 года, по найденным данным, не принят; если вступит в силу, начатые дела продолжатся по нему. Это не юридическая консультация.',
                     'Prvi red je u zakonu opisan opštom formulacijom: potraživanja preostala nakon isplate osiguranih depozita. Tako ga čitaju advokati Injac. Potraživanja utvrđuju Agencija i sud. Nacrt zakona iz 2026, prema pronađenim podacima, nije usvojen; ako stupi na snagu, započeti postupci nastaviće se po njemu. Ovo nije pravni savet.'), ['zst','zod','injac','aodpdf','bs26','draft']];
@@ -1352,7 +1359,7 @@ let pay = { s:'mid', ...SCN.mid };
 const SLD = [
   { k:'W', min:0, max:360, step:10, t:L('Клиенты успели забрать перед закрытием','Klijenti su povukli pre zatvaranja'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет, сотрудники говорят о массовых снятиях. Отток снижает и деньги, и долг.','Iznosa nema, zaposleni govore o masovnim povlačenjima. Odliv smanjuje i novac i dug.'), s:['emp'] },
   { k:'r', min:20, max:90, step:5, t:L('Сбор с кредитов и других активов','Naplata kredita i druge aktive'), f:v => v + '%', h:L('Суммы плохих кредитов нет, вице-губернаторы сомневаются в отчётах.','Iznosa loših kredita nema, viceguverneri dovode izveštaje u pitanje.'), s:['op26','vg'] },
-  { k:'I', min:300, max:1620, step:10, t:L('Застрахованные вклады, всего','Osigurani depoziti, ukupno'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет. Пропорция, не потолок: 2,9% активов сектора × €37,5 млрд ≈ €1,09 млрд. Предел: депозиты ≈€1,63 млрд. Эксперт в Forbes: много вкладов фирм и госсектора, застрахованная часть может быть меньше.','Iznosa nema. Proporcija, ne gornja granica: 2,9% aktive sektora × 37,5 mlrd € ≈ 1,09 mlrd €. Limit: depoziti, oko 1,63 mlrd €. Stručnjak u Forbesu: mnogo depozita firmi i državnog sektora, osigurani deo može da bude manji.'), s:['ins26','fnight','fq3'] },
+  { k:'I', min:300, max:1620, step:10, t:L('Застрахованные вклады, всего','Osigurani depoziti, ukupno'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет. Пропорция, не потолок: 2,9% активов сектора × €37,5 млрд ≈ €1,09 млрд. Предел: депозиты ≈€1,63 млрд. Эксперт в Forbes говорит о многих вкладах фирм, поэтому застрахованная часть может быть меньше.','Iznosa nema. Proporcija, ne gornja granica: 2,9% aktive sektora × 37,5 mlrd € ≈ 1,09 mlrd €. Limit: depoziti, oko 1,63 mlrd €. Stručnjak u Forbesu govori o mnogo depozita firmi, pa osigurani deo može da bude manji.'), s:['ins26','fnight','fq3'] },
   { k:'v', min:0, max:100, step:10, t:L('Сколько из суммы прокуратуры не вычитать','Koliko od iznosa tužilaštva ne oduzimati'), f:v => v + '%', h:L('Вычет меньше, если деньги вернут или вынос был раньше и скрыт в других строках. Даты неизвестны, банкиры в Forbes сомневаются, что сумма могла лежать в хранилище.','Odbitak je manji ako se novac vrati ili je iznet ranije i skriven u drugim stavkama. Datumi nisu poznati, bankari u Forbesu sumnjaju da je iznos mogao da stoji u trezoru.'), s:['n1jtok','fq3'] },
 ];
 function payModel(p){
@@ -1394,11 +1401,10 @@ function updatePay(){
   const bar = parts => `<em class="mb">${parts.map(([v, c]) => `<i style="flex:${Math.max(v, 0)} 1 0;background:var(${c})"></i>`).join('')}</em>`;
   document.getElementById('res').innerHTML =
     `<div><span>${LL('До €50 000 у застрахованных','Do 50.000 € kod osiguranih')}</span><b>${LL('Платит фонд','Isplaćuje fond')}</b>${bar([[m.A, '--build'], [m.loss, '--stecaj']])}<p>${LL(`Выплаты ≈${mEur(m.I)}: из массы взыщет ≈${mEur(m.A)}${m.loss > 2 ? `, не вернёт ≈${mEur(m.loss)}` : ''}. Агентство: фонда хватит на все застрахованные суммы, размер не назван. Последняя найденная цифра фонда: €1,14 млрд, статья 31.10.2025.`, `Isplate oko ${mEur(m.I)}: iz mase naplaćuje oko ${mEur(m.A)}${m.loss > 2 ? `, ne vraća oko ${mEur(m.loss)}` : ''}. Agencija: fond je dovoljan za sve osigurane iznose, a iznos nije naveden. Poslednji pronađeni podatak o fondu: 1,14 mlrd €, članak 31.10.2025.`)} <span class="src">${links(['danas3','fund25'])}</span></p></div>`
-    + `<div><span>${LL('Сверх €50 000: застрахованные','Iznad 50.000 €: osigurani')}</span><b>${share(m.c1)}</b>${bar([[50, '--build'], [20 * m.c1, '--other'], [20 * (1 - m.c1), '--rule']])}<p>${LL(`Вклад €70 000: €50 000 от фонда, из €20 000 ${ex}.`, `Depozit 70.000 €: 50.000 € od fonda, od 20.000 € ${ex}.`)}</p></div>`
-    + `<div><span>${LL('Вне страхования: крупные компании, госорганы, связанные лица','Van osiguranja: velika pravna lica, državni organi, povezana lica')}</span><b>${share(m.c4)}</b>${bar([[m.c4, '--other'], [1 - m.c4, '--rule']])}<p>${LL('Лимита нет, идут после налогов и НБС.','Nemaju limit, dolaze posle javnih prihoda i NBS.')}</p></div>`;
+    + `<div><span>${LL('Сверх €50 000','Iznad 50.000 €')}</span><b>${share(m.c1)}</b>${bar([[50, '--build'], [20 * m.c1, '--other'], [20 * (1 - m.c1), '--rule']])}<p>${LL(`Вклад €70 000: €50 000 от фонда, из €20 000 ${ex}.`, `Depozit 70.000 €: 50.000 € od fonda, od 20.000 € ${ex}.`)}</p></div>`;
   document.getElementById('payN').innerHTML = LL(
-    `<b>Допущения.</b> Незастрахованные суммы ≈${mEur(m.U)}: половина у застрахованных сверх лимита, половина вне страхования. Сумма прокуратуры вычтена, но даты неизвестны, поэтому вычет может быть завышен. Без него: ${share(nv.c1)} и ${share(nv.c4)}.`,
-    `<b>Pretpostavke.</b> Neosigurani iznosi oko ${mEur(m.U)}: polovina kod osiguranih iznad limita, polovina van osiguranja. Iznos tužilaštva je oduzet, ali datumi nisu poznati, pa odbitak može da bude previsok. Bez njega: ${share(nv.c1)} i ${share(nv.c4)}.`);
+    `<b>Допущения.</b> Незастрахованные суммы ≈${mEur(m.U)}: считаем, что половина из них приходится на застрахованных вкладчиков сверх лимита, остальное идёт позже в очереди. Сумма прокуратуры вычтена, но даты неизвестны, поэтому вычет может быть завышен. Без него: ${share(nv.c1)}.`,
+    `<b>Pretpostavke.</b> Neosigurani iznosi oko ${mEur(m.U)}: računamo da polovina pripada osiguranim deponentima iznad limita, a ostalo dolazi kasnije u redu. Iznos tužilaštva je oduzet, ali datumi nisu poznati, pa odbitak može da bude previsok. Bez njega: ${share(nv.c1)}.`);
 }
 const STEPS6 = [
   [L('3 ноября','3. novembar'), L('Суд открыл банкротство, управляющий: Агентство. Дальше опись имущества.','Sud je otvorio stečaj, stečajni upravnik je Agencija. Sledi popis imovine.')],
@@ -1471,7 +1477,7 @@ function renderCash(){
   }).join('') + `<p class="fine">${T(U.rngN)}</p>`;
   document.getElementById('tl').innerHTML = TL.map(e => e.sep
     ? `<li class="tl-sep">${T(U.tlSep)}</li>`
-    : `<li class="${e.hot ? 'hot ' : ''}${e.end ? 'end' : ''}"><span class="tl-d"></span><div class="tl-b"><div class="tl-w">${T(e.d)}</div><ul>${e.it.map(([t, k]) => `<li>${T(t)} <span class="src">${links(k)}</span></li>`).join('')}</ul></div></li>`).join('');
+    : `<li class="${e.hot ? 'hot ' : ''}${e.end ? 'end' : ''}"><span class="tl-d"></span><div class="tl-b"><div class="tl-w">${T(e.d)}</div><ul>${e.it.map(([t, k]) => `<li>${T(t)} <span class="src">${links(k)}</span></li>`).join('')}</ul>${e.lq ? `<div class="tl-lq"><p><b>${LL('Ликвидность','Likvidnost')}</b>${T(e.lq[0])}</p><p><b>${LL('Для вкладчиков','Za deponente')}</b>${T(e.lq[1])} <span class="src">${links(e.lq[2])}</span></p></div>` : ''}</div></li>`).join('');
   document.getElementById('unk').innerHTML = UNK.map(([t, k]) => `<li><em aria-hidden="true">?</em><span>${T(t)} <span class="src">${links(k)}</span></span></li>`).join('');
   document.getElementById('csrcs').innerHTML = CASH_SRC.map(k => { const s = S[k]; return `<li><a href="${s[2]}" target="_blank" rel="noopener">${T(s[0])}</a><small>${T(s[1])}</small></li>`; }).join('');
   renderPay();
