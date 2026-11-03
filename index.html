@@ -303,6 +303,18 @@ summary { cursor: pointer; font-weight: 600; }
 .res b { font: 800 2.5rem/1 var(--display); }
 .res b::first-letter { text-transform: uppercase; }
 .res p { font-size: .86rem; line-height: 1.4; }
+.mb { display: flex; gap: 2px; height: 8px; margin: 4px 0 3px; }
+.mb i { border-radius: 2px; min-width: 0; }
+.chips { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; font-size: .8rem; line-height: 1.3; }
+.chips li { background: var(--sheet); border: 1px solid var(--rule); border-radius: 999px; padding: 4px 10px; }
+.chips li.ch { background: none; border: 0; padding: 4px 4px 4px 0; font-weight: 600; }
+#notIn { display: grid; gap: 4px; }
+.fine b { font-weight: 600; color: var(--ink); }
+@media (min-width: 1100px) {
+  .lad { grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 0 12px; }
+  .lad > li { grid-template-columns: minmax(0, 1fr); gap: 8px; padding-bottom: 0; align-content: start; }
+  .lad > li::before { left: 34px; right: -12px; top: 16px; bottom: auto; width: auto; height: 2px; }
+}
 .steps6 { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; }
 .steps6 > li { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 0 12px; padding-bottom: 14px; position: relative; }
 .steps6 > li::before { content: ""; position: absolute; left: 7px; top: 8px; bottom: -8px; width: 2px; background: var(--rule); }
@@ -415,7 +427,9 @@ summary { cursor: pointer; font-weight: 600; }
 
   <section class="sec">
     <div class="sec-h"><h2 data-i="h2pay"></h2><p class="sub" data-i="subpay"></p></div>
+    <div class="bal-r" id="ex70"></div>
     <div class="who" id="who"></div>
+    <p class="src" id="whoS"></p>
 
     <div class="pstep">
       <h3 data-i="h3a"></h3>
@@ -437,14 +451,17 @@ summary { cursor: pointer; font-weight: 600; }
         <button type="button" data-s="soft" data-i="sSoft"></button>
       </div>
       <div class="sl" id="sl"></div>
+      <p class="src" id="slS"></p>
       <div class="wf" id="wf" role="img" data-ia="wfA"></div>
       <div class="res" id="res" aria-live="polite"></div>
       <p class="fine" id="payN"></p>
+      <div id="notIn"></div>
     </div>
 
     <div class="pstep">
       <h3 data-i="h3d"></h3>
       <ol class="steps6" id="steps6"></ol>
+      <p class="src" id="stepsS"></p>
     </div>
   </section>
 
@@ -1270,8 +1287,8 @@ CASH_SRC.unshift('bs26','vb26','op26');
 
 Object.assign(U, {
   h2pay: L('Хватит ли денег на выплаты', 'Da li ima dovoljno novca za isplate'),
-  subpay: L('Застрахованным вкладчикам суммы до €50 000 платит фонд с гарантией государства, и право на выплату не зависит от остатков в банке. Всё остальное зависит от того, сколько соберут в банкротстве. Реального баланса на день закрытия пока нет, поэтому ниже расчёт на допущениях, а не прогноз.',
-            'Osiguranim deponentima iznose do 50.000 € isplaćuje fond uz jemstvo države, a pravo na isplatu ne zavisi od onoga što je ostalo u banci. Sve ostalo zavisi od toga koliko će se naplatiti u stečaju. Stvarnog bilansa na dan zatvaranja još nema, pa je u nastavku računica na pretpostavkama, a ne prognoza.'),
+  subpay: L('Застрахованным суммы до €50 000 платит фонд, и право на выплату не зависит от остатков в банке. Остальное зависит от того, сколько соберут в банкротстве. Баланса на день закрытия нет, поэтому ниже расчёт, а не прогноз.',
+            'Osiguranima iznose do 50.000 € isplaćuje fond, a pravo na isplatu ne zavisi od onoga što je ostalo u banci. Ostalo zavisi od toga koliko će se naplatiti u stečaju. Bilansa na dan zatvaranja nema, pa je u nastavku računica, a ne prognoza.'),
   h3a: L('1. Что было на бумаге: последний полный баланс', '1. Šta je bilo na papiru: poslednji potpun bilans'),
   h3b: L('2. Кто получает первым', '2. Ko se prvi namiruje'),
   h3c: L('3. Сколько может остаться', '3. Koliko može da ostane'),
@@ -1303,26 +1320,28 @@ const BAL = [
     [BS.oth, L('Прочие обязательства','Ostale obaveze'), '--line', '--paper'],
     [BS.eq, L('Капитал','Kapital'), '--retail', '--retail-t'] ]},
 ];
-const BAL_NOTE = [L('По неаудированному балансу на 30 июня активы превышали долги на €238 млн. В таблице капитальных требований класс «в дефолте» ≈€3,5 млн с весом риска, брутто-суммы плохих кредитов в отчёте нет. Вице-губернаторы НБС пишут, что реальность резко отличалась от отчётов, поэтому это верхняя граница, а не сумма в кассе. К 30 сентября наличные выросли до €754 млн, депозиты до €1,63 млрд, кредиты до €953 млн.',
-                    'Prema nerevidiranom bilansu na dan 30. juna aktiva je bila veća od dugova za 238 mil. €. U tabeli kapitalnih zahteva klasa u statusu neizmirenja je oko 3,5 mil. € ponderisano rizikom, a bruto iznosa loših kredita u izveštaju nema. Viceguverneri NBS pišu da je stvarnost drastično odstupala od izveštaja, pa je to gornja granica, a ne iznos u kasi. Do 30. septembra gotovina je porasla na 754 mil. €, depoziti na 1,63 mlrd €, a krediti na 953 mil. €.'), ['bs26','op26','vg','fq3']];
+const BAL_NOTE = [L('Неаудированный баланс на 30 июня: запас капитала €238 млн. Вице-губернаторы НБС пишут, что реальность резко отличалась от отчётов, поэтому это верхняя граница, а не сумма в кассе. Класс «в дефолте» в таблице капитальных требований: ≈€3,5 млн с весом риска, брутто-суммы плохих кредитов нет.',
+                    'Nerevidirani bilans na dan 30. juna: rezerva kapitala 238 mil. €. Viceguverneri NBS pišu da je stvarnost drastično odstupala od izveštaja, pa je to gornja granica, a ne iznos u kasi. Klasa u statusu neizmirenja u tabeli kapitalnih zahteva: oko 3,5 mil. € ponderisano rizikom, a bruto iznosa loših kredita nema.'), ['bs26','op26','vg','fq3']];
+const SEPT = [L('К 30 сентября','Do 30. septembra'), [L('Наличные и НБС €754 млн','Gotovina i NBS 754 mil. €'), L('Депозиты €1,63 млрд','Depoziti 1,63 mlrd €'), L('Кредиты €953 млн','Krediti 953 mil. €')]];
 const WHO = [
-  [L('До €50 000 у застрахованных','Do 50.000 € kod osiguranih deponenata'), L('Платит фонд','Isplaćuje fond'), L('Выплаты пойдут через Poštanska štedionica. По закону обязательства фонда гарантирует Республика. Если фонда не хватит, предусмотрены бюджет или займы по решению правительства. Крупные компании и госорганы не застрахованы.','Isplate idu preko Poštanske štedionice. Po zakonu za obaveze fonda jemči Republika. Ako fond ne bude dovoljan, predviđeni su budžet ili zaduživanje po odluci Vlade. Velika pravna lica i državni organi nisu osigurani.'), ['danas3','zod','aodpdf']],
-  [L('Сверх €50 000','Iznad 50.000 €'), L('Из массы','Iz stečajne mase'), L('Становится требованием в банкротстве, его надо подать в суд в срок. Сколько вернётся, зависит от собранных денег.','Postaje potraživanje u stečaju koje treba prijaviti sudu na vreme. Koliko će se vratiti zavisi od naplaćenog novca.'), ['aodpdf','zod','kur']],
-  [L('Если у вас кредит','Ako imate kredit'), L('Платить дальше','Nastavljate da plaćate'), L('Банкротство не отменяет долг, куда платить, скажет Агентство. Не прекращайте платежи сами. Вклад в залоге не застрахован, если долг не меньше вклада. О зачёте спросите юриста: он возможен не всегда.','Stečaj ne briše dug, a kuda da plaćate saopštiće Agencija. Ne prekidajte plaćanje sami. Depozit dat kao obezbeđenje nije osiguran ako dug nije manji od depozita. Za prebijanje pitajte pravnika: nije uvek moguće.'), ['nbs2','kur','zod','injac']],
+  ['--build', L('До €50 000 у застрахованных','Do 50.000 € kod osiguranih'), L('Платит фонд','Isplaćuje fond'), L('Через Poštanska štedionica, с гарантией Республики. Не хватит фонда: бюджет или займы по решению правительства. Крупные компании и госорганы не застрахованы.','Preko Poštanske štedionice, uz jemstvo Republike. Ako fond nije dovoljan: budžet ili zaduživanje po odluci Vlade. Velika pravna lica i državni organi nisu osigurani.')],
+  ['--other', L('Сверх €50 000','Iznad 50.000 €'), L('Из массы','Iz stečajne mase'), L('Требование надо подать в суд в срок. Возврат зависит от собранных денег.','Potraživanje treba prijaviti sudu na vreme. Povraćaj zavisi od naplaćenog novca.')],
+  ['--retail', L('Если у вас кредит','Ako imate kredit'), L('Платить дальше','Nastavljate da plaćate'), L('Долг остаётся, куда платить, скажет Агентство. Не прекращайте платежи сами. Вклад в залоге не застрахован, если долг не меньше вклада. Зачёт возможен не всегда: спросите юриста.','Dug ostaje, a kuda da plaćate saopštiće Agencija. Ne prekidajte plaćanje sami. Depozit dat kao obezbeđenje nije osiguran ako dug nije manji od depozita. Prebijanje nije uvek moguće: pitajte pravnika.')],
 ];
+const WHO_S = ['danas3','zod','aodpdf','kur','nbs2','injac'];
 const LAD = [
-  ['0', 'pay0', L('Расходы процедуры и Агентство','Troškovi postupka i Agencija'), L('Вместе с расходами процедуры Агентство взыскивает из массы выплаченные застрахованные суммы раньше кредиторов.','Zajedno sa troškovima postupka Agencija iz mase naplaćuje isplaćene osigurane iznose pre poverilaca.'), ['zst','zod']],
-  ['1', 'pay1', L('Суммы сверх €50 000 у застрахованных вкладчиков','Iznosi iznad 50.000 € osiguranih deponenata'), L('Граждане, в том числе нерезиденты, предприниматели, микро-, малые и средние компании-резиденты.','Građani, uključujući nerezidente, preduzetnici, mikro, mala i srednja pravna lica rezidenti.'), ['zst','injac','aodpdf']],
-  ['2', '', L('Налоги и другие публичные платежи','Javni prihodi'), L('Со сроком в последние три месяца до банкротства.','Dospeli u poslednja tri meseca pre stečaja.'), ['zst']],
-  ['3', '', L('Народный банк Сербии','Narodna banka Srbije'), L('В том числе кредиты банку, не покрытые залогом.','Uključujući kredite banci koji nisu pokriveni obezbeđenjem.'), ['zst']],
-  ['4', '', L('Остальные депозиты','Ostali depoziti'), L('Вкладчики вне страхования: крупные компании, госорганы, связанные с банком лица. Депозиты банков и других финансовых организаций сюда не входят, акционеры идут в 7-ю очередь.','Deponenti van osiguranja: velika pravna lica, državni organi, lica povezana sa bankom. Depoziti banaka i drugih finansijskih institucija ne spadaju ovde, a akcionari su u 7. redu.'), ['zst','aodpdf','injac']],
-  ['5', '', L('Прочие кредиторы','Ostali poverioci'), L('Все остальные требования, кроме двух последних очередей.','Sva ostala potraživanja, osim poslednja dva reda.'), ['zst']],
-  ['6–7', '', L('Субординированные долги и акционеры','Subordinirane obaveze i akcionari'), L('Последними. По отчёту субординированных долгов на 30 июня не было.','Poslednji. Prema izveštaju subordiniranih obaveza na dan 30. juna nije bilo.'), ['zst','bs26']],
+  ['0', 'pay0', L('Расходы и Агентство','Troškovi i Agencija'), L('Агентство взыскивает выплаченные застрахованные суммы раньше кредиторов.','Agencija naplaćuje isplaćene osigurane iznose pre poverilaca.')],
+  ['1', 'pay1', L('Сверх €50 000 у застрахованных','Iznad 50.000 € kod osiguranih'), L('Граждане, включая нерезидентов, предприниматели, микро-, малые и средние компании-резиденты.','Građani, uključujući nerezidente, preduzetnici, mikro, mala i srednja pravna lica rezidenti.')],
+  ['2', '', L('Налоги, публичные платежи','Javni prihodi'), L('Со сроком в последние 3 месяца до банкротства.','Dospeli u poslednja 3 meseca pre stečaja.')],
+  ['3', '', L('НБС','NBS'), L('Включая кредиты, не покрытые залогом.','Uključujući kredite nepokrivene obezbeđenjem.')],
+  ['4', '', L('Остальные депозиты','Ostali depoziti'), L('Вне страхования: крупные компании, госорганы, связанные лица. Без банков и финорганизаций.','Van osiguranja: velika pravna lica, državni organi, povezana lica. Bez banaka i finansijskih institucija.')],
+  ['5', '', L('Прочие кредиторы','Ostali poverioci'), L('Все, кроме очередей 6–7.','Svi osim redova 6–7.')],
+  ['6–7', '', L('Субординированные, акционеры','Subordinirani, akcionari'), L('Последними. Субординированных долгов на 30 июня не было.','Poslednji. Subordiniranih obaveza na dan 30. juna nije bilo.')],
 ];
-const LAD_NOTE = [L('Первая очередь описана в законе общей фразой: требования, оставшиеся после выплаты застрахованных вкладов. Так её читают юристы Injac. Окончательно требования признают Агентство и суд. Проект закона 2026 года, по найденным данным, не принят; если вступит в силу, начатые дела продолжатся по нему. Это не юридическая консультация.',
-                    'Prvi red je u zakonu opisan opštom formulacijom: potraživanja preostala nakon isplate osiguranih depozita. Tako ga čitaju advokati Injac. Potraživanja konačno utvrđuju Agencija i sud. Nacrt zakona iz 2026, prema pronađenim podacima, nije usvojen; ako stupi na snagu, započeti postupci nastaviće se po njemu. Ovo nije pravni savet.'), ['zst','injac','draft']];
-const PAY_I = [L('Суммы застрахованных вкладов в найденных источниках нет: Агентство не ответило ассоциации Efektiva. Отток не назван, качество кредитов неизвестно. Выберите сценарий или двигайте ползунки: все три сценария считаются на цифрах от 30 сентября. Это расчёт для масштаба, а не прогноз и не финансовый совет.',
-                 'Iznosa osiguranih depozita u pronađenim izvorima nema: Agencija nije odgovorila udruženju Efektiva. Odliv nije naveden, a kvalitet kredita nije poznat. Izaberite scenario ili pomerajte klizače: sva tri scenarija računaju se na brojkama od 30. septembra. Ovo je računica radi razmera, a ne prognoza i ne finansijski savet.'), ['n1gav']];
+const LAD_NOTE = [L('Первая очередь в законе описана общей фразой: требования, оставшиеся после выплаты застрахованных вкладов. Так её читают юристы Injac. Требования утверждают Агентство и суд. Проект закона 2026 года, по найденным данным, не принят; если вступит в силу, начатые дела продолжатся по нему. Это не юридическая консультация.',
+                    'Prvi red je u zakonu opisan opštom formulacijom: potraživanja preostala nakon isplate osiguranih depozita. Tako ga čitaju advokati Injac. Potraživanja utvrđuju Agencija i sud. Nacrt zakona iz 2026, prema pronađenim podacima, nije usvojen; ako stupi na snagu, započeti postupci nastaviće se po njemu. Ovo nije pravni savet.'), ['zst','zod','injac','aodpdf','bs26','draft']];
+const PAY_I = [L('Суммы застрахованных вкладов нет: Агентство не ответило ассоциации Efektiva. Отток и качество кредитов неизвестны. Выберите сценарий или двигайте ползунки, база: цифры на 30 сентября. Это расчёт для масштаба, не прогноз и не финансовый совет.',
+                 'Iznosa osiguranih depozita nema: Agencija nije odgovorila udruženju Efektiva. Odliv i kvalitet kredita nisu poznati. Izaberite scenario ili pomerajte klizače, osnova su brojke na dan 30. septembra. Ovo je računica radi razmera, a ne prognoza i ne finansijski savet.'), ['n1gav']];
 
 const SCN = {
   heavy:{ W:300, r:40, I:1090, v:0 },
@@ -1331,10 +1350,10 @@ const SCN = {
 };
 let pay = { s:'mid', ...SCN.mid };
 const SLD = [
-  { k:'W', min:0, max:360, step:10, t:L('Клиенты успели забрать перед закрытием','Klijenti su povukli pre zatvaranja'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет, сотрудники говорят о массовых снятиях. Отток уменьшает и деньги, и долг перед клиентами.','Iznosa nema, zaposleni govore o masovnim povlačenjima. Odliv smanjuje i novac i dug prema klijentima.'), s:['emp'] },
-  { k:'r', min:20, max:90, step:5, t:L('Сколько удастся собрать с кредитов и других активов','Koliko se naplati od kredita i druge aktive'), f:v => v + '%', h:L('Суммы плохих кредитов в найденных отчётах нет, а вице-губернаторы ставят отчёты под сомнение.','Iznosa loših kredita u pronađenim izveštajima nema, a viceguverneri dovode izveštaje u pitanje.'), s:['op26','vg'] },
-  { k:'I', min:300, max:1620, step:10, t:L('Застрахованные вклады, все суммы до €50 000','Osigurani depoziti, svi iznosi do 50.000 €'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет. Грубая пропорция, не потолок: 2,9% активов сектора × €37,5 млрд застрахованных ≈ €1,09 млрд. Предел: все депозиты ≈€1,63 млрд. Эксперт в Forbes говорит о многих краткосрочных вкладах фирм и госсектора, поэтому застрахованная часть может быть меньше.','Iznosa nema. Gruba proporcija, ne gornja granica: 2,9% aktive sektora × 37,5 mlrd € osiguranih ≈ 1,09 mlrd €. Limit su svi depoziti, oko 1,63 mlrd €. Stručnjak u Forbesu govori o mnogo kratkoročnih depozita firmi i državnog sektora, pa osigurani deo može da bude manji.'), s:['ins26','fnight','fq3'] },
-  { k:'v', min:0, max:100, step:10, t:L('Сколько из суммы прокуратуры не вычитать','Koliko od iznosa tužilaštva ne oduzimati'), f:v => v + '%', h:L('По умолчанию вычтено всё. Вычет меньше, если деньги вернут или если вынос был до 30 июня и скрыт в других строках. Даты неизвестны. Банкиры в Forbes сомневаются, что такая сумма могла лежать в хранилище.','Podrazumevano je oduzeto sve. Odbitak je manji ako se novac vrati ili ako je iznet pre 30. juna i skriven u drugim stavkama. Datumi nisu poznati. Bankari u Forbesu sumnjaju da je takav iznos mogao da stoji u trezoru.'), s:['n1jtok','fq3'] },
+  { k:'W', min:0, max:360, step:10, t:L('Клиенты успели забрать перед закрытием','Klijenti su povukli pre zatvaranja'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет, сотрудники говорят о массовых снятиях. Отток снижает и деньги, и долг.','Iznosa nema, zaposleni govore o masovnim povlačenjima. Odliv smanjuje i novac i dug.'), s:['emp'] },
+  { k:'r', min:20, max:90, step:5, t:L('Сбор с кредитов и других активов','Naplata kredita i druge aktive'), f:v => v + '%', h:L('Суммы плохих кредитов нет, вице-губернаторы сомневаются в отчётах.','Iznosa loših kredita nema, viceguverneri dovode izveštaje u pitanje.'), s:['op26','vg'] },
+  { k:'I', min:300, max:1620, step:10, t:L('Застрахованные вклады, всего','Osigurani depoziti, ukupno'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет. Пропорция, не потолок: 2,9% активов сектора × €37,5 млрд ≈ €1,09 млрд. Предел: депозиты ≈€1,63 млрд. Эксперт в Forbes: много вкладов фирм и госсектора, застрахованная часть может быть меньше.','Iznosa nema. Proporcija, ne gornja granica: 2,9% aktive sektora × 37,5 mlrd € ≈ 1,09 mlrd €. Limit: depoziti, oko 1,63 mlrd €. Stručnjak u Forbesu: mnogo depozita firmi i državnog sektora, osigurani deo može da bude manji.'), s:['ins26','fnight','fq3'] },
+  { k:'v', min:0, max:100, step:10, t:L('Сколько из суммы прокуратуры не вычитать','Koliko od iznosa tužilaštva ne oduzimati'), f:v => v + '%', h:L('Вычет меньше, если деньги вернут или вынос был раньше и скрыт в других строках. Даты неизвестны, банкиры в Forbes сомневаются, что сумма могла лежать в хранилище.','Odbitak je manji ako se novac vrati ili je iznet ranije i skriven u drugim stavkama. Datumi nisu poznati, bankari u Forbesu sumnjaju da je iznos mogao da stoji u trezoru.'), s:['n1jtok','fq3'] },
 ];
 function payModel(p){
   const r = p.r / 100, v = p.v / 100;
@@ -1362,35 +1381,40 @@ function updatePay(){
   const down = v => { at -= v; return [at, v]; };
   const rows = [
     { l:L('Активы по отчёту, 30 сентября','Aktiva prema izveštaju, 30. septembar'), x:0, w:W0, c:'--dep', v:W0, tot:1, exact:1 },
-    (() => { const [x, w] = down(m.out); return { l:L('Сумма прокуратуры, вычтена как допущение','Iznos tužilaštva, oduzet kao pretpostavka'), x, w, c:'--stecaj', v:-w }; })(),
-    (() => { const [x, w] = down(pay.W); return { l:L('Отток клиентов, допущение','Odliv klijenata, pretpostavka'), x, w, c:'--line', v:-w }; })(),
-    (() => { const [x, w] = down(m.lost); return { l:L('Потери по кредитам и активам, допущение','Gubici na kreditima i aktivi, pretpostavka'), x, w, c:'--retail', v:-w }; })(),
+    (() => { const [x, w] = down(m.out); return { l:L('Сумма прокуратуры (допущение)','Iznos tužilaštva (pretpostavka)'), x, w, c:'--stecaj', v:-w }; })(),
+    (() => { const [x, w] = down(pay.W); return { l:L('Отток клиентов (допущение)','Odliv klijenata (pretpostavka)'), x, w, c:'--line', v:-w }; })(),
+    (() => { const [x, w] = down(m.lost); return { l:L('Потери по активам (допущение)','Gubici na aktivi (pretpostavka)'), x, w, c:'--retail', v:-w }; })(),
     { l:L('Масса для кредиторов','Masa za poverioce'), x:0, w:m.E, c:'--fin', v:m.E, tot:1 },
-    { l:L('Застрахованные вклады: Агентство раньше кредиторов','Osigurani depoziti: Agencija pre poverilaca'), x:m.E - m.A, w:m.A, c:'--build', v:-m.A },
-    { l:L('Остаток для незастрахованных сумм и других кредиторов','Ostatak za neosigurane iznose i druge poverioce'), x:0, w:m.left, c:'--other', v:m.left, tot:1 },
+    { l:L('Застрахованные: Агентство раньше кредиторов','Osigurani: Agencija pre poverilaca'), x:m.E - m.A, w:m.A, c:'--build', v:-m.A },
+    { l:L('Остаток для всех остальных','Ostatak za sve ostale'), x:0, w:m.left, c:'--other', v:m.left, tot:1 },
   ];
   document.getElementById('wf').innerHTML = rows.map(q =>
     `<div class="wf-r${q.tot ? ' tot' : ''}"><div class="wf-l">${T(q.l)}</div><div class="wf-t"><i style="left:${pos(Math.max(0, q.x))};width:${pos(Math.max(0, q.w))};background:var(${q.c})"></i></div><div class="wf-v">${q.v < 0 ? '−' : ''}${q.exact ? LL(`€${sep(q.v)} млн`, `${sep(q.v)} mil. €`) : mEur(Math.abs(q.v))}</div></div>`).join('');
   const ex = pct5(m.c1) >= 100 ? LL('почти всё', 'skoro sve') : LL(`≈€${sep(20000 * pct5(m.c1) / 100)}`, `oko ${sep(20000 * pct5(m.c1) / 100)} €`), nv = payModel({ ...pay, v:100 });
+  const bar = parts => `<em class="mb">${parts.map(([v, c]) => `<i style="flex:${Math.max(v, 0)} 1 0;background:var(${c})"></i>`).join('')}</em>`;
   document.getElementById('res').innerHTML =
-    `<div><span>${LL('До €50 000 у застрахованных','Do 50.000 € kod osiguranih deponenata')}</span><b>${LL('Платит фонд','Isplaćuje fond')}</b><p>${LL(`Выплаты ≈${mEur(m.I)}, из массы фонд взыщет ≈${mEur(m.A)}${m.loss > 2 ? `, не вернёт ≈${mEur(m.loss)}` : ''}. Агентство заявляет, что фонда хватит на все застрахованные суммы, но их размер не называет. Последняя найденная цифра фонда: €1,14 млрд, статья 31.10.2025.`, `Isplate oko ${mEur(m.I)}, fond iz mase naplaćuje oko ${mEur(m.A)}${m.loss > 2 ? `, ne vraća oko ${mEur(m.loss)}` : ''}. Agencija navodi da fond ima dovoljno za sve osigurane iznose, ali ih ne navodi. Poslednji pronađeni podatak o fondu: 1,14 mlrd €, članak 31.10.2025.`)} <span class="src">${links(['danas3','fund25'])}</span></p></div>`
-    + `<div><span>${LL('Сверх €50 000: застрахованные вкладчики','Iznad 50.000 €: osigurani deponenti')}</span><b>${share(m.c1)}</b><p>${LL(`В этом сценарии вклад €70 000: €50 000 от фонда, из €20 000 ${ex}.`, `U ovom scenariju depozit 70.000 €: 50.000 € od fonda, od 20.000 € ${ex}.`)}</p></div>`
-    + `<div><span>${LL('Вне страхования: крупные компании, госорганы, связанные лица','Van osiguranja: velika pravna lica, državni organi, povezana lica')}</span><b>${share(m.c4)}</b><p>${LL('Лимита €50 000 у них нет, они идут после налогов и НБС.','Nemaju limit od 50.000 €, dolaze posle javnih prihoda i NBS.')}</p></div>`;
+    `<div><span>${LL('До €50 000 у застрахованных','Do 50.000 € kod osiguranih')}</span><b>${LL('Платит фонд','Isplaćuje fond')}</b>${bar([[m.A, '--build'], [m.loss, '--stecaj']])}<p>${LL(`Выплаты ≈${mEur(m.I)}: из массы взыщет ≈${mEur(m.A)}${m.loss > 2 ? `, не вернёт ≈${mEur(m.loss)}` : ''}. Агентство: фонда хватит на все застрахованные суммы, размер не назван. Последняя найденная цифра фонда: €1,14 млрд, статья 31.10.2025.`, `Isplate oko ${mEur(m.I)}: iz mase naplaćuje oko ${mEur(m.A)}${m.loss > 2 ? `, ne vraća oko ${mEur(m.loss)}` : ''}. Agencija: fond je dovoljan za sve osigurane iznose, a iznos nije naveden. Poslednji pronađeni podatak o fondu: 1,14 mlrd €, članak 31.10.2025.`)} <span class="src">${links(['danas3','fund25'])}</span></p></div>`
+    + `<div><span>${LL('Сверх €50 000: застрахованные','Iznad 50.000 €: osigurani')}</span><b>${share(m.c1)}</b>${bar([[50, '--build'], [20 * m.c1, '--other'], [20 * (1 - m.c1), '--rule']])}<p>${LL(`Вклад €70 000: €50 000 от фонда, из €20 000 ${ex}.`, `Depozit 70.000 €: 50.000 € od fonda, od 20.000 € ${ex}.`)}</p></div>`
+    + `<div><span>${LL('Вне страхования: крупные компании, госорганы, связанные лица','Van osiguranja: velika pravna lica, državni organi, povezana lica')}</span><b>${share(m.c4)}</b>${bar([[m.c4, '--other'], [1 - m.c4, '--rule']])}<p>${LL('Лимита нет, идут после налогов и НБС.','Nemaju limit, dolaze posle javnih prihoda i NBS.')}</p></div>`;
   document.getElementById('payN').innerHTML = LL(
-    `Незастрахованные суммы ≈${mEur(m.U)}: считаем, что половина у застрахованных вкладчиков сверх лимита, половина у вкладчиков вне страхования. Это допущение. Сумма прокуратуры вычтена как допущение, но даты неизвестны: если вынос был до 30 июня или скрыт в других строках, вычет может быть завышен. Без этого вычета здесь было бы: ${share(nv.c1)} и ${share(nv.c4)}. Не учтены расходы процедуры и долги очередей 2–3: каждый такой евро уменьшает остаток. Не учтены также зачёт кредитов, разбивка прочих активов на 30 сентября (взята разница) и внебаланс (на 30 июня ≈€501 млн принятых будущих обязательств).`,
-    `Neosigurani iznosi oko ${mEur(m.U)}: računamo da je polovina kod osiguranih deponenata iznad limita, a polovina kod deponenata van osiguranja. To je pretpostavka. Iznos tužilaštva oduzet je kao pretpostavka, ali datumi nisu poznati: ako je novac iznet pre 30. juna ili skriven u drugim stavkama, odbitak može da bude previsok. Bez tog odbitka ovde bi bilo: ${share(nv.c1)} i ${share(nv.c4)}. Nisu uključeni troškovi postupka i dugovi iz redova 2–3: svaki takav evro smanjuje ostatak. Nisu uključeni ni prebijanje kredita, struktura ostale aktive na dan 30. septembra (uzeta je razlika) i vanbilans (na dan 30. juna oko 501 mil. € preuzetih budućih obaveza).`)
-    + ` <span class="src">${links(['bife','vb26'])}</span>`;
+    `<b>Допущения.</b> Незастрахованные суммы ≈${mEur(m.U)}: половина у застрахованных сверх лимита, половина вне страхования. Сумма прокуратуры вычтена, но даты неизвестны, поэтому вычет может быть завышен. Без него: ${share(nv.c1)} и ${share(nv.c4)}.`,
+    `<b>Pretpostavke.</b> Neosigurani iznosi oko ${mEur(m.U)}: polovina kod osiguranih iznad limita, polovina van osiguranja. Iznos tužilaštva je oduzet, ali datumi nisu poznati, pa odbitak može da bude previsok. Bez njega: ${share(nv.c1)} i ${share(nv.c4)}.`);
 }
 const STEPS6 = [
-  [L('3 ноября','3. novembar'), L('Суд открыл банкротство, управляющий: Агентство. Следующий шаг: опись имущества.','Sud je otvorio stečaj, stečajni upravnik je Agencija. Sledeći korak je popis imovine.'), ['danas3','tanjug3','bloom3']],
-  [L('До 6 ноября','Do 6. novembra'), L('Агентство публикует на aod.rs дату начала выплат и отделения Poštanska štedionica.','Agencija na aod.rs objavljuje datum početka isplate i ekspoziture Poštanske štedionice.'), ['danas3','mondo3']],
-  [L('7 рабочих дней','7 radnih dana'), L('Срок начала выплат до €50 000. Получить деньги можно в течение 3 лет.','Rok za početak isplate do 50.000 €. Novac može da se preuzme u roku od 3 godine.'), ['danas3','mondo3','zod']],
-  [L('30–90 дней','30–90 dana'), L('Суд назначит срок подачи требования на сумму сверх лимита: 30–90 дней со дня публикации в Službeni glasnik. Опоздавшим могут отказать. Сам срок в найденных новостях пока не указан.','Sud određuje rok za prijavu potraživanja iznad limita: 30–90 dana od objavljivanja u Službenom glasniku. Zakasnele prijave mogu da budu odbijene. Sam rok u pronađenim vestima još nije naveden.'), ['zst','injac','danas3']],
-  [L('До 6 месяцев + до 60 дней','Do 6 meseci + do 60 dana'), L('Агентство проверяет требования, затем заседание суда.','Agencija proverava potraživanja, zatim ispitno ročište.'), ['zst']],
-  [L('Годы','Godine'), L('Выплаты по мере продажи активов. Банкротство Agrobanka длилось около 12 лет.','Isplate kako se aktiva prodaje. Stečaj Agrobanke trajao je oko 12 godina.'), ['agro']],
+  [L('3 ноября','3. novembar'), L('Суд открыл банкротство, управляющий: Агентство. Дальше опись имущества.','Sud je otvorio stečaj, stečajni upravnik je Agencija. Sledi popis imovine.')],
+  [L('До 6 ноября','Do 6. novembra'), L('На aod.rs: дата начала выплат и отделения Poštanska štedionica.','Na aod.rs: datum početka isplate i ekspoziture Poštanske štedionice.')],
+  [L('7 рабочих дней','7 radnih dana'), L('Срок начала выплат до €50 000. Получить можно в течение 3 лет.','Rok za početak isplate do 50.000 €. Preuzimanje u roku od 3 godine.')],
+  [L('30–90 дней','30–90 dana'), L('Подача требований сверх лимита, считая с публикации в Službeni glasnik. Срок назначит суд, в новостях его пока нет. Опоздавшим могут отказать.','Prijava potraživanja iznad limita, od objavljivanja u Službenom glasniku. Rok određuje sud, u vestima ga još nema. Zakasnele prijave mogu da budu odbijene.')],
+  [L('До 6 месяцев + до 60 дней','Do 6 meseci + do 60 dana'), L('Агентство проверяет требования, затем заседание суда.','Agencija proverava potraživanja, zatim ispitno ročište.')],
+  [L('Годы','Godine'), L('Выплаты по мере продажи активов. Банкротство Agrobanka длилось около 12 лет.','Isplate kako se aktiva prodaje. Stečaj Agrobanke trajao je oko 12 godina.')],
 ];
+const STEPS6_S = ['danas3','tanjug3','bloom3','mondo3','zod','zst','injac','agro'];
+const NOT_IN = [L('Не учтено','Nije uključeno'), [L('Расходы процедуры','Troškovi postupka'), L('Долги очередей 2–3','Dugovi iz redova 2–3'), L('Зачёт кредитов','Prebijanje kredita'), L('Разбивка прочих активов на 30 сентября (взята разница)','Struktura ostale aktive na dan 30. septembra (uzeta je razlika)'), L('Внебаланс: ≈€501 млн будущих обязательств на 30 июня','Vanbilans: oko 501 mil. € budućih obaveza na dan 30. juna')]];
+const chips = ([h, items]) => `<ul class="chips"><li class="ch">${T(h)}</li>${items.map(x => `<li>${T(x)}</li>`).join('')}</ul>`;
 function renderPay(){
-  document.getElementById('who').innerHTML = WHO.map(([a, b, c, s]) => `<div><span>${T(a)}</span><b>${T(b)}</b><p>${T(c)} <span class="src">${links(s)}</span></p></div>`).join('');
+  document.getElementById('who').innerHTML = WHO.map(([k, a, b, c]) => `<div style="border-top:4px solid var(${k})"><span>${T(a)}</span><b>${T(b)}</b><p>${T(c)}</p></div>`).join('');
+  document.getElementById('whoS').innerHTML = links(WHO_S);
+  document.getElementById('ex70').innerHTML = `<div class="bal-h">${LL('Пример: вклад €70 000','Primer: depozit 70.000 €')}</div><div class="seg"><div style="flex:50 1 0;background:var(--build);color:var(--build-t)">${LL('€50 000','50.000 €')}</div><div style="flex:20 1 0;background:var(--other);color:var(--other-t)">${LL('€20 000','20.000 €')}</div></div><ul class="seg-k"><li><em style="background:var(--build)"></em>${LL('платит фонд','isplaćuje fond')}</li><li><em style="background:var(--other)"></em>${LL('требование в банкротстве','potraživanje u stečaju')}</li></ul>`;
   document.getElementById('bal').innerHTML = BAL.map(b => {
     const tot = b.parts.reduce((x, p) => x + p[0], 0);
     return `<div class="bal-r"><div class="bal-h">${T(b.h)}</div><div class="seg">`
@@ -1398,13 +1422,16 @@ function renderPay(){
       + `</div><ul class="seg-k">`
       + b.parts.map(([v, n, c]) => `<li><em style="background:var(${c})"></em>${T(n)} ${eurM(v)}</li>`).join('')
       + `</ul></div>`;
-  }).join('') + `<p class="fine">${T(BAL_NOTE[0])} <span class="src">${links(BAL_NOTE[1])}</span></p>`;
-  document.getElementById('lad').innerHTML = LAD.map(([n, c, a, b, s]) => `<li class="${c}"><em>${n}</em><div><b>${T(a)}</b><p>${T(b)} <span class="src">${links(s)}</span></p></div></li>`).join('');
+  }).join('') + chips(SEPT) + `<p class="fine">${T(BAL_NOTE[0])} <span class="src">${links(BAL_NOTE[1])}</span></p>`;
+  document.getElementById('lad').innerHTML = LAD.map(([n, c, a, b]) => `<li class="${c}"><em>${n}</em><div><b>${T(a)}</b><p>${T(b)}</p></div></li>`).join('');
   document.getElementById('ladN').innerHTML = `${T(LAD_NOTE[0])} <span class="src">${links(LAD_NOTE[1])}</span>`;
   document.getElementById('payI').innerHTML = `${T(PAY_I[0])} <span class="src">${links(PAY_I[1])}</span>`;
   document.getElementById('sl').innerHTML = SLD.map(o =>
-    `<div><label for="sl-${o.k}"><span>${T(o.t)}</span><output id="so-${o.k}" for="sl-${o.k}"></output></label><input type="range" id="sl-${o.k}" data-k="${o.k}" min="${o.min}" max="${o.max}" step="${o.step}"><small>${T(o.h)} <span class="src">${links(o.s)}</span></small></div>`).join('');
-  document.getElementById('steps6').innerHTML = STEPS6.map(([a, b, s]) => `<li><i></i><div><b>${T(a)}</b><p>${T(b)} <span class="src">${links(s)}</span></p></div></li>`).join('');
+    `<div><label for="sl-${o.k}"><span>${T(o.t)}</span><output id="so-${o.k}" for="sl-${o.k}"></output></label><input type="range" id="sl-${o.k}" data-k="${o.k}" min="${o.min}" max="${o.max}" step="${o.step}"><small>${T(o.h)}</small></div>`).join('');
+  document.getElementById('slS').innerHTML = links([...new Set(SLD.flatMap(o => o.s))]);
+  document.getElementById('notIn').innerHTML = chips(NOT_IN) + `<span class="src">${links(['bife','vb26'])}</span>`;
+  document.getElementById('steps6').innerHTML = STEPS6.map(([a, b]) => `<li><i></i><div><b>${T(a)}</b><p>${T(b)}</p></div></li>`).join('');
+  document.getElementById('stepsS').innerHTML = links(STEPS6_S);
   updatePay();
 }
 document.getElementById('sl').addEventListener('input', e => {
