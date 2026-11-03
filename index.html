@@ -146,7 +146,7 @@ summary { cursor: pointer; font-weight: 600; }
 /* Three amounts as circles: area is proportional to the sum */
 .scale { display: grid; gap: 20px 40px; align-items: center; }
 .scale > * { min-width: 0; }
-.dots { display: grid; grid-template-columns: 1.436fr 1fr .734fr; gap: 12px; align-items: end; max-width: 620px; }
+.dots { display: grid; grid-template-columns: 1.469fr 1fr .715fr; gap: 12px; align-items: end; max-width: 620px; }
 .dot { aspect-ratio: 1; border-radius: 50%; display: grid; place-content: center; text-align: center; }
 .dot b { display: block; font: 800 clamp(1.7rem, 6.4vw, 3.5rem)/1 var(--display); }
 .dot i { display: block; font: 400 clamp(.62rem, 1.9vw, .78rem)/1.2 var(--mono); font-style: normal; margin-top: 2px; }
@@ -399,7 +399,7 @@ summary { cursor: pointer; font-weight: 600; }
   <section class="scale" data-ia="scaleA">
     <div class="dots" aria-hidden="true">
       <div class="dot dot--dep"><b data-i="d1"></b><i data-i="bn"></i></div>
-      <div class="dot dot--cash"><b>713</b><i data-i="bn"></i></div>
+      <div class="dot dot--cash"><b>754</b><i data-i="bn"></i></div>
       <div class="dot dot--out"><b>≈385</b><i data-i="bn"></i></div>
     </div>
     <div class="scale-t" id="scaleT"></div>
@@ -520,15 +520,15 @@ const U = {
   h1: L('Структура собственности Alta Banka', 'Vlasnička struktura Alta banke'),
   lede: L('С 2023 года у банка один акционер, Alta Group. Ею полностью владеет Davor Macura. На схеме его компании, доли и годы покупки.',
           'Od 2023. godine banka ima jednog akcionara, kompaniju Alta Group, čiji je jedini vlasnik Davor Macura. Na šemi su njegove kompanije, udeli i godine kupovine.'),
-  status: L('Данные на 2 ноября 2026. В ночь на 31 октября НБС отозвала лицензию банка. Расследование идёт, суд дело не рассматривал.',
-            'Podaci na dan 2. novembra 2026. U noći između 30. i 31. oktobra NBS je banci oduzela dozvolu za rad. Istraga je u toku, sud još nije razmatrao predmet.'),
+  status: L('Данные на 3 ноября 2026. НБС отозвала лицензию банка в ночь на 31 октября, 3 ноября суд открыл банкротство, управляющий: Агентство по страхованию депозитов. Расследование идёт, уголовный суд дело не рассматривал.',
+            'Podaci na dan 3. novembra 2026. NBS je banci oduzela dozvolu za rad u noći između 30. i 31. oktobra, a sud je 3. novembra otvorio stečaj, stečajni upravnik je Agencija za osiguranje depozita. Istraga je u toku, krivični sud nije razmatrao predmet.'),
   play: L('▶ Показать по годам', '▶ Prikaži po godinama'),
   stop: L('■ Остановить', '■ Zaustavi'),
   k1: L('Кольцо показывает долю. «Контр.»: полный контроль, процент не назван', 'Prsten pokazuje udeo. „Kontr.”: potpuna kontrola, procenat nije naveden'),
   k2: L('Финансы, розница, стройка и недвижимость, прочее', 'Finansije, maloprodaja, gradnja i nekretnine, ostalo'),
   k3: L('Пустой кружок: актив или неконтрольный пакет', 'Prazan krug: imovina ili nekontrolni paket akcija'),
   k4: L('Пунктир: прямой владелец не подтверждён', 'Isprekidana linija: neposredni vlasnik nije potvrđen'),
-  k5: L('Лицензия отозвана или введено временное управление', 'Dozvola je oduzeta ili je uvedena privremena uprava'),
+  k5: L('Банкротство, отзыв лицензии или временное управление', 'Stečaj, oduzeta dozvola ili privremena uprava'),
   h2: L('Как группа получила банк', 'Kako je grupa došla do banke'),
   srcT: L('Источники', 'Izvori'),
   note: L('Выписки из реестра APR напрямую не запрашивались. Годы покупки Alta Gold, Alta Holding, Alta Pass и Campari International найти не удалось, поэтому на схеме они появляются только в последнем году. Совладельцы-физлица без публичной роли не названы.',
@@ -596,10 +596,10 @@ const STOPS = [
            'Grupa otkupljuje akcije preostalih akcionara i stiče 100% banke. Banka se povlači sa berze.')],
   [2024, L('Банк покупает Alta Leasing. Группа покупает пакет Addiko Bank AG и выходит в Черногорию. К концу года у неё 51% Procoopac.',
            'Banka kupuje Alta Leasing. Grupa kupuje paket akcija Addiko Bank AG i ulazi u Crnu Goru. Do kraja godine ima 51% Procoopac-a.')],
-  [2025, L('В октябре банк покупает 88,09% Stopanska banka Bitola. Alta Pay Group получает имя Alta Group.',
-           'U oktobru banka kupuje 88,09% Stopanske banke Bitolj. Alta Pay Group dobija ime Alta Group.')],
-  [2026, L('Группа покупает страховщика ZOIL и, через новую Alta Retail, сети Idea, Roda и Mercator. В ночь на 31 октября НБС отзывает лицензию банка.',
-           'Grupa kupuje osiguravača ZOIL i, preko nove kompanije Alta Retail, lance Idea, Roda i Mercator. U noći između 30. i 31. oktobra NBS banci oduzima dozvolu za rad.')],
+  [2025, L('В октябре банк покупает 88,29% Stopanska banka Bitola. Alta Pay Group получает имя Alta Group.',
+           'U oktobru banka kupuje 88,29% Stopanske banke Bitolj. Alta Pay Group dobija ime Alta Group.')],
+  [2026, L('Группа покупает страховщика ZOIL и, через новую Alta Retail, сети Idea, Roda и Mercator. В ночь на 31 октября НБС отзывает лицензию банка, 3 ноября суд открывает банкротство.',
+           'Grupa kupuje osiguravača ZOIL i, preko nove kompanije Alta Retail, lance Idea, Roda i Mercator. U noći između 30. i 31. oktobra NBS banci oduzima dozvolu za rad, a 3. novembra sud otvara stečaj.')],
 ];
 const LAST = 2026;
 
@@ -609,31 +609,33 @@ const TREE = { id:'macura', name:OWNER, sec:'person', since:2008, when:L('с 200
        'Osnivač grupe. Počeo je 2008. godine menjačnicom u Zemunu. Predsednik Upravnog odbora banke.'),['biz','form']],
     [L('Forbes Srbija называет Alta Group и ещё пять компаний записанными на него напрямую.',
        'Forbes Srbija navodi Alta Group i još pet kompanija kao direktno upisane na njegovo ime.'),['forbes']],
-    [L('2 ноября 2026 задержан на срок до 48 часов по подозрению в злоупотреблении положением. Обвинительного акта нет, суд дело не рассматривал. Защита заявляет, что он в Сербии и не сбежал.',
-       '2. novembra 2026. određeno mu je zadržavanje do 48 sati zbog sumnje na zloupotrebu položaja odgovornog lica. Optužnice nema, sud nije razmatrao predmet. Odbrana navodi da je u Srbiji i da nije pobegao.'),['jtok','dan']],
+    [L('2 ноября 2026 задержан на срок до 48 часов по подозрению в злоупотреблении положением. Обвинительного акта нет, суд дело не рассматривал. Защита заявляет, что он в Сербии и не сбежал. 3 ноября вызван на допрос в прокуратуру, результат в найденных источниках пока не указан.',
+       '2. novembra 2026. određeno mu je zadržavanje do 48 sati zbog sumnje na zloupotrebu položaja odgovornog lica. Optužnice nema, sud nije razmatrao predmet. Odbrana navodi da je u Srbiji i da nije pobegao. Pozvan je 3. novembra na saslušanje u tužilaštvo, a rezultat u pronađenim izvorima još nije naveden.'),['jtok','dan','tel3']],
   ], kids:[
   { id:'group', names:[[2014,L('Будущая Alta Pay Group','Buduća Alta Pay Group')],[2019,'Alta Pay Group'],[2025,'Alta Group d.o.o.']], sec:'fin', share:100, since:2014, when:L('компания с 2014 года','društvo od 2014. godine'), big:1, notes:[
-      [L('Единственный акционер банка, 100% у Davor Macura. С марта 2019 называлась Alta Pay Group, с 2025 года Alta Group.',
-         'Jedini akcionar banke, 100% u vlasništvu Davora Macure. Od marta 2019. zvala se Alta Pay Group, od 2025. Alta Group.'),['forbes','cw','biz']],
+      [L('Единственный акционер банка, 100% у Davor Macura. С марта 2019 называлась Alta Pay Group, с апреля 2025 Alta Group.',
+         'Jedini akcionar banke, 100% u vlasništvu Davora Macure. Od marta 2019. zvala se Alta Pay Group, od aprila 2025. Alta Group.'),['forbes','cw','biz','ned2o']],
       [L('Сама работает как институт электронных денег под брендом Alta Pay.',
          'I sama posluje kao institucija elektronskog novca pod brendom Alta Pay.'),['gtc']],
     ], kids:[
-    { id:'banka', names:[[1979,'JUBMES'],[2021,'Alta banka a.d.']], sec:'fin', born:1979, since:2019, shares:[[2019,28.51],[2021,76.06],[2023,100]], when:L('покупка в 2019–2023','kupovina 2019–2023.'), flag:L('лицензия отозвана','dozvola oduzeta'), big:1, notes:[
+    { id:'banka', names:[[1979,'JUBMES'],[2021,'Alta banka a.d.']], sec:'fin', born:1979, since:2019, shares:[[2019,28.51],[2021,76.06],[2023,100]], when:L('покупка в 2019–2023','kupovina 2019–2023.'), flag:L('банкротство с 3 ноября','stečaj od 3. novembra'), big:1, notes:[
         [L('Основан в 1979 году как JUBMES. С марта 2020 называется Alta banka.',
            'Osnovana 1979. godine kao JUBMES. Od marta 2020. zove se Alta banka.'),['ned1']],
         [L('Доля группы: 28,51% в мае 2019, 76,06% в сентябре 2021, 100% в 2023 году.',
            'Udeo grupe: 28,51% u maju 2019, 76,06% u septembru 2021, 100% u 2023. godini.'),['n1a','n1imt','kam1']],
         [L('После сделки 2019 года вторым по величине акционером в реестре числилась СФР Югославия, страна, которой нет с 1992 года.',
            'Posle transakcije iz 2019. drugi najveći akcionar u registru bila je SFR Jugoslavija, država koja ne postoji od 1992. godine.'),['srp']],
-        [L('Лицензия отозвана в ночь на 31 октября 2026. Управление передано Агентству по страхованию вкладов.',
-           'Dozvola za rad oduzeta je u noći između 30. i 31. oktobra 2026. Upravljanje je preneto na Agenciju za osiguranje depozita.'),['nbs','nbs2']],
+        [L('Лицензия отозвана в ночь на 31 октября 2026. 3 ноября суд открыл банкротство, управляющий: Агентство по страхованию депозитов.',
+           'Dozvola za rad oduzeta je u noći između 30. i 31. oktobra 2026. Sud je 3. novembra otvorio stečaj, stečajni upravnik je Agencija za osiguranje depozita.'),['nbs','danas3','tanjug3']],
+        [L('Сообщений о смене акционера нет: Nedeljnik указывает 100% голосов у Alta Group. Банком теперь управляет Агентство, а требования акционеров в банкротстве идут последними.',
+           'Vesti o promeni akcionara nema: Nedeljnik navodi 100% glasova kod Alta Group. Bankom sada upravlja Agencija, a potraživanja akcionara u stečaju dolaze poslednja.'),['ned2o','zst']],
       ], kids:[
-      { id:'leasing', name:'Alta Leasing', sec:'fin', share:100, since:2024, when:L('куплена в 2024','kupljen 2024.'), h:74, notes:[
+      { id:'leasing', name:'Alta Leasing', sec:'fin', share:100, since:2024, when:L('куплена в июле 2024','kupljen u julu 2024.'), h:74, notes:[
           [L('Банк купил 100% Vantage Leasing и переименовал компанию. Цена публично не подтверждена.',
-             'Banka je kupila 100% kompanije Vantage Leasing i promenila joj ime. Cena nije javno potvrđena.'),['kam1']] ]},
-      { id:'bitola', name:'Alta banka AD Bitola', sec:'fin', since:2025, shares:[[2025,88.09],[2026,95]], label:{2026:'>95%'}, when:L('куплен в октябре 2025','kupljena u oktobru 2025.'), flag:L('временное управление','privremena uprava'), h:84, notes:[
-          [L('Бывшая Stopanska banka Bitola. В октябре 2025 банк получил 88,09%, под оферту резервировали ≈€22,8 млн. В 2026 году доля превысила 95%.',
-             'Nekadašnja Stopanska banka Bitolj. U oktobru 2025. banka je stekla 88,09%, za ponudu je rezervisano oko 22,8 miliona evra. Tokom 2026. udeo je prešao 95%.'),['kam1','biz']],
+             'Banka je kupila 100% kompanije Vantage Leasing i promenila joj ime. Cena nije javno potvrđena.'),['audit','kam1']] ]},
+      { id:'bitola', name:'Alta banka AD Bitola', sec:'fin', since:2025, shares:[[2025,93.29],[2026,95]], label:{2026:'>95%'}, when:L('куплен 16 октября 2025','kupljena 16. oktobra 2025.'), flag:L('временное управление','privremena uprava'), h:84, notes:[
+          [L('Бывшая Stopanska banka Bitola. 16 октября 2025 банк получил 88,29%, к концу года 93,29%, под оферту резервировали ≈€22,8 млн. В 2026 году доля превысила 95%.',
+             'Nekadašnja Stopanska banka Bitolj. Banka je 16. oktobra 2025. stekla 88,29%, do kraja godine 93,29%, a za ponudu je rezervisano oko 22,8 miliona evra. Tokom 2026. udeo je prešao 95%.'),['audit','kam1','biz']],
           [L('1 ноября 2026 центробанк Северной Македонии ввёл временное управление.',
              '1. novembra 2026. Narodna banka Severne Makedonije uvela je privremenu upravu.'),['ned3']] ]},
     ]},
@@ -668,7 +670,9 @@ const TREE = { id:'macura', name:OWNER, sec:'person', since:2008, when:L('с 200
         [L('≈€40 млн за капитал и ≈€100 млн долга. Откуда деньги, публично не подтверждено.',
            'Oko 40 miliona evra za kapital i oko 100 miliona evra duga. Odakle je novac, nije javno potvrđeno.'),['kam1']],
         [L('По RTS и Nova Ekonomija сделка оформлена в сентябре, по Kamatica и Nedeljnik завершена в октябре.',
-           'Prema RTS-u i Novoj ekonomiji posao je formalizovan u septembru, prema Kamatici i Nedeljniku završen je u oktobru.'),['rts','ne1','kam1','ned1']] ]},
+           'Prema RTS-u i Novoj ekonomiji posao je formalizovan u septembru, prema Kamatici i Nedeljniku završen je u oktobru.'),['rts','ne1','kam1','ned1']],
+        [L('Vreme: в сети более 7 000 работников, на вопросы о зарплатах и рабочих местах компания не ответила. Смена владельца не подтверждена, держала ли Idea деньги в Alta banka, неизвестно.',
+           'Vreme: lanac ima više od 7.000 radnika, a kompanija nije odgovorila na pitanja o platama i radnim mestima. Promena vlasnika nije potvrđena, a nije poznato ni da li je Idea držala novac u Alta banci.'),['videa']] ]},
     { id:'ideaplus', name:L('Ещё 4 компании Fortenova','Još 4 kompanije Fortenove'), sec:'retail', share:100, control:1, since:2026, when:L('вместе с Idea','zajedno sa Ideom'), h:72, notes:[
         [L('M-Profil SPV (недвижимость), Super kartica, ENNA Fruit (овощи и фрукты), mStart Business Solutions (ИТ).',
            'M-Profil SPV (nekretnine), Super kartica, ENNA Fruit (voće i povrće), mStart Business Solutions (IT).'),['ne1','forbes']] ]},
@@ -909,23 +913,35 @@ Object.assign(S, {
   vucic:[ L('Mondo, Вучич','Mondo, Vučić'), L('Выступление Вучича, 01.11.2026','Izjava Vučića, 01.11.2026.'), 'https://mondo.rs/Info/Politika/a2304999/aleksandar-vucic-o-alta-banci.html'],
   udo:[ L('Forbes Srbija, колонка','Forbes Srbija, kolumna'), L('Мнение Кори Удовички (CEVES), 01.11.2026','Mišljenje Kori Udovički (CEVES), 01.11.2026.'), 'https://forbes.n1info.rs/biznis/propisi/alta-banka-prilika-da-i-narodna-banka-proradi-kao-institucija/'],
 });
-OWNER_SRC.push('vcap');
-const CASH_SRC = ['n1jtok','nejtok','jtok','dan','nbs','nbs2','vg','b92kp','tokreq','nbs27','fx27','emp','vblock','fnight','fcash','ksef','bife','rep25','danas25','ned1','vcap','biz','rts','kam1','n1i','ned3','aod1','aod2','vucic','udo'];
+Object.assign(S, {
+  danas3:[ L('Danas, банкротство открыто','Danas, otvoren stečaj'), L('Решение суда и Poštanska štedionica, 03.11.2026','Rešenje suda i Poštanska štedionica, 03.11.2026.'), 'https://www.danas.rs/vesti/ekonomija/privredni-sud-pokrenuo-stecaj-nad-alta-bankom-postanska-stedionica-izabrana-za-isplatu-osiguranih-depozita/'],
+  tanjug3:[ L('Tanjug, решение суда','Tanjug, rešenje suda'), L('Суд открыл банкротство, Агентство управляющий, 03.11.2026','Sud otvorio stečaj, Agencija stečajni upravnik, 03.11.2026.'), 'https://www.tanjug.rs/ekonomija/srbija/294755/privredni-sud-u-beogradu-otvorio-stecajni-postupak-nad-alta-bankom/vest'],
+  mondo3:[ L('Mondo, выплаты','Mondo, isplate'), L('Сроки, отделения, валюта выплат, 03.11.2026','Rokovi, ekspoziture, valuta isplate, 03.11.2026.'), 'https://mondo.rs/Info/Ekonomija/a2305832/stecaj-alta-banke-kada-pocinje-isplata-depozita.html'],
+  bloom3:[ 'Bloomberg Adria', L('Следующий шаг: опись имущества, 03.11.2026','Sledeći korak: popis imovine, 03.11.2026.'), 'https://rs.bloombergadria.com/biznis/finansije/116389/otvoren-stecaj-alta-banke/news'],
+  fq3:[ L('Forbes Srbija, 30 сентября и банкиры','Forbes Srbija, 30. septembar i bankari'), L('Отчётные цифры на 30.09 и мнения анонимных банкиров, 03.11.2026','Podaci na dan 30.09. i mišljenja anonimnih bankara, 03.11.2026.'), 'https://forbes.n1info.rs/biznis/alta-banka-nije-morala-da-ide-u-stecaj-nbs-da-objasni-zasto-je-to-uradila-sagovornici-forbes-objasnjavaju-zasto-je-tesko-izneti-45-milijardi-dinara/'],
+  tel3:[ L('Telegraf, допрос','Telegraf, saslušanje'), L('Допрос 3 ноября и заявление адвоката, 03.11.2026','Saslušanje 3. novembra i izjava advokata, 03.11.2026.'), 'https://www.telegraf.rs/vesti/hronika/4425829-direktor-alta-banke-davor-macura-danas-na-saslusanju-iz-trezora-iznete-milijarde'],
+  audit:[ L('Аудит банка за 2025','Revizija banke za 2025.'), L('Дочерние компании и доли, примечание 1','Zavisna društva i udeli, napomena 1'), 'https://altabanka.rs/static/uploads/2026/04/Alta-banka_Izvestaj-revizora_2025_Final-potpisan.pdf'],
+  ned2o:[ L('Nedeljnik, структура собственности','Nedeljnik, vlasnička struktura'), L('Alta Group и Alta banka, 02.11.2026','Alta Group i Alta banka, 02.11.2026.'), 'https://www.nedeljnik.rs/ko-je-davor-macura-osnivac-alta-grupe-ovo-je-vlasnicka-struktura-koja-povezuje-i-alta-banku-i-alta-pay/'],
+  rfe2:[ L('Radio Slobodna Evropa, НБС','Radio Slobodna Evropa, NBS'), L('Заявление НБС о секторе, 02.11.2026','Saopštenje NBS o sektoru, 02.11.2026.'), 'https://www.slobodnaevropa.org/a/narodna-banka-srbije-alta-banka-bankarski-sistem/33888913.html'],
+  videa:[ L('Vreme, Idea','Vreme, Idea'), L('Idea после падения банка, 02.11.2026','Idea posle pada banke, 02.11.2026.'), 'https://vreme.com/ekonomija/davor-macura-alta-banka-idea-marketi-agrokor-radnici-srbija/'],
+});
+OWNER_SRC.push('vcap','audit','ned2o','videa','danas3','tel3');
+const CASH_SRC = ['rfe2','danas3','tanjug3','mondo3','bloom3','fq3','tel3','n1jtok','nejtok','jtok','dan','nbs','nbs2','vg','b92kp','tokreq','nbs27','fx27','emp','vblock','fnight','fcash','ksef','bife','rep25','danas25','ned1','vcap','biz','rts','kam1','n1i','ned3','aod1','aod2','vucic','udo'];
 
 Object.assign(U, {
   titlec: L('Движение наличных в Alta Banka', 'Kretanje gotovine u Alta banci'),
   h1c: L('Движение наличных в Alta Banka', 'Kretanje gotovine u Alta banci'),
-  ledec: L('За три с половиной года баланс банка вырос почти вчетверо, а строка «наличные и средства в НБС» более чем втрое, до €713 млн. 2 ноября прокуратура сообщила о подозрении: незаконная выгода около €385 млн, деньги выносили из хранилища. Куда они делись, не сказано.',
-           'Za tri i po godine bilans banke porastao je skoro četiri puta, a stavka „gotovina i sredstva kod centralne banke” više nego trostruko, na 713 miliona evra. Tužilaštvo je 2. novembra saopštilo sumnju: protivpravna korist oko 385 miliona evra, novac je iznošen iz trezora. Gde je završio, nije saopšteno.'),
-  statusc: L('Данные на 2 ноября 2026. Откуда каждая цифра и насколько она подтверждена, указано рядом с ней. Обвинительного акта нет, суд дело не рассматривал.',
-             'Podaci na dan 2. novembra 2026. Poreklo i potvrđenost svake brojke navedeni su pored nje. Optužnice nema, sud nije razmatrao predmet.'),
+  ledec: L('За неполные четыре года баланс банка вырос более чем вчетверо, а строка «наличные и средства в НБС» более чем втрое, до €754 млн на 30 сентября. 2 ноября прокуратура сообщила о подозрении: незаконная выгода около €385 млн, деньги выносили из хранилища. Куда они делись, не сказано. 3 ноября суд открыл банкротство.',
+           'Za nepune četiri godine bilans banke porastao je više nego četiri puta, a stavka „gotovina i sredstva kod centralne banke” više nego trostruko, na 754 miliona evra na dan 30. septembra. Tužilaštvo je 2. novembra saopštilo sumnju: protivpravna korist oko 385 miliona evra, novac je iznošen iz trezora. Gde je završio, nije saopšteno. Sud je 3. novembra otvorio stečaj.'),
+  statusc: L('Данные на 3 ноября 2026. Откуда каждая цифра и насколько она подтверждена, указано рядом с ней. Обвинительного акта нет, суд дело не рассматривал.',
+             'Podaci na dan 3. novembra 2026. Poreklo i potvrđenost svake brojke navedeni su pored nje. Optužnice nema, sud nije razmatrao predmet.'),
   bn: L('млн €', 'mil. €'),
-  d1: L('1\u00A0470', '1.470'),
+  d1: L('1\u00A0627', '1.627'),
   scaleA: L('Масштаб: депозиты, наличность и сумма из заявления прокуратуры', 'Razmere: depoziti, gotovina i iznos iz saopštenja tužilaštva'),
   h2p: L('Основные параметры банка', 'Osnovni parametri banke'),
-  subp: L('На 30 июня 2026, если не указано иное. Это последний полный баланс, который приводят источники.', 'Na dan 30. juna 2026, ako nije drugačije navedeno. To je poslednji potpun bilans koji navode izvori.'),
+  subp: L('Первые четыре показателя на 30 сентября 2026, остальные на 30 июня: это последний полный баланс. Отчёта за сентябрь на сайте банка нет, цифры приводят Forbes Srbija и bife.ba.', 'Prva četiri pokazatelja su na dan 30. septembra 2026, a ostali na dan 30. juna: to je poslednji potpun bilans. Izveštaja za septembar nema na sajtu banke, a brojke navode Forbes Srbija i bife.ba.'),
   h2g: L('Как росла наличность', 'Kako je rasla gotovina'),
-  subg: L('По этой строке банк далеко опережал пять крупнейших банков, а кредитовал меньше. При этом она росла медленнее баланса: её доля в активах упала с 47,7% в 2022 до 38,8%. Значения на конец года.', 'Na toj stavci banka je bila daleko ispred pet najvećih banaka, a kreditirala je manje. Ipak, rasla je sporije od bilansa: udeo u aktivi pao je sa 47,7% u 2022. na 38,8%. Vrednosti su na kraju godine.'),
+  subg: L('По этой строке банк далеко опережал пять крупнейших банков, а кредитовал меньше. При этом она росла медленнее баланса: её доля в активах упала с 47,7% в 2022 до ≈38% в 2026. Значения на конец года.', 'Na toj stavci banka je bila daleko ispred pet najvećih banaka, a kreditirala je manje. Ipak, rasla je sporije od bilansa: udeo u aktivi pao je sa 47,7% u 2022. na oko 38% u 2026. Vrednosti su na kraju godine.'),
   kc: L('Наличные и средства в НБС (gotovina), млн €', 'Gotovina i sredstva kod centralne banke, mil. €'),
   kd: L('Депозиты и другие обязательства перед клиентами, млн €', 'Depoziti i druge obaveze prema klijentima, mil. €'),
   tblT: L('Все цифры таблицей', 'Sve brojke u tabeli'),
@@ -941,8 +957,8 @@ Object.assign(U, {
   h2t: L('Как дошло до этого', 'Kako se došlo do ovoga'),
   tlSep: L('Последние дни', 'Poslednji dani'),
   h2u: L('Что пока неизвестно', 'Šta se još ne zna'),
-  notec: L('Все суммы приведены к евро по курсу ≈117 динаров и потому приблизительны. Исходные цифры в основном в динарах: например, прокуратура назвала около 45 млрд динаров. Цифры на 30 июня взяты из неаудированного баланса банка, ряды по годам из таблицы НБС в Forbes Srbija. Сотрудники хранилища не названы: их имена не публичны и для понимания потоков не нужны.',
-              'Svi iznosi preračunati su u evre po kursu od oko 117 dinara i zato su približni. Izvorne brojke su uglavnom u dinarima: tužilaštvo je, na primer, navelo oko 45 milijardi dinara. Podaci na dan 30. juna preuzeti su iz nerevidiranog bilansa banke, a serije po godinama iz tabele NBS u Forbes Srbija. Zaposleni u trezoru nisu imenovani: njihova imena nisu javna i nisu potrebna za razumevanje tokova.'),
+  notec: L('Все суммы приведены к евро по курсу ≈117 динаров и потому приблизительны. Исходные цифры в основном в динарах: например, прокуратура назвала около 45 млрд динаров. Цифры на 30 июня взяты из неаудированного баланса банка, ряды по годам из таблицы НБС в Forbes Srbija. Цифры на 30 сентября приводят Forbes Srbija и bife.ba, сам отчёт на сайте банка не найден. Сотрудники хранилища не названы: их имена не публичны и для понимания потоков не нужны.',
+              'Svi iznosi preračunati su u evre po kursu od oko 117 dinara i zato su približni. Izvorne brojke su uglavnom u dinarima: tužilaštvo je, na primer, navelo oko 45 milijardi dinara. Podaci na dan 30. juna preuzeti su iz nerevidiranog bilansa banke, a serije po godinama iz tabele NBS u Forbes Srbija. Podatke na dan 30. septembra navode Forbes Srbija i bife.ba, a sam izveštaj nije pronađen na sajtu banke. Zaposleni u trezoru nisu imenovani: njihova imena nisu javna i nisu potrebna za razumevanje tokova.'),
   notec2: L('Gmail: koryakovsky.ivan@gmail.com Telegram: https://t.me/Koryakovsky',
           'Gmail: koryakovsky.ivan@gmail.com Telegram: https://t.me/Koryakovsky'),
   oTab: L('Собственность', 'Vlasništvo'),
@@ -951,32 +967,33 @@ Object.assign(U, {
 });
 
 const SCALE = [
-  ['dep', L('€1,47 млрд', '1,47 mlrd €'), L('Депозиты и другие обязательства перед клиентами, 30 июня 2026.', 'Depoziti i druge obaveze prema klijentima, 30. jun 2026.'), ['fcash']],
-  ['cash', L('€713 млн', '713 mil. €'), L('Наличные и средства в НБС (строка gotovina), 30 июня 2026.', 'Gotovina i sredstva kod centralne banke, 30. jun 2026.'), ['fcash','ksef']],
+  ['dep', L('€1,63 млрд', '1,63 mlrd €'), L('Депозиты клиентов, 30 сентября 2026.', 'Depoziti klijenata, 30. septembar 2026.'), ['fq3']],
+  ['cash', L('€754 млн', '754 mil. €'), L('Наличные и средства в НБС (строка gotovina), 30 сентября 2026.', 'Gotovina i sredstva kod centralne banke, 30. septembar 2026.'), ['fq3']],
   ['out', L('≈€385 млн', 'oko 385 mil. €'), L('Незаконная выгода, подозрение прокуратуры: деньги выносили из хранилища. Названа только конечная дата: 31 октября.', 'Protivpravna korist, sumnja tužilaštva: novac je iznošen iz trezora. Naveden je samo krajnji datum: 31. oktobar.'), ['n1jtok','jtok']],
 ];
-const SCALE_NOTE = [L('Круги показывают масштаб, их площадь пропорциональна сумме. Это разные показатели на разные даты. В балансе банка вторая строка называется «наличные и средства в центробанке», так что она не равна содержимому хранилища. Разбивки в найденных источниках нет.',
-                      'Krugovi pokazuju razmere, površina im je srazmerna iznosu. To su različiti pokazatelji na različite datume. U bilansu banke druga stavka se zove „gotovina i sredstva kod centralne banke”, pa nije isto što i sadržaj trezora. Strukture u pronađenim izvorima nema.'), ['bs26','danas25']];
+const SCALE_NOTE = [L('Круги показывают масштаб, их площадь пропорциональна сумме. Это разные показатели на разные даты. В балансе банка вторая строка называется «наличные и средства в центробанке», так что она не равна содержимому хранилища. Разбивки в найденных источниках нет. Анонимные банкиры в Forbes говорят, что большая часть такой строки лежит на счёте в НБС и вынести её нельзя. По расчёту Forbes эта сумма весила бы около 9 тонн в купюрах по 5000 динаров или около 1,7 тонны в купюрах по €500.',
+                      'Krugovi pokazuju razmere, površina im je srazmerna iznosu. To su različiti pokazatelji na različite datume. U bilansu banke druga stavka se zove „gotovina i sredstva kod centralne banke”, pa nije isto što i sadržaj trezora. Strukture u pronađenim izvorima nema. Anonimni bankari u Forbesu kažu da je veći deo takve stavke na računu kod NBS i da ne može da se iznese. Prema računici Forbesa taj iznos bi težio oko 9 tona u novčanicama od 5.000 dinara ili oko 1,7 tona u novčanicama od 500 €.'), ['bs26','danas25','fq3']];
 
 const TILES = [
-  [L('Активы','Aktiva'), L('€1,84 млрд','1,84 mlrd €'), L('9-е место, ≈2,9% сектора','9. mesto, ≈2,9% sektora'), ['bs26','fnight']],
-  [L('Депозиты клиентов','Depoziti klijenata'), L('€1,47 млрд','1,47 mlrd €'), L('С другими обязательствами перед клиентами','Sa ostalim obavezama prema klijentima'), ['bs26']],
-  [L('Кредиты клиентам','Krediti klijentima'), L('€904 млн','904 mil. €'), L('≈62% депозитов','≈62% depozita'), ['bs26']],
-  [L('Наличные и средства в НБС','Gotovina i sredstva kod CB'), L('€713 млн','713 mil. €'), L('38,8% активов','38,8% aktive'), ['bs26','ksef']],
+  [L('Активы','Aktiva'), L('≈€1,98 млрд','≈1,98 mlrd €'), L('В июне: €1,84 млрд, 9-е место, ≈2,9% сектора','U junu: 1,84 mlrd €, 9. mesto, ≈2,9% sektora'), ['bife','bs26','fnight']],
+  [L('Депозиты клиентов','Depoziti klijenata'), L('€1,63 млрд','1,63 mlrd €'), L('В июне: €1,47 млрд','U junu: 1,47 mlrd €'), ['fq3','bs26']],
+  [L('Кредиты клиентам','Krediti klijentima'), L('€953 млн','953 mil. €'), L('≈59% депозитов. В июне: €904 млн','≈59% depozita. U junu: 904 mil. €'), ['fq3','bs26']],
+  [L('Наличные и средства в НБС','Gotovina i sredstva kod CB'), L('€754 млн','754 mil. €'), L('≈38% активов. В июне: €713 млн','≈38% aktive. U junu: 713 mil. €'), ['fq3','bs26']],
   [L('Капитал','Kapital'), L('€238 млн','238 mil. €'), L('Адекватность капитала 17,92%','Adekvatnost kapitala 17,92%'), ['bs26','op26']],
   [L('Ликвидность по отчёту','Likvidnost prema izveštaju'), 'LCR 140%', L('NSFR 185%. На конец 2025: LCR 150%, NSFR 190%','NSFR 185%. Na kraju 2025: LCR 150%, NSFR 190%'), ['op26','rep25']],
   [L('Прибыль за полугодие','Dobit za prvo polugodište'), L('€2,1 млн','2,1 mil. €'), L('Годом ранее больше €8 млн','Godinu dana ranije više od 8 mil. €'), ['fcash','bife']],
   [L('Клиенты, конец 2025','Klijenti, kraj 2025.'), '66 481', L('56 390 граждан, 10 091 компания','56.390 građana, 10.091 firma'), ['ned1']],
 ];
-const PAPER = [L('В июне банк на бумаге был ликвиден: все нормативы выше минимумов. На 30 сентября активы ≈€1,98 млрд, внебалансовые позиции ≈€1,49 млрд. 31 октября четыре вице-губернатора НБС написали, что реальное состояние «drastično» отличалось от отчётов банка. Цифр они не назвали.',
-                 'U junu je banka na papiru bila likvidna: svi pokazatelji bili su iznad minimuma. Na dan 30. septembra aktiva je oko 1,98 mlrd €, a vanbilansne pozicije oko 1,49 mlrd €. Četiri viceguvernera NBS napisala su 31. oktobra da je stvarno stanje „drastično” odstupalo od izveštaja banke. Brojke nisu naveli.'), ['bife','vg']];
+const PAPER = [L('В июне банк на бумаге был ликвиден: все нормативы выше минимумов. На 30 сентября внебалансовые позиции ≈€1,49 млрд. 31 октября четыре вице-губернатора НБС написали, что реальное состояние «drastično» отличалось от отчётов банка. Цифр они не назвали.',
+                 'U junu je banka na papiru bila likvidna: svi pokazatelji bili su iznad minimuma. Na dan 30. septembra vanbilansne pozicije su oko 1,49 mlrd €. Četiri viceguvernera NBS napisala su 31. oktobra da je stvarno stanje „drastično” odstupalo od izveštaja banke. Brojke nisu naveli.'), ['bife','vg']];
 
 const CASH = [
   { x:'2022', c:26.3, d:48.44, l:15.2, a:55.17 },
   { x:'2023', c:34.3, d:61.97, l:21.4, a:79.76 },
   { x:'2024', c:55.66, d:96.27, l:48.4, a:121.46 },
   { x:'2025', c:90.49, d:154.38, l:75.8, a:194.08 },
-  { x:L('июнь 2026','jun 2026.'), c:83.46, d:172.04, l:105.85, a:214.9 },
+  { x:L('июн. 26','jun 26.'), c:83.46, d:172.04, l:105.85, a:214.9 },
+  { x:L('сен. 26','sep 26.'), c:88.3, d:190.4, l:111.5, a:231.5 },
 ];
 const num = v => String(v).replace('.', ',');
 const RATE = 117.05; /* dinars per euro: the rate behind the euro figures in Forbes Srbija and Kamatica */
@@ -986,7 +1003,7 @@ const cw = document.getElementById('cw'), chart = document.getElementById('chart
 let builtC = 0;
 function buildChart(){
   const W = cw.clientWidth; if (!W) return; builtC = W;
-  const H = 290, t = 22, b = 28, max = 185, y = v => t + (H - t - b) * (1 - v / max);
+  const H = 290, t = 22, b = 28, max = 205, y = v => t + (H - t - b) * (1 - v / max);
   const band = W / CASH.length, X = i => Math.round(band * (i + .5)), bw = 24;
   let s = `<line class="base" x1="0" x2="${W}" y1="${y(0)}" y2="${y(0)}"/>`;
   CASH.forEach((p, i) => {
@@ -1009,8 +1026,8 @@ function buildChart(){
 }
 
 const RNGS = [
-  { h:L('Строка gotovina к активам','Gotovina prema aktivi'), max:50, a:38.8, at:L('Alta 38,8%','Alta 38,8%'), lo:15, hi:22, bt:L('пять крупнейших банков: 15–22%','pet najvećih banaka: 15–22%'), k:['ksef'] },
-  { h:L('Кредиты к депозитам','Krediti prema depozitima'), max:100, a:62, at:L('Alta ≈62%','Alta ≈62%'), lo:80, hi:100, bt:L('четыре из пяти крупнейших: выше 80%','četiri od pet najvećih: iznad 80%'), k:['ksef','fcash'] },
+  { h:L('Строка gotovina к активам, июнь 2026','Gotovina prema aktivi, jun 2026.'), max:50, a:38.8, at:L('Alta 38,8%','Alta 38,8%'), lo:15, hi:22, bt:L('пять крупнейших банков: 15–22%','pet najvećih banaka: 15–22%'), k:['ksef'] },
+  { h:L('Кредиты к депозитам, июнь 2026','Krediti prema depozitima, jun 2026.'), max:100, a:62, at:L('Alta ≈62%','Alta ≈62%'), lo:80, hi:100, bt:L('четыре из пяти крупнейших: выше 80%','četiri od pet najvećih: iznad 80%'), k:['ksef','fcash'] },
 ];
 
 /* October flows: only the prosecutors' line is drawn heavy; nothing else has a confirmed size */
@@ -1027,8 +1044,10 @@ const FLOW = [
        'Direktor Odeljenja trezora i saradnik za trezorsko poslovanje, prema toj verziji, davali su mu kartice za ulazak ili su ga sami uvodili. Sumnjiče se za pomaganje.'),['nejtok','jtok']],
     [L('Обыски прошли 31 октября и 1 ноября, наличные в хранилище описаны. Результат описи не опубликован.',
        'Pretresi su obavljeni 31. oktobra i 1. novembra, gotov novac u trezoru je popisan. Rezultat popisa nije objavljen.'),['n1jtok']],
-    [L('Обвинительного акта нет, суд дело не рассматривал. Защитник Isa Spahović: Davor Macura в Сербии и не сбежал. По его словам, в первоначальном заявлении было пять составов, полиция потом меняла утверждения, а что вменяют, защита узнает у прокурора.',
-       'Optužnice nema, sud nije razmatrao predmet. Branilac Isa Spahović: Davor Macura je u Srbiji i nije pobegao. Prema njegovim rečima, prvobitna prijava sadržala je pet krivičnih dela, policija je kasnije menjala navode, a šta mu se stavlja na teret odbrana će saznati pred tužiocem.'),['dan']],
+    [L('Анонимные банкиры в Forbes сомневаются: большая часть такой строки лежит на счёте в НБС, а в хранилище такие суммы обычно не держат. Эксперт по аудиту говорит, что пока неясно, вынесли ли деньги и только ли наличные. Это мнения, а не установленные факты.',
+       'Anonimni bankari u Forbesu sumnjaju: veći deo takve stavke je na računu kod NBS, a u trezoru se takvi iznosi obično ne drže. Stručnjak za reviziju kaže da još nije jasno da li je novac iznet i da li se radi samo o gotovini. To su mišljenja, a ne utvrđene činjenice.'),['fq3']],
+    [L('Обвинительного акта нет, суд дело не рассматривал. Защитник Isa Spahović: Davor Macura в Сербии и не сбежал. По его словам, в первоначальном заявлении было пять составов, полиция потом меняла утверждения, а что вменяют, защита узнает у прокурора. Адвокат Ahmed Delimeđac: сам явился по вызову и сотрудничал с полицией.',
+       'Optužnice nema, sud nije razmatrao predmet. Branilac Isa Spahović: Davor Macura je u Srbiji i nije pobegao. Prema njegovim rečima, prvobitna prijava sadržala je pet krivičnih dela, policija je kasnije menjala navode, a šta mu se stavlja na teret odbrana će saznati pred tužiocem. Advokat Ahmed Delimeđac: sam se odazvao pozivu i sarađivao je sa policijom.'),['dan','tel3']],
   ]},
   { id:'clients', lvl:'press', amt:'?', name:L('Счета клиентов','Računi klijenata'), when:L('с 27 октября, суммы нет','od 27. oktobra, bez iznosa'), to:L('Другие банки Сербии','Druge banke u Srbiji'), notes:[
     [L('Сотрудники анонимно: с 27 октября массовые снятия физлиц и компаний, многомиллионные конверсии и переводы в другие банки Сербии.',
@@ -1063,11 +1082,11 @@ const FLOW = [
     [L('Банк заявил, что это отдельное юрлицо, он работает самостоятельно и ликвиден. 1 ноября центробанк Северной Македонии ввёл временное управление.',
        'Banka je saopštila da je posebno pravno lice, da posluje samostalno i da je likvidna. Narodna banka Severne Makedonije uvela je 1. novembra privremenu upravu.'),['rts','ned3']],
   ]},
-  { id:'fund', lvl:'off', amt:'€50k', sep:1, name:L('Фонд страхования депозитов','Fond za osiguranje depozita'), when:L('до €50 000, после открытия банкротства','do 50.000 €, posle otvaranja stečaja'), to:L('Вкладчики в Сербии','Deponenti u Srbiji'), notes:[
+  { id:'fund', lvl:'off', amt:'€50k', sep:1, name:L('Фонд страхования депозитов','Fond za osiguranje depozita'), when:L('до €50 000, через Poštanska štedionica','do 50.000 €, preko Poštanske štedionice'), to:L('Вкладчики в Сербии','Deponenti u Srbiji'), notes:[
     [L('До €50 000 на вкладчика: граждане, микро-, малые и средние компании. Динарные вклады платят в динарах, валютные в евро.',
        'Do 50.000 evra po deponentu: građani, mikro, mala i srednja pravna lica. Dinarski ulozi isplaćuju se u dinarima, devizni u evrima.'),['aod1']],
-    [L('Срок: 7 рабочих дней с момента, когда суд откроет банкротство. Решение ожидалось 2 ноября. Банк, через который пойдут выплаты, назовут позже.',
-       'Rok: 7 radnih dana od trenutka kada sud otvori stečaj. Odluka se očekivala 2. novembra. Banka preko koje idu isplate biće objavljena kasnije.'),['aod2']],
+    [L('3 ноября суд открыл банкротство. Выплаты пойдут через Poštanska štedionica и должны начаться в течение 7 рабочих дней. Дату и отделения Агентство опубликует на aod.rs до 6 ноября.',
+       'Sud je 3. novembra otvorio stečaj. Isplate idu preko Poštanske štedionice i treba da počnu u roku od 7 radnih dana. Datum i ekspoziture Agencija objavljuje na aod.rs do 6. novembra.'),['danas3','tanjug3','mondo3']],
     [L('Агентство: в фонде хватит денег на все застрахованные вклады.','Agencija: fond ima dovoljno sredstava za sve osigurane depozite.'),['aod2']],
     [L('Как заявить остальные требования, НБС обещает сообщить отдельно.','Kako da se prijave ostala potraživanja, NBS obećava da će saopštiti posebno.'),['nbs2']],
   ]},
@@ -1182,6 +1201,8 @@ const TL = [
     [L('Отчёт: наличные и средства в НБС €713 млн, нормативы выше минимумов, прибыль за полугодие падает до €2,1 млн.','Izveštaj: gotovina i sredstva kod centralne banke 713 mil. €, pokazatelji iznad minimuma, dobit za prvo polugodište pada na 2,1 mil. €.'),['fcash','bife']] ]},
   { d:L('сентябрь–октябрь','septembar–oktobar'), it:[
     [L('Группа завершает покупку Idea, Roda и Mercator: ≈€40 млн за капитал и ≈€100 млн долга. Откуда деньги, публично не подтверждено.','Grupa završava kupovinu Idea, Roda i Mercator: oko 40 mil. € za kapital i oko 100 mil. € duga. Odakle je novac, nije javno potvrđeno.'),['kam1','n1i']] ]},
+  { d:L('30 сентября','30. septembar'), it:[
+    [L('Цифры на конец квартала: наличные и средства в НБС €754 млн, депозиты €1,63 млрд, кредиты €953 млн.','Podaci na kraju kvartala: gotovina i sredstva kod centralne banke 754 mil. €, depoziti 1,63 mlrd €, krediti 953 mil. €.'),['fq3']] ]},
   { d:L('14 октября','14. oktobar'), it:[
     [L('Черногория не пускает Davor Macura в страну, основание: национальная безопасность. Alta Group: решение ей не вручено.','Crna Gora ne dozvoljava Davoru Macuri ulazak u zemlju, uz obrazloženje nacionalne bezbednosti. Alta Group: rešenje joj nije uručeno.'),['rts']] ]},
   { sep:1 },
@@ -1210,10 +1231,14 @@ const TL = [
   { d:L('2 ноября','2. novembar'), hot:1, end:1, it:[
     [L('Прокуратура: трое задержаны на срок до 48 часов. Подозрение: незаконная выгода около €385 млн, деньги выносили из хранилища. N1 и защитник подтверждают, что среди задержанных Davor Macura.','Tužilaštvo: troje zadržano do 48 sati. Sumnja: protivpravna korist oko 385 mil. €, novac je iznošen iz trezora. N1 i branilac potvrđuju da je među zadržanima Davor Macura.'),['n1jtok','nejtok','dan']],
     [L('Защитник Isa Spahović: Davor Macura в Сербии и не сбежал, в чём его обвиняют, защита узнает у прокурора 3 ноября.','Branilac Isa Spahović: Davor Macura je u Srbiji i nije pobegao, a šta mu se stavlja na teret odbrana će saznati pred tužiocem 3. novembra.'),['dan']],
-    [L('Суд должен открыть банкротство (stečaj). С этого дня идут 7 рабочих дней на начало выплат до €50 000. Сообщений об открытии в найденных источниках пока нет.','Sud treba da otvori stečaj. Od tog dana teče 7 radnih dana za početak isplata do 50.000 evra. U pronađenim izvorima još nema vesti da je stečaj otvoren.'),['aod2']] ]},
+    [L('НБС: банковский сектор ликвиден, при необходимости вмешается на валютном рынке.','NBS: bankarski sektor je likvidan, a po potrebi će intervenisati na deviznom tržištu.'),['rfe2']] ]},
+  { d:L('3 ноября','3. novembar'), hot:1, end:1, it:[
+    [L('Суд открывает банкротство, управляющий: Агентство по страхованию депозитов. Следующий шаг: опись имущества.','Sud otvara stečaj, stečajni upravnik je Agencija za osiguranje depozita. Sledeći korak je popis imovine.'),['danas3','tanjug3','bloom3']],
+    [L('Выплаты до €50 000 пойдут через Poštanska štedionica, дату и отделения Агентство опубликует до 6 ноября. Срок начала: 7 рабочих дней.','Isplate do 50.000 € idu preko Poštanske štedionice, a datum i ekspoziture Agencija objavljuje do 6. novembra. Rok za početak je 7 radnih dana.'),['danas3','mondo3']],
+    [L('Davor Macura вызван на допрос в прокуратуру. Адвокат: сам явился по вызову и скрываться не пытался. Результат допроса и мера в найденных источниках пока не указаны.','Davor Macura je pozvan na saslušanje u tužilaštvo. Advokat: sam se odazvao pozivu i nije pokušao da se sakrije. Rezultat saslušanja i mera u pronađenim izvorima još nisu navedeni.'),['tel3']] ]},
 ];
 const UNK = [
-  [L('Когда выносили деньги, сколько именно наличными и куда они делись. Прокуратура назвала сумму незаконной выгоды и конечную дату.','Kada je novac iznošen, koliko je tačno izneto u gotovini i gde je završio. Tužilaštvo je navelo iznos protivpravne koristi i krajnji datum.'),['n1jtok']],
+  [L('Когда выносили деньги, сколько именно наличными и куда они делись. Прокуратура назвала сумму незаконной выгоды и конечную дату. Банкиры в Forbes сомневаются, что столько можно было держать и вынести наличными.','Kada je novac iznošen, koliko je tačno izneto u gotovini i gde je završio. Tužilaštvo je navelo iznos protivpravne koristi i krajnji datum. Bankari u Forbesu sumnjaju da je toliko moglo da se drži i iznese u gotovini.'),['n1jtok','fq3']],
   [L('Сколько наличных осталось в хранилище. Опись проведена, результат не опубликован.','Koliko je gotovine ostalo u trezoru. Popis je obavljen, rezultat nije objavljen.'),['n1jtok']],
   [L('Кто и сколько успел вывести с 26 по 30 октября. Отчёт НБС о переводах, по заявлению прокуратуры, обещан после 4 ноября.','Ko je i koliko stigao da povuče od 26. do 30. oktobra. Izveštaj NBS o transferima, prema saopštenju tužilaštva, obećan je posle 4. novembra.'),['tokreq']],
   [L('Что именно расходилось в отчётах банка. Вице-губернаторы цифр не назвали.','Šta je tačno odstupalo u izveštajima banke. Viceguverneri brojke nisu naveli.'),['vg']],
@@ -1244,7 +1269,7 @@ Object.assign(U, {
   h2pay: L('Хватит ли денег на выплаты', 'Da li ima dovoljno novca za isplate'),
   subpay: L('Застрахованным вкладчикам суммы до €50 000 платит фонд с гарантией государства, и право на выплату не зависит от остатков в банке. Всё остальное зависит от того, сколько соберут в банкротстве. Реального баланса на день закрытия пока нет, поэтому ниже расчёт на допущениях, а не прогноз.',
             'Osiguranim deponentima iznose do 50.000 € isplaćuje fond uz jemstvo države, a pravo na isplatu ne zavisi od onoga što je ostalo u banci. Sve ostalo zavisi od toga koliko će se naplatiti u stečaju. Stvarnog bilansa na dan zatvaranja još nema, pa je u nastavku računica na pretpostavkama, a ne prognoza.'),
-  h3a: L('1. Что было на бумаге', '1. Šta je bilo na papiru'),
+  h3a: L('1. Что было на бумаге: последний полный баланс', '1. Šta je bilo na papiru: poslednji potpun bilans'),
   h3b: L('2. Кто получает первым', '2. Ko se prvi namiruje'),
   h3c: L('3. Сколько может остаться', '3. Koliko može da ostane'),
   h3d: L('4. Сколько ждать', '4. Koliko se čeka'),
@@ -1257,7 +1282,7 @@ Object.assign(U, {
 
 const BS = { cash:83.466748, loans:105.857124, banks:15.449658, secs:.977032, subs:2.934932, ppe:4.636682, other:1.609026, dep:172.044853, fin:10.664716, oth:4.353232, eq:27.868401 };
 const M = v => v * 1000 / RATE;
-const BOOK = { total:M(214.931202), C:M(BS.cash), LN:M(BS.loans), H:M(BS.banks + BS.secs + BS.subs + BS.ppe), O:M(BS.other), D:M(BS.dep), V:45000 / RATE };
+const BOOK = { total:M(231.5), C:M(88.3), LN:M(111.5), H:M(231.5 - 88.3 - 111.5 - BS.other), O:M(BS.other), D:M(190.4), V:45000 / RATE };
 const LL = (ru, sr) => lang === 'sr' ? sr : ru;
 const sep = n => String(Math.round(n)).replace(/\B(?=(\d{3})+$)/g, lang === 'sr' ? '.' : ' ');
 const mEur = v => { const n = sep(Math.round(v / 5) * 5); return LL(`€${n} млн`, `${n} mil. €`); };
@@ -1275,10 +1300,10 @@ const BAL = [
     [BS.oth, L('Прочие обязательства','Ostale obaveze'), '--line', '--paper'],
     [BS.eq, L('Капитал','Kapital'), '--retail', '--retail-t'] ]},
 ];
-const BAL_NOTE = [L('По неаудированному балансу на 30 июня активы превышали долги на €238 млн. В таблице капитальных требований класс «в дефолте» ≈€3,5 млн с весом риска, брутто-суммы плохих кредитов в отчёте нет. Вице-губернаторы НБС пишут, что реальность резко отличалась от отчётов, поэтому это верхняя граница, а не сумма в кассе.',
-                    'Prema nerevidiranom bilansu na dan 30. juna aktiva je bila veća od dugova za 238 mil. €. U tabeli kapitalnih zahteva klasa u statusu neizmirenja je oko 3,5 mil. € ponderisano rizikom, a bruto iznosa loših kredita u izveštaju nema. Viceguverneri NBS pišu da je stvarnost drastično odstupala od izveštaja, pa je to gornja granica, a ne iznos u kasi.'), ['bs26','op26','vg']];
+const BAL_NOTE = [L('По неаудированному балансу на 30 июня активы превышали долги на €238 млн. В таблице капитальных требований класс «в дефолте» ≈€3,5 млн с весом риска, брутто-суммы плохих кредитов в отчёте нет. Вице-губернаторы НБС пишут, что реальность резко отличалась от отчётов, поэтому это верхняя граница, а не сумма в кассе. К 30 сентября наличные выросли до €754 млн, депозиты до €1,63 млрд, кредиты до €953 млн.',
+                    'Prema nerevidiranom bilansu na dan 30. juna aktiva je bila veća od dugova za 238 mil. €. U tabeli kapitalnih zahteva klasa u statusu neizmirenja je oko 3,5 mil. € ponderisano rizikom, a bruto iznosa loših kredita u izveštaju nema. Viceguverneri NBS pišu da je stvarnost drastično odstupala od izveštaja, pa je to gornja granica, a ne iznos u kasi. Do 30. septembra gotovina je porasla na 754 mil. €, depoziti na 1,63 mlrd €, a krediti na 953 mil. €.'), ['bs26','op26','vg','fq3']];
 const WHO = [
-  [L('До €50 000 у застрахованных','Do 50.000 € kod osiguranih deponenata'), L('Платит фонд','Isplaćuje fond'), L('По закону обязательства фонда гарантирует Республика. Если фонда не хватит, предусмотрены бюджет или займы по решению правительства. Крупные компании и госорганы не застрахованы.','Po zakonu za obaveze fonda jemči Republika. Ako fond ne bude dovoljan, predviđeni su budžet ili zaduživanje po odluci Vlade. Velika pravna lica i državni organi nisu osigurani.'), ['zod','aodpdf','n1gav']],
+  [L('До €50 000 у застрахованных','Do 50.000 € kod osiguranih deponenata'), L('Платит фонд','Isplaćuje fond'), L('Выплаты пойдут через Poštanska štedionica. По закону обязательства фонда гарантирует Республика. Если фонда не хватит, предусмотрены бюджет или займы по решению правительства. Крупные компании и госорганы не застрахованы.','Isplate idu preko Poštanske štedionice. Po zakonu za obaveze fonda jemči Republika. Ako fond ne bude dovoljan, predviđeni su budžet ili zaduživanje po odluci Vlade. Velika pravna lica i državni organi nisu osigurani.'), ['danas3','zod','aodpdf']],
   [L('Сверх €50 000','Iznad 50.000 €'), L('Из массы','Iz stečajne mase'), L('Становится требованием в банкротстве, его надо подать в суд в срок. Сколько вернётся, зависит от собранных денег.','Postaje potraživanje u stečaju koje treba prijaviti sudu na vreme. Koliko će se vratiti zavisi od naplaćenog novca.'), ['aodpdf','zod','kur']],
   [L('Если у вас кредит','Ako imate kredit'), L('Платить дальше','Nastavljate da plaćate'), L('Банкротство не отменяет долг, куда платить, скажет Агентство. Не прекращайте платежи сами. Вклад в залоге не застрахован, если долг не меньше вклада. О зачёте спросите юриста: он возможен не всегда.','Stečaj ne briše dug, a kuda da plaćate saopštiće Agencija. Ne prekidajte plaćanje sami. Depozit dat kao obezbeđenje nije osiguran ako dug nije manji od depozita. Za prebijanje pitajte pravnika: nije uvek moguće.'), ['nbs2','kur','zod','injac']],
 ];
@@ -1293,8 +1318,8 @@ const LAD = [
 ];
 const LAD_NOTE = [L('Первая очередь описана в законе общей фразой: требования, оставшиеся после выплаты застрахованных вкладов. Так её читают юристы Injac. Окончательно требования признают Агентство и суд. Проект закона 2026 года, по найденным данным, не принят; если вступит в силу, начатые дела продолжатся по нему. Это не юридическая консультация.',
                     'Prvi red je u zakonu opisan opštom formulacijom: potraživanja preostala nakon isplate osiguranih depozita. Tako ga čitaju advokati Injac. Potraživanja konačno utvrđuju Agencija i sud. Nacrt zakona iz 2026, prema pronađenim podacima, nije usvojen; ako stupi na snagu, započeti postupci nastaviće se po njemu. Ovo nije pravni savet.'), ['zst','injac','draft']];
-const PAY_I = [L('Суммы застрахованных вкладов в найденных источниках нет: Агентство не ответило ассоциации Efektiva. Отток не назван, качество кредитов неизвестно. Выберите сценарий или двигайте ползунки: все три сценария считаются на балансе от 30 июня. Это расчёт для масштаба, а не прогноз и не финансовый совет.',
-                 'Iznosa osiguranih depozita u pronađenim izvorima nema: Agencija nije odgovorila udruženju Efektiva. Odliv nije naveden, a kvalitet kredita nije poznat. Izaberite scenario ili pomerajte klizače: sva tri scenarija računaju se na bilansu od 30. juna. Ovo je računica radi razmera, a ne prognoza i ne finansijski savet.'), ['n1gav']];
+const PAY_I = [L('Суммы застрахованных вкладов в найденных источниках нет: Агентство не ответило ассоциации Efektiva. Отток не назван, качество кредитов неизвестно. Выберите сценарий или двигайте ползунки: все три сценария считаются на цифрах от 30 сентября. Это расчёт для масштаба, а не прогноз и не финансовый совет.',
+                 'Iznosa osiguranih depozita u pronađenim izvorima nema: Agencija nije odgovorila udruženju Efektiva. Odliv nije naveden, a kvalitet kredita nije poznat. Izaberite scenario ili pomerajte klizače: sva tri scenarija računaju se na brojkama od 30. septembra. Ovo je računica radi razmera, a ne prognoza i ne finansijski savet.'), ['n1gav']];
 
 const SCN = {
   heavy:{ W:300, r:40, I:1090, v:0 },
@@ -1303,10 +1328,10 @@ const SCN = {
 };
 let pay = { s:'mid', ...SCN.mid };
 const SLD = [
-  { k:'W', min:0, max:320, step:10, t:L('Клиенты успели забрать перед закрытием','Klijenti su povukli pre zatvaranja'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет, сотрудники говорят о массовых снятиях. Отток уменьшает и деньги, и долг перед клиентами.','Iznosa nema, zaposleni govore o masovnim povlačenjima. Odliv smanjuje i novac i dug prema klijentima.'), s:['emp'] },
+  { k:'W', min:0, max:360, step:10, t:L('Клиенты успели забрать перед закрытием','Klijenti su povukli pre zatvaranja'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет, сотрудники говорят о массовых снятиях. Отток уменьшает и деньги, и долг перед клиентами.','Iznosa nema, zaposleni govore o masovnim povlačenjima. Odliv smanjuje i novac i dug prema klijentima.'), s:['emp'] },
   { k:'r', min:20, max:90, step:5, t:L('Сколько удастся собрать с кредитов и других активов','Koliko se naplati od kredita i druge aktive'), f:v => v + '%', h:L('Суммы плохих кредитов в найденных отчётах нет, а вице-губернаторы ставят отчёты под сомнение.','Iznosa loših kredita u pronađenim izveštajima nema, a viceguverneri dovode izveštaje u pitanje.'), s:['op26','vg'] },
-  { k:'I', min:300, max:1450, step:10, t:L('Застрахованные вклады, все суммы до €50 000','Osigurani depoziti, svi iznosi do 50.000 €'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет. Грубая пропорция, не потолок: 2,9% активов сектора × €37,5 млрд застрахованных ≈ €1,09 млрд. Предел: все депозиты ≈€1,47 млрд.','Iznosa nema. Gruba proporcija, ne gornja granica: 2,9% aktive sektora × 37,5 mlrd € osiguranih ≈ 1,09 mlrd €. Limit su svi depoziti, oko 1,47 mlrd €.'), s:['ins26','fnight'] },
-  { k:'v', min:0, max:100, step:10, t:L('Сколько из суммы прокуратуры не вычитать','Koliko od iznosa tužilaštva ne oduzimati'), f:v => v + '%', h:L('По умолчанию вычтено всё. Вычет меньше, если деньги вернут или если вынос был до 30 июня и скрыт в других строках. Даты неизвестны.','Podrazumevano je oduzeto sve. Odbitak je manji ako se novac vrati ili ako je iznet pre 30. juna i skriven u drugim stavkama. Datumi nisu poznati.'), s:['n1jtok'] },
+  { k:'I', min:300, max:1620, step:10, t:L('Застрахованные вклады, все суммы до €50 000','Osigurani depoziti, svi iznosi do 50.000 €'), f:v => LL(`€${sep(v)} млн`, `${sep(v)} mil. €`), h:L('Суммы нет. Грубая пропорция, не потолок: 2,9% активов сектора × €37,5 млрд застрахованных ≈ €1,09 млрд. Предел: все депозиты ≈€1,63 млрд. Эксперт в Forbes говорит о многих краткосрочных вкладах фирм и госсектора, поэтому застрахованная часть может быть меньше.','Iznosa nema. Gruba proporcija, ne gornja granica: 2,9% aktive sektora × 37,5 mlrd € osiguranih ≈ 1,09 mlrd €. Limit su svi depoziti, oko 1,63 mlrd €. Stručnjak u Forbesu govori o mnogo kratkoročnih depozita firmi i državnog sektora, pa osigurani deo može da bude manji.'), s:['ins26','fnight','fq3'] },
+  { k:'v', min:0, max:100, step:10, t:L('Сколько из суммы прокуратуры не вычитать','Koliko od iznosa tužilaštva ne oduzimati'), f:v => v + '%', h:L('По умолчанию вычтено всё. Вычет меньше, если деньги вернут или если вынос был до 30 июня и скрыт в других строках. Даты неизвестны. Банкиры в Forbes сомневаются, что такая сумма могла лежать в хранилище.','Podrazumevano je oduzeto sve. Odbitak je manji ako se novac vrati ili ako je iznet pre 30. juna i skriven u drugim stavkama. Datumi nisu poznati. Bankari u Forbesu sumnjaju da je takav iznos mogao da stoji u trezoru.'), s:['n1jtok','fq3'] },
 ];
 function payModel(p){
   const r = p.r / 100, v = p.v / 100;
@@ -1333,7 +1358,7 @@ function updatePay(){
   let at = W0;
   const down = v => { at -= v; return [at, v]; };
   const rows = [
-    { l:L('Активы по отчёту, 30 июня','Aktiva prema izveštaju, 30. jun'), x:0, w:W0, c:'--dep', v:W0, tot:1, exact:1 },
+    { l:L('Активы по отчёту, 30 сентября','Aktiva prema izveštaju, 30. septembar'), x:0, w:W0, c:'--dep', v:W0, tot:1, exact:1 },
     (() => { const [x, w] = down(m.out); return { l:L('Сумма прокуратуры, вычтена как допущение','Iznos tužilaštva, oduzet kao pretpostavka'), x, w, c:'--stecaj', v:-w }; })(),
     (() => { const [x, w] = down(pay.W); return { l:L('Отток клиентов, допущение','Odliv klijenata, pretpostavka'), x, w, c:'--line', v:-w }; })(),
     (() => { const [x, w] = down(m.lost); return { l:L('Потери по кредитам и активам, допущение','Gubici na kreditima i aktivi, pretpostavka'), x, w, c:'--retail', v:-w }; })(),
@@ -1345,19 +1370,19 @@ function updatePay(){
     `<div class="wf-r${q.tot ? ' tot' : ''}"><div class="wf-l">${T(q.l)}</div><div class="wf-t"><i style="left:${pos(Math.max(0, q.x))};width:${pos(Math.max(0, q.w))};background:var(${q.c})"></i></div><div class="wf-v">${q.v < 0 ? '−' : ''}${q.exact ? LL(`€${sep(q.v)} млн`, `${sep(q.v)} mil. €`) : mEur(Math.abs(q.v))}</div></div>`).join('');
   const ex = pct5(m.c1) >= 100 ? LL('почти всё', 'skoro sve') : LL(`≈€${sep(20000 * pct5(m.c1) / 100)}`, `oko ${sep(20000 * pct5(m.c1) / 100)} €`), nv = payModel({ ...pay, v:100 });
   document.getElementById('res').innerHTML =
-    `<div><span>${LL('До €50 000 у застрахованных','Do 50.000 € kod osiguranih deponenata')}</span><b>${LL('Платит фонд','Isplaćuje fond')}</b><p>${LL(`Выплаты ≈${mEur(m.I)}, из массы фонд взыщет ≈${mEur(m.A)}${m.loss > 2 ? `, не вернёт ≈${mEur(m.loss)}` : ''}. Последняя найденная цифра фонда: €1,14 млрд, статья 31.10.2025. Хватит ли, из неё не следует.`, `Isplate oko ${mEur(m.I)}, fond iz mase naplaćuje oko ${mEur(m.A)}${m.loss > 2 ? `, ne vraća oko ${mEur(m.loss)}` : ''}. Poslednji pronađeni podatak o fondu: 1,14 mlrd €, članak 31.10.2025. Iz njega ne sledi da li je dovoljan.`)} <span class="src">${links(['fund25'])}</span></p></div>`
+    `<div><span>${LL('До €50 000 у застрахованных','Do 50.000 € kod osiguranih deponenata')}</span><b>${LL('Платит фонд','Isplaćuje fond')}</b><p>${LL(`Выплаты ≈${mEur(m.I)}, из массы фонд взыщет ≈${mEur(m.A)}${m.loss > 2 ? `, не вернёт ≈${mEur(m.loss)}` : ''}. Агентство заявляет, что фонда хватит на все застрахованные суммы, но их размер не называет. Последняя найденная цифра фонда: €1,14 млрд, статья 31.10.2025.`, `Isplate oko ${mEur(m.I)}, fond iz mase naplaćuje oko ${mEur(m.A)}${m.loss > 2 ? `, ne vraća oko ${mEur(m.loss)}` : ''}. Agencija navodi da fond ima dovoljno za sve osigurane iznose, ali ih ne navodi. Poslednji pronađeni podatak o fondu: 1,14 mlrd €, članak 31.10.2025.`)} <span class="src">${links(['danas3','fund25'])}</span></p></div>`
     + `<div><span>${LL('Сверх €50 000: застрахованные вкладчики','Iznad 50.000 €: osigurani deponenti')}</span><b>${share(m.c1)}</b><p>${LL(`В этом сценарии вклад €70 000: €50 000 от фонда, из €20 000 ${ex}.`, `U ovom scenariju depozit 70.000 €: 50.000 € od fonda, od 20.000 € ${ex}.`)}</p></div>`
     + `<div><span>${LL('Вне страхования: крупные компании, госорганы, связанные лица','Van osiguranja: velika pravna lica, državni organi, povezana lica')}</span><b>${share(m.c4)}</b><p>${LL('Лимита €50 000 у них нет, они идут после налогов и НБС.','Nemaju limit od 50.000 €, dolaze posle javnih prihoda i NBS.')}</p></div>`;
   document.getElementById('payN').innerHTML = LL(
-    `Незастрахованные суммы ≈${mEur(m.U)}: считаем, что половина у застрахованных вкладчиков сверх лимита, половина у вкладчиков вне страхования. Это допущение. Сумма прокуратуры вычтена как допущение, но даты неизвестны: если вынос был до 30 июня или скрыт в других строках, вычет может быть завышен. Без этого вычета здесь было бы: ${share(nv.c1)} и ${share(nv.c4)}. Не учтены расходы процедуры и долги очередей 2–3: каждый такой евро уменьшает остаток. Не учтены также зачёт кредитов, рост баланса после июня (на 30 сентября активы ≈€1,98 млрд) и внебаланс (на 30 июня ≈€501 млн принятых будущих обязательств).`,
-    `Neosigurani iznosi oko ${mEur(m.U)}: računamo da je polovina kod osiguranih deponenata iznad limita, a polovina kod deponenata van osiguranja. To je pretpostavka. Iznos tužilaštva oduzet je kao pretpostavka, ali datumi nisu poznati: ako je novac iznet pre 30. juna ili skriven u drugim stavkama, odbitak može da bude previsok. Bez tog odbitka ovde bi bilo: ${share(nv.c1)} i ${share(nv.c4)}. Nisu uključeni troškovi postupka i dugovi iz redova 2–3: svaki takav evro smanjuje ostatak. Nisu uključeni ni prebijanje kredita, rast bilansa posle juna (na dan 30. septembra aktiva oko 1,98 mlrd €) i vanbilans (na dan 30. juna oko 501 mil. € preuzetih budućih obaveza).`)
+    `Незастрахованные суммы ≈${mEur(m.U)}: считаем, что половина у застрахованных вкладчиков сверх лимита, половина у вкладчиков вне страхования. Это допущение. Сумма прокуратуры вычтена как допущение, но даты неизвестны: если вынос был до 30 июня или скрыт в других строках, вычет может быть завышен. Без этого вычета здесь было бы: ${share(nv.c1)} и ${share(nv.c4)}. Не учтены расходы процедуры и долги очередей 2–3: каждый такой евро уменьшает остаток. Не учтены также зачёт кредитов, разбивка прочих активов на 30 сентября (взята разница) и внебаланс (на 30 июня ≈€501 млн принятых будущих обязательств).`,
+    `Neosigurani iznosi oko ${mEur(m.U)}: računamo da je polovina kod osiguranih deponenata iznad limita, a polovina kod deponenata van osiguranja. To je pretpostavka. Iznos tužilaštva oduzet je kao pretpostavka, ali datumi nisu poznati: ako je novac iznet pre 30. juna ili skriven u drugim stavkama, odbitak može da bude previsok. Bez tog odbitka ovde bi bilo: ${share(nv.c1)} i ${share(nv.c4)}. Nisu uključeni troškovi postupka i dugovi iz redova 2–3: svaki takav evro smanjuje ostatak. Nisu uključeni ni prebijanje kredita, struktura ostale aktive na dan 30. septembra (uzeta je razlika) i vanbilans (na dan 30. juna oko 501 mil. € preuzetih budućih obaveza).`)
     + ` <span class="src">${links(['bife','vb26'])}</span>`;
 }
 const STEPS6 = [
-  [L('Решение суда','Rešenje suda'), L('Ожидалось 2 ноября, подтверждения в найденных источниках пока нет.','Očekivalo se 2. novembra, potvrde u pronađenim izvorima još nema.'), ['aod2']],
-  [L('3 рабочих дня','3 radna dana'), L('Агентство объявляет банк, места и порядок выплат.','Agencija objavljuje banku, mesta i način isplate.'), ['fguide']],
-  [L('7 рабочих дней','7 radnih dana'), L('Начало выплат до €50 000. Отсчёт от решения суда. Получить их можно до 3 лет от этого решения.','Početak isplate do 50.000 €. Rok teče od rešenja suda. Isplata je moguća do 3 godine od tog rešenja.'), ['aod2','aod1','zod']],
-  [L('30–90 дней','30–90 dana'), L('Суд назначит срок подачи требования на сумму сверх лимита: 30–90 дней со дня публикации в Službeni glasnik. Опоздавшим могут отказать.','Sud određuje rok za prijavu potraživanja iznad limita: 30–90 dana od objavljivanja u Službenom glasniku. Zakasnele prijave mogu da budu odbijene.'), ['zst','injac']],
+  [L('3 ноября','3. novembar'), L('Суд открыл банкротство, управляющий: Агентство. Следующий шаг: опись имущества.','Sud je otvorio stečaj, stečajni upravnik je Agencija. Sledeći korak je popis imovine.'), ['danas3','tanjug3','bloom3']],
+  [L('До 6 ноября','Do 6. novembra'), L('Агентство публикует на aod.rs дату начала выплат и отделения Poštanska štedionica.','Agencija na aod.rs objavljuje datum početka isplate i ekspoziture Poštanske štedionice.'), ['danas3','mondo3']],
+  [L('7 рабочих дней','7 radnih dana'), L('Срок начала выплат до €50 000. Получить деньги можно в течение 3 лет.','Rok za početak isplate do 50.000 €. Novac može da se preuzme u roku od 3 godine.'), ['danas3','mondo3','zod']],
+  [L('30–90 дней','30–90 dana'), L('Суд назначит срок подачи требования на сумму сверх лимита: 30–90 дней со дня публикации в Službeni glasnik. Опоздавшим могут отказать. Сам срок в найденных новостях пока не указан.','Sud određuje rok za prijavu potraživanja iznad limita: 30–90 dana od objavljivanja u Službenom glasniku. Zakasnele prijave mogu da budu odbijene. Sam rok u pronađenim vestima još nije naveden.'), ['zst','injac','danas3']],
   [L('До 6 месяцев + до 60 дней','Do 6 meseci + do 60 dana'), L('Агентство проверяет требования, затем заседание суда.','Agencija proverava potraživanja, zatim ispitno ročište.'), ['zst']],
   [L('Годы','Godine'), L('Выплаты по мере продажи активов. Банкротство Agrobanka длилось около 12 лет.','Isplate kako se aktiva prodaje. Stečaj Agrobanke trajao je oko 12 godina.'), ['agro']],
 ];
@@ -1395,7 +1420,7 @@ function renderCash(){
   document.getElementById('tiles').innerHTML = TILES.map(([a, b, c, s]) =>
     `<div class="tile"><span>${T(a)}</span><b>${T(b)}</b><small>${T(c)}</small><span class="src">${links(s)}</span></div>`).join('');
   document.getElementById('paper').innerHTML = `${T(PAPER[0])} <span class="src">${links(PAPER[1])}</span>`;
-  document.getElementById('chartS').innerHTML = links(['fcash']);
+  document.getElementById('chartS').innerHTML = links(['fcash','fq3','bife']);
   const th = CASH.map(p => `<th scope="col">${T(p.x)}</th>`).join('');
   const row = (n, f) => `<tr><th scope="row">${n}</th>${CASH.map(p => `<td>${f(p)}</td>`).join('')}</tr>`;
   document.getElementById('tbl').innerHTML = `<table><thead><tr><td></td>${th}</tr></thead><tbody>`
