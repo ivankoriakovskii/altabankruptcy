@@ -357,12 +357,85 @@ summary { cursor: pointer; font-weight: 600; }
   .capy { font-size: 2.1rem; }
 }
 @media (prefers-reduced-motion: reduce) { .l, .n, .arc, .stop .dot { transition: none; } }
+/* Third view: actors. One main line of events; children fork off and return to it */
+.pdisc { margin-top: 16px; max-width: 78ch; padding: 11px 15px 12px; border-left: 3px solid var(--stecaj); background: var(--sheet); font-size: .9rem; line-height: 1.45; color: var(--ink-2); }
+.pdisc strong { display: block; margin-bottom: 3px; color: var(--ink); font-weight: 600; }
+.pdisc p { margin: 0; }
+.plegend { display: flex; flex-wrap: wrap; gap: 9px 30px; margin: 18px 0 0; padding: 0; list-style: none; font-size: 1.29rem; line-height: 1.25; color: var(--ink-2); }
+.plegend li { display: inline-flex; align-items: center; gap: 12px; }
+.pdotk { width: 27px; height: 27px; border-radius: 50%; box-sizing: border-box; border: 2.25px solid var(--line); flex: none; }
+.pdotk.sus { border: 5.25px solid var(--stecaj); } .pdotk.wit { border: 3px dashed var(--ink); }
+#pgraph { position: relative; margin-top: 66px; }
+#pgEdges { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+#pgEdges .pg-e { fill: none; stroke: var(--ink-2); stroke-width: 1.75; }
+#pgEdges .pg-e.m { stroke: var(--ink); stroke-width: 3; }
+#pgEdges .pg-h { fill: var(--ink); }
+#pgNodes { position: relative; display: grid; gap: 48px; }
+.pm { display: grid; grid-template-columns: minmax(0, 1fr) 340px minmax(0, 1fr); column-gap: 0; align-items: center; }
+.pm-c { grid-column: 2; }
+.pm-r { grid-column: 3; display: flex; align-items: center; min-width: 0; }
+.pm-l { flex: none; width: 34px; height: 2px; background: var(--line); }
+.pm-r:not(:has(.pw)) .pm-l { display: none; }
+.pb { display: block; width: 100%; font: inherit; color: var(--ink); text-align: center; background: var(--sheet); border: 1px solid var(--line); border-radius: 8px; padding: 12px 14px; cursor: pointer; box-sizing: border-box; }
+.pm .pb { border: 2px solid var(--ink); padding: 14px 16px; }
+.pm.key .pb { border-color: var(--stecaj); }
+.pb:hover { border-color: var(--pecat); }
+.pb:focus-visible, .dt:focus-visible, .plink:focus-visible { outline: 2px solid var(--pecat); outline-offset: 2px; }
+.pb-d { display: block; font: 500 .84rem/1.2 var(--mono); color: var(--ink-2); }
+.pm.key .pb-d { color: var(--stecaj); }
+.pb-h { display: block; margin-top: 3px; font: 800 1.5rem/1.06 var(--display); text-transform: uppercase; text-wrap: balance; }
+.pk .pb-h { font-size: 1.28rem; }
+.pk-row { display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); column-gap: 30px; align-items: start; }
+.pk { min-width: 0; display: grid; gap: 10px; background: var(--paper); }
+.pk .pb { background: var(--sheet); }
+.pw { display: flex; flex-wrap: wrap; gap: 8px 6px; min-width: 0; }
+.pk .pw { justify-content: center; }
+.dt { display: grid; justify-items: center; align-content: start; gap: 4px; width: 80px; font: inherit; color: var(--ink); background: none; border: 0; padding: 0; cursor: pointer; }
+.dt i { display: grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; box-sizing: border-box; border: 1.5px solid var(--line); background: var(--sheet); overflow: hidden; font: 500 .74rem var(--mono); font-style: normal; color: var(--ink-2); }
+.dt img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 12%; display: block; }
+.dt.sus i { border: 3.5px solid var(--stecaj); color: var(--stecaj); }
+.dt.wit i { border: 2px dashed var(--ink); color: var(--ink); }
+.dt.inst i { background: var(--rule); border-color: transparent; color: var(--ink); }
+.dt b { font-size: .76rem; line-height: 1.15; font-weight: 600; }
+.dt:hover b { color: var(--pecat); }
+.pk .dt { width: 76px; } .pk .dt i { width: 40px; height: 40px; font-size: .68rem; }
+.pmore { margin-top: 44px; display: flex; flex-wrap: wrap; gap: 18px 48px; font-size: .9rem; color: var(--ink-2); }
+.pmore p { margin: 0 0 8px; }
+@media (max-width: 899.98px) {
+  #pgraph { margin-top: 56px; }
+  #pgNodes { padding-inline: 20px; gap: 30px; }
+  .pm { display: grid; grid-template-columns: minmax(0, 1fr); row-gap: 10px; }
+  .pm-c, .pm-r { grid-column: 1; }
+  .pm-r { justify-content: center; }
+  .pm-l { display: none; }
+  .pm .pw { justify-content: center; }
+  .pk-row { grid-template-columns: minmax(0, 1fr); row-gap: 18px; }
+}
+.psheet { position: fixed; z-index: 20; right: max(16px, env(safe-area-inset-right, 0px)); bottom: 16px; width: min(460px, calc(100vw - 32px)); max-height: min(74vh, 660px); overflow-y: auto; background: var(--sheet); border: 1px solid var(--line); border-radius: 10px; box-shadow: 0 14px 40px rgba(8, 12, 28, .28); padding: 18px 20px 20px; display: grid; gap: 10px; }
+.psheet > * { min-width: 0; }
+.psheet[hidden] { display: none; }
+.psheet h3 { margin: 0; padding-right: 40px; font: 800 2rem/1 var(--display); text-transform: uppercase; }
+.psheet p { margin: 0; }
+.psheet .prole, .psheet .ptxt { font-size: .92rem; line-height: 1.42; color: var(--ink-2); }
+.psheet .pst { font-size: .82rem; font-weight: 600; } .psheet .pst.sus { color: var(--stecaj); }
+.psheet ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: .92rem; line-height: 1.42; }
+.psheet .src { display: block; margin-top: 2px; }
+.psheet h4 { margin: 6px 0 0; font: 500 .72rem/1.2 var(--mono); text-transform: uppercase; letter-spacing: .05em; color: var(--ink-3); }
+.psheet .pdate { font-weight: 600; }
+.plink { font: inherit; color: inherit; text-align: left; background: none; border: 0; padding: 0; cursor: pointer; }
+.plink:hover { color: var(--pecat); }
+.psheet .px { position: absolute; top: 8px; right: 8px; width: 44px; height: 44px; font-size: 1.5rem; line-height: 1; background: none; border: 0; color: var(--ink-2); cursor: pointer; }
+.psheet .px:hover { color: var(--ink); }
+@media (max-width: 620px) {
+  .psheet { left: 0; right: 0; bottom: 0; width: auto; max-height: 64vh; border-radius: 12px 12px 0 0; border-width: 1px 0 0; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px)); }
+}
 </style>
 
 <div class="wrap">
   <nav class="bar">
     <div class="tabs" role="tablist" data-ia="tabsA" aria-label="Разделы">
       <button type="button" role="tab" id="tab-cash" data-tab="cash" aria-controls="view-cash" aria-selected="true" data-i="cTab">Наличные</button>
+      <button type="button" role="tab" id="tab-people" data-tab="people" aria-controls="view-people" aria-selected="false" tabindex="-1" data-i="pTab">Действующие лица</button>
       <button type="button" role="tab" id="tab-owners" data-tab="owners" aria-controls="view-owners" aria-selected="false" tabindex="-1" data-i="oTab">Собственник</button>
     </div>
     <div class="lang" role="group" data-ia="langGroup" aria-label="Язык страницы">
@@ -408,6 +481,29 @@ summary { cursor: pointer; font-weight: 600; }
     <p class="note" data-i="notec2"></p>
   </section>
   </div>
+
+<div class="view" id="view-people" role="tabpanel" aria-labelledby="tab-people" hidden>
+  <header>
+    <h1 data-i="h1p"></h1>
+    <div class="pdisc"><strong data-i="discH"></strong><p data-i="discT"></p></div>
+  </header>
+
+  <section class="sec">
+    <ul class="plegend">
+      <li><span class="pdotk sus"></span><span data-i="pkSus"></span></li>
+      <li><span class="pdotk wit"></span><span data-i="pkWit"></span></li>
+      <li><span class="pdotk"></span><span data-i="pkNone"></span></li>
+    </ul>
+    <p class="fine" data-i="pkHint" style="margin-top:8px"></p>
+    <div id="pgraph"><svg id="pgEdges" aria-hidden="true"></svg><div id="pgNodes"></div></div>
+    <div class="pmore" id="pmore"></div>
+  </section>
+
+  <section>
+    <p class="note" data-i="notep"></p>
+  </section>
+  <aside class="psheet" id="psheet" role="dialog" aria-labelledby="psheetT" hidden></aside>
+</div>
 
 <div class="view" id="view-cash" role="tabpanel" aria-labelledby="tab-cash">
   <header>
@@ -515,8 +611,8 @@ const PHOTO = 'data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAUEBAQEAw
 const OWNER = 'Davor Macura';
 const LS = 'alta-lang';
 function parseHash(){
-  const m = /^(cash-)?(ru|sr)$/.exec(location.hash.slice(1));
-  return m ? { tab: m[1] ? 'cash' : 'owners', lang: m[2] } : null;
+  const m = /^(cash-|people-)?(ru|sr)$/.exec(location.hash.slice(1));
+  return m ? { tab: m[1] === 'cash-' ? 'cash' : m[1] === 'people-' ? 'people' : 'owners', lang: m[2] } : null;
 }
 function firstLang(){
   const h = parseHash();
@@ -896,7 +992,7 @@ const STEPS = [
 ];
 function renderStatic(){
   document.documentElement.lang = lang;
-  document.title = T(tab === 'cash' ? U.titlec : U.title);
+  document.title = T(tab === 'cash' ? U.titlec : tab === 'people' ? U.titlep : U.title);
   document.querySelectorAll('[data-i]').forEach(el => { el.textContent = T(U[el.dataset.i]); });
   document.querySelectorAll('[data-ia]').forEach(el => { el.setAttribute('aria-label', T(U[el.dataset.ia])); });
   document.querySelectorAll('.lang button').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.lang === lang)));
@@ -990,6 +1086,18 @@ Object.assign(U, {
           'Gmail: koryakovsky.ivan@gmail.com Telegram: https://t.me/Koryakovsky'),
   oTab: L('Собственник', 'Vlasnik'),
   cTab: L('Наличные', 'Gotovina'),
+  pTab: L('Действующие лица', 'Akteri'),
+  titlep: L('Действующие лица Alta Banka', 'Akteri slučaja Alta banka'),
+  h1p: L('Действующие лица', 'Akteri'),
+  pkSus: L('Подозреваемый, под стражей', 'Osumnjičen, u pritvoru'),
+  pkWit: L('В списке свидетелей', 'Na spisku svedoka'),
+  pkNone: L('Среди подозреваемых не значится', 'Nije među osumnjičenima'),
+  notep: L('Имена двух сотрудников прокуратура не публикует, только инициалы. Состав советов банка указан по его форме с данными на 31 марта 2026.', 'Imena dvoje zaposlenih tužilaštvo ne objavljuje, samo inicijale. Sastav odbora banke naveden je prema njenom obrascu sa podacima na dan 31. marta 2026.'),
+  discH: L('Информация предварительная и не является доказанными фактами.', 'Informacije su preliminarne i ne predstavljaju dokazane činjenice.'),
+  discT: L('Страница составлена на 5 ноября 2026 года по сообщениям СМИ, заявлениям прокуратуры, НБС и других ведомств и опубликованным документам. Ссылки на них есть в каждом событии. Сведения могут оказаться неполными или неточными и могут измениться. Подозрение не означает вины: каждый считается невиновным, пока его вина не установлена вступившим в силу решением суда. Упоминание человека здесь не является обвинением и не означает причастности к преступлению: свидетели и должностные лица указаны только по их роли в событиях. Стрелки показывают ход событий и не доказывают причину. Если вы нашли ошибку или информация касается вас, напишите на koryakovsky.ivan@gmail.com, мы проверим и исправим.', 'Stranica je sastavljena na dan 5. novembra 2026. na osnovu medijskih izveštaja, saopštenja tužilaštva, NBS i drugih institucija i objavljenih dokumenata. Linkovi su navedeni uz svaki događaj. Podaci mogu biti nepotpuni ili netačni i mogu se promeniti. Sumnja ne znači krivicu: svako se smatra nevinim dok se njegova krivica ne utvrdi pravnosnažnom sudskom odlukom. Pominjanje osobe ovde nije optužba i ne znači umešanost u krivično delo: svedoci i službena lica navedeni su samo prema svojoj ulozi u događajima. Strelice prikazuju tok događaja i ne dokazuju uzrok. Ako ste pronašli grešku ili se informacija odnosi na vas, pišite na koryakovsky.ivan@gmail.com, proverićemo i ispraviti.'),
+  pkHint: L('Нажмите на событие или кружок, чтобы открыть подробности и источники.', 'Kliknite na događaj ili krug da otvorite detalje i izvore.'),
+  pClose: L('Закрыть', 'Zatvori'),
+  pInTl: L('В хронологии', 'U hronologiji'),
   tabsA: L('Разделы', 'Odeljci'),
 });
 
@@ -1543,7 +1651,7 @@ function renderCash(){
   if (cpicked) cpick(cpicked);
 }
 
-const views = { owners: document.getElementById('view-owners'), cash: document.getElementById('view-cash') };
+const views = { owners: document.getElementById('view-owners'), cash: document.getElementById('view-cash'), people: document.getElementById('view-people') };
 function showView(){
   Object.entries(views).forEach(([k, v]) => { v.hidden = k !== tab; });
   document.querySelectorAll('.tabs button').forEach(b => {
@@ -1560,9 +1668,10 @@ function renderAll(){
   setYear(year);
   if (picked) pick(picked);
   renderCash();
+  renderPeople();
 }
 function syncHash(){
-  const want = (tab === 'cash' ? 'cash-' : '') + lang;
+  const want = (tab === 'cash' ? 'cash-' : tab === 'people' ? 'people-' : '') + lang;
   if (location.hash.slice(1) !== want) location.hash = want;
 }
 function setLang(l){
@@ -1598,6 +1707,216 @@ addEventListener('hashchange', () => {
   try { localStorage.setItem(LS, lang); } catch (e) {}
   renderAll();
 });
+
+/* ---------- Third view: actors ---------- */
+Object.assign(S, {
+  nbsorg:[ L('Сайт НБС, структура','Sajt NBS, struktura'), L('Руководство и секторы','Rukovodstvo i sektori'), 'https://www.nbs.rs/sr/o_nbs/kontakti-prema-organizacionoj-strukturi/' ],
+  nvgb:[ L('Nova, вице-губернаторы','Nova, viceguverneri'), L('Биографии, 04.11.2026','Biografije, 04.11.2026.'), 'https://nova.rs/vesti/biznis/ko-su-viceguverneri-koji-tvrde-da-o-sluaju-alte-nista-nisu-znali' ],
+  fsed:[ L('Forbes Srbija, заседание НБС','Forbes Srbija, sednica NBS'), L('Анонимный источник, 04.11.2026','Anoniman izvor, 04.11.2026.'), 'https://forbes.n1info.rs/novac/otkrivamo-sta-se-desavalo-na-sednici-izvrsnog-odbora-nbs-kada-je-oduzeta-dozvola-za-rad-alta-banci-davora-macure/' ],
+  rvg:[ L('Radar, обращение вице-губернаторов','Radar, apel viceguvernera'), L('31.10.2026','31.10.2026.'), 'https://radar.nova.rs/ekonomija/stecaj-alta-banka-nbs-viceguverneri/' ],
+  vnbs:[ L('Vreme, Alta и НБС','Vreme, Alta i NBS'), L('Связи и процедура','Veze i procedura'), 'https://vreme.com/ekonomija/alta-banka-jorgovanka-tabakovic-nbs/' ],
+  vziv:[ L('Vreme, Živković','Vreme, Živković'), L('17.07.2025','17.07.2025.'), 'https://vreme.com/ekonomija/sta-povezuje-drugog-coveka-alta-banke-sa-guvernerkom-nbs-jorgovankom-tabakovic/' ],
+  dnbs:[ L('Danas, ответственность НБС','Danas, odgovornost NBS'), L('03.11.2026','03.11.2026.'), 'https://www.danas.rs/vesti/ekonomija/jorgovanka-tabakovic-alta-banka-nbs-odgovornost/' ],
+  nequo:[ L('Nova Ekonomija, цитата','Nova Ekonomija, citat'), L('02.11.2026','02.11.2026.'), 'https://novaekonomija.rs/vesti-iz-zemlje/kako-je-guvernerka-govorila-pre-samo-mesec-dana-nijedna-banka-bilo-mala-ili-velika-nije-postedjena-nadzora' ],
+  nesv:[ L('Nova Ekonomija, свидетели','Nova Ekonomija, svedoci'), L('04.11.2026','04.11.2026.'), 'https://novaekonomija.rs/vesti-iz-zemlje/tuzilastvo-ce-saslusati-jorgovanku-tabakovic-u-slucaju-protiv-davora-macure' ],
+  dkrik:[ L('Danas, свидетели','Danas, svedoci'), L('Пересказ KRIK, 04.11.2026','Prenos KRIK-a, 04.11.2026.'), 'https://www.danas.rs/vesti/ekonomija/deo-iznetog-novca-alta-nije-bio-u-trezoru/' ],
+  k021:[ L('021.rs, слухи и заявление','021.rs, glasine i prijava'), L('03.11.2026','03.11.2026.'), 'https://www.021.rs/info/srbija/460211/sprema-li-se-hapsenje-jorgovanke-tabakovic' ],
+  kur3:[ L('Kurir, анонимный источник','Kurir, anoniman izvor'), L('03.11.2026','03.11.2026.'), 'https://www.kurir.rs/vesti/politika/10152229/policija-hapsi-jorgovanku-tabakovic' ],
+  tjtok:[ L('Telegraf, прокуратура','Telegraf, tužilaštvo'), L('Инициалы и роли, 02.11.2026','Inicijali i uloge, 02.11.2026.'), 'https://www.telegraf.rs/english/4425315-jtok-alta-banka-management-led-by-macura-arrested-suspected-of-illegally-moving-45-billion-dinars' ]
+});
+const P_ST = {
+  sus: L('Подозреваемый, под стражей','Osumnjičen, u pritvoru'),
+  wit: L('В списке свидетелей','Na spisku svedoka'),
+  none: L('Среди подозреваемых не значится','Nije među osumnjičenima')
+};
+const P_BOARD = L('По KRIK, в списке свидетелей есть члены Upravni и Izvršni odbor, но без имён. Состав указан по форме банка с данными на 31 марта 2026.','Prema KRIK-u, na spisku svedoka su članovi Upravnog i Izvršnog odbora, ali bez imena. Sastav je naveden prema obrascu banke sa podacima na dan 31. marta 2026.');
+const PP = {
+  macura:{ n:'Davor Macura', ini:'DM', st:'sus', role:L('Владелец Alta Group, председатель Upravni odbor банка','Vlasnik Alta Group, predsednik Upravnog odbora banke'), f:[
+    [L('Подозрение: злоупотребление положением ответственного лица, более 45 млрд динаров.','Sumnja: zloupotreba položaja odgovornog lica, više od 45 milijardi dinara.'),['tjtok','krik']],
+    [L('Как он получал деньги, где они были и как использовались, в постановлении, по KRIK, не объяснено.','Kako je dolazio do novca, gde je bio i kako je korišćen, u naredbi, prema KRIK-u, nije objašnjeno.'),['krik']],
+    [L('Отрицает вину. Защитник: Isa Spahović.','Negira krivicu. Branilac: Isa Spahović.'),['n1krik','dan']] ]},
+  gm:{ n:'G. M.', ini:'GM', st:'sus', role:L('Директор отдела хранилища и управления наличностью','Direktor Odeljenja trezora i upravljanja gotovinom'), f:[
+    [L('Прокуратура приводит только инициалы. Подозрение: пособничество. По заявлению прокуратуры, Macura получал карты доступа в хранилище «Depo» или проходил по их картам и в их присутствии.','Tužilaštvo navodi samo inicijale. Sumnja: pomaganje. Prema saopštenju tužilaštva, Macura je dobijao kartice za trezor „Depo” ili ulazio njihovim karticama i uz njihovo prisustvo.'),['tjtok','nejtok']] ]},
+  ip:{ n:'I. P.', ini:'IP', st:'sus', role:L('Сотрудник по операциям хранилища','Saradnik za trezorsko poslovanje'), f:[
+    [L('Прокуратура приводит только инициалы. Подозрение то же: пособничество через доступ в хранилище.','Tužilaštvo navodi samo inicijale. Ista sumnja: pomaganje kroz pristup trezoru.'),['tjtok','nejtok']] ]},
+  pantovic:{ n:'Jelena Pantović', ini:'JP', st:'none', role:L('Член Upravni odbor','Članica Upravnog odbora'), f:[[P_BOARD,['form','krik']]] },
+  stojanovic:{ n:'Nebojša Stojanović', ini:'NS', st:'none', role:L('Член Upravni odbor','Član Upravnog odbora'), f:[[P_BOARD,['form','krik']]] },
+  zivkovic:{ n:'Aleksandar Živković', ini:'AŽ', st:'none', role:L('Член Upravni odbor','Član Upravnog odbora'), f:[
+    [L('Vreme называет его вторым человеком банка и пишет, что он одобрил докторскую Tabaković. Обвинением это не является, ответов сторон статья не приводит.','Vreme ga naziva drugim čovekom banke i piše da je odobrio doktorat Tabaković. To nije optužba, a članak ne navodi odgovore strana.'),['vnbs','vziv']],
+    [P_BOARD,['form','krik']] ]},
+  miladinovic:{ n:'Vladimir Miladinović', ini:'VM', st:'none', role:L('Член Upravni odbor','Član Upravnog odbora'), f:[[P_BOARD,['form','krik']]] },
+  sikimic:{ n:'Una Sikimić', ini:'US', st:'none', role:L('Председатель Izvršni odbor','Predsednica Izvršnog odbora'), f:[[P_BOARD,['form','krik']]] },
+  krdzic:{ n:'Nikola Krdžić', ini:'NK', st:'none', role:L('Член Izvršni odbor','Član Izvršnog odbora'), f:[[P_BOARD,['form','krik']]] },
+  kuljak:{ n:'Tatjana Kuljak', ini:'TK', st:'none', role:L('Член Izvršni odbor','Članica Izvršnog odbora'), f:[
+    [L('Отказалась комментировать для медиа, пишет Forbes.','Odbila je da komentariše za medije, piše Forbes.'),['fsed']],
+    [P_BOARD,['form','krik']] ]},
+  vicentic:{ n:'Milan Vićentić', ini:'MV', st:'none', role:L('Член Izvršni odbor','Član Izvršnog odbora'), f:[[P_BOARD,['form','krik']]] },
+  tabakovic:{ n:'Jorgovanka Tabaković', ini:'JT', st:'wit', role:L('Губернатор НБС, входит в Исполнительный совет','Guvernerka NBS, članica Izvršnog odbora'), f:[
+    [L('По закону о банках, согласие на назначение и отстранение Upravni odbor любого банка подписывает губернатор, пишет Vreme.','Prema Zakonu o bankama, saglasnost za imenovanje i razrešenje upravnog odbora svake banke potpisuje guverner, piše Vreme.'),['vnbs']],
+    [L('Примерно за месяц до отзыва лицензии: «Ни один банк, малый или большой, не обойдён надзором».','Otprilike mesec dana pre oduzimanja dozvole: „Nijedna banka – bilo mala ili velika – nije pošteđena nadzora”.'),['nequo']],
+    [L('По Danas, на 3 ноября после отзыва лицензии публично не выступала и на запрос не ответила.','Prema Danasu, do 3. novembra se posle oduzimanja dozvole nije javno oglasila i nije odgovorila na upit.'),['dnbs']],
+    [L('Kurir 3 ноября со ссылкой на анонимный источник написал о готовящемся аресте. Прокуратура и полиция этого не подтверждали, по имеющимся документам она свидетель.','Kurir je 3. novembra, pozivajući se na anoniman izvor, pisao o pripremi hapšenja. Tužilaštvo i policija to nisu potvrdili, prema dostupnim dokumentima ona je svedok.'),['kur3','k021','nesv']] ]},
+  jovic:{ n:'Željko Jović', ini:'ŽJ', st:'none', role:L('Вице-губернатор с 2018','Viceguverner od 2018.'), f:[
+    [L('По Forbes, в НБС отвечает за контроль банковского сектора. На запрос редакции не ответил. Раньше был заместителем генерального директора Сектора контроля банков.','Prema Forbesu, u NBS je zadužen za kontrolu bankarskog sektora. Na upit redakcije nije odgovorio. Ranije je bio zamenik generalnog direktora Sektora za kontrolu poslovanja banaka.'),['fsed','nvgb']],
+ ]},
+  ivkovic:{ n:'Ana Ivković', ini:'AI', st:'none', role:L('Вице-губернатор с 2018','Viceguvernerka od 2018.'), f:[
+    [L('Раньше руководила Сектором финансовой стабильности.','Ranije je vodila Sektor za finansijsku stabilnost.'),['nvgb']] ]},
+  stanic:{ n:'Dragana Stanić', ini:'DS', st:'none', role:L('Вице-губернатор с 2018','Viceguvernerka od 2018.'), f:[
+    [L('Раньше руководила Сектором платёжной системы.','Ranije je vodila Sektor za platni sistem.'),['nvgb']] ]},
+  dragasevic:{ n:'Nikola Dragašević', ini:'ND', st:'none', role:L('Вице-губернатор с 2022','Viceguverner od 2022.'), f:[
+    [L('Раньше руководил монетарными и валютными операциями.','Ranije je vodio monetarne i devizne operacije.'),['nvgb']] ]},
+  stamenkovic:{ n:'Darko Stamenković', ini:'DS', st:'wit', role:L('Генеральный директор Сектора контроля банков НБС','Generalni direktor Sektora za kontrolu poslovanja banaka NBS'), f:[
+    [L('Какие показания ждут от него, в опубликованных частях документа не сказано.','Kakav se iskaz od njega očekuje, u objavljenim delovima dokumenta nije navedeno.'),['dkrik','nbsorg']] ]},
+  alta:{ ini:'Alta', n:'Alta Banka', s:'Alta Banka', inst:1, role:L('Банк в банкротстве','Banka u stečaju'), f:[] },
+  nbs:{ ini:L('НБС','NBS'), n:L('Народный банк Сербии','Narodna banka Srbije'), s:L('НБС','NBS'), inst:1, role:L('Центральный банк, надзор над банками','Centralna banka, nadzor nad bankama'), f:[] },
+  jtok:{ ini:L('ТОК','TOK'), n:L('Прокуратура по оргпреступности','Tužilaštvo za organizovani kriminal'), s:L('прокуратура','tužilaštvo'), inst:1, role:'JTOK', f:[
+    [L('Ведёт дело. Имя прокурора в найденных источниках не названо.','Vodi predmet. Ime tužioca u pronađenim izvorima nije navedeno.'),['krik']],
+    [L('Весной, по Vreme, просила полицию войти в банк и получила отказ. Год в статье не указан.','U proleće je, prema Vremenu, tražilo od policije ulazak u banku i dobilo odbijanje. Godina u članku nije navedena.'),['vnbs']] ]},
+  police:{ ini:L('МВД','MUP'), n:L('Полиция','Policija'), s:L('полиция','policija'), inst:1, role:L('Управление криминальной полиции, служба по борьбе с оргпреступностью (UKP, SBPOK)','Uprava kriminalističke policije, Služba za borbu protiv organizovanog kriminala (UKP, SBPOK)'), f:[] },
+  visi:{ ini:L('ВС','VS'), n:L('Высший суд Белграда','Viši sud u Beogradu'), s:L('Высший суд','Viši sud'), inst:1, role:L('Решает о страже','Odlučuje o pritvoru'), f:[] },
+  priv:{ ini:L('КС','PS'), n:L('Коммерческий суд Белграда','Privredni sud u Beogradu'), s:L('Коммерческий суд','Privredni sud'), inst:1, role:L('Ведёт банкротство','Vodi stečaj'), f:[] },
+  aod:{ ini:L('АСД','AOD'), n:L('Агентство по страхованию депозитов','Agencija za osiguranje depozita'), s:L('Агентство','Agencija'), inst:1, role:L('Управляющий в банкротстве, выплаты до €50 000','Stečajni upravnik, isplate do 50.000 €'), f:[] },
+  post:{ ini:L('ПШ','PŠ'), n:'Poštanska štedionica', s:'Poštanska štedionica', inst:1, role:L('Банк, через который идут выплаты','Banka preko koje idu isplate'), f:[] },
+  ninic:{ n:'Ivan Ninić', ini:'IN', out:1, role:L('Адвокат','Advokat'), f:[
+    [L('По его словам, просил НБС срочно проверить Alta banka, ответа по существу не получил.','Prema njegovim rečima, tražio je od NBS hitnu kontrolu Alta banke i nije dobio odgovor u suštini.'),['fsed']] ]},
+  milivojevic:{ n:'Srđan Milivojević', ini:'SM', out:1, role:L('Лидер Демократической партии','Predsednik Demokratske stranke'), f:[] }
+};
+const VG4 = ['jovic','ivkovic','stanic','dragasevic'];
+const EV = {
+  a1:{ d:L('2020 – окт. 2026','2020 – okt. 2026.'), h:L('Версия прокуратуры: деньги уходят из хранилища','Verzija tužilaštva: novac odlazi iz trezora'),
+    t:L('Почти €370 млн записаны как выручка Alta Pay, но в хранилище не поступали, почти €17 млн вынесены физически. Macura отрицает вину.','Skoro 370 mil. € upisano je kao pazar Alta Pay, ali nije stiglo u trezor, skoro 17 mil. € izneto je fizički. Macura negira krivicu.'),
+    who:['macura','gm','ip'], src:['krik','n1krik','tjtok'] },
+  k1:{ d:L('27 окт.','27. okt.'), h:L('Сигнал о переводах за границу','Signal o transferima u inostranstvo'),
+    t:L('Ninić пишет в X, НБС отвечает: обычные платёжные каналы. Прокуратура запрашивает у НБС переводы Alta banka с 27 сентября, 29 октября снова.','Ninić piše na mreži X, NBS odgovara: redovni kanali platnog prometa. Tužilaštvo traži od NBS transfere Alta banke od 27. septembra, 29. oktobra ponovo.'),
+    who:['ninic','nbs','jtok'], src:['nbs27','dnbs','tokreq'] },
+  k2:{ d:L('28–29 окт.','28–29. okt.'), h:L('Клиенты забирают ≈€140 млн','Klijenti povlače oko 140 mil. €'),
+    t:L('За два дня. Кто именно, не названо.','Za dva dana. Ko tačno, nije navedeno.'), who:[], src:['birn'] },
+  k3:{ d:L('29 окт.','29. okt.'), h:L('НБС начинает проверку','NBS počinje kontrolu'),
+    t:L('По документам, наличные пересчитать за три рабочих дня. Контроль банков курирует Jović (по Forbes), сектором руководит Stamenković.','Na osnovu dokumentacije, popis gotovine u roku od tri radna dana. Kontrolu banaka nadgleda Jović (prema Forbesu), sektor vodi Stamenković.'),
+    who:['nbs','jovic','stamenkovic'], src:['birn','fsed','nbsorg'] },
+  m2:{ d:L('30 окт.','30. okt.'), h:L('Банк перестаёт платить','Banka prestaje da plaća'),
+    t:L('Не исполняет переводы части клиентов и вовремя не возвращает кредиты овернайт.','Ne izvršava naloge dela klijenata i ne izmiruje prekonoćne pozajmice na vreme.'), who:['alta'], src:['birn'] },
+  m3:{ d:L('30 окт., вечер','30. okt., uveče'), h:L('Внеочередной совет НБС','Vanredna sednica Izvršnog odbora NBS'),
+    t:L('Четыре вице-губернатора говорят, что реальное состояние банка узнали только здесь и оно «драстично» отличалось от отчётов.','Četiri viceguvernera kažu da su stvarno stanje banke saznali tek tada i da je „drastično” odstupalo od izveštaja.'),
+    who:VG4, src:['vg','nvgb'] },
+  m4:{ key:1, d:L('31 окт., ночь','31. okt., noć'), h:L('НБС отзывает лицензию','NBS oduzima dozvolu'),
+    t:L('Решает Исполнительный совет: губернатор и четыре вице-губернатора. Кто как голосовал, не сообщается. Управление банком переходит к Агентству.','Odlučuje Izvršni odbor: guvernerka i četiri viceguvernera. Ko je kako glasao, nije saopšteno. Upravljanje bankom prelazi na Agenciju.'),
+    who:['tabakovic'].concat(VG4,['aod']), src:['nbs2','fsed'] },
+  k4:{ d:L('31 окт.','31. okt.'), h:L('Заявление НБС против банка','Prijava NBS protiv banke'),
+    t:L('Заявление о преступлении против банка и нескольких ответственных лиц.','Krivična prijava protiv banke i više odgovornih lica.'), who:['nbs','jtok'], src:['b92kp','tokreq'] },
+  k5:{ d:L('31 окт. – 1 нояб.','31. okt. – 1. nov.'), h:L('Обыски в банке и у Macura','Pretresi u banci i kod Macure'),
+    t:L('Полиция по поручению прокуратуры обыскивает банк и квартиру Macura, в хранилище описывают наличные.','Policija po nalogu tužilaštva pretresa banku i stan Macure, u trezoru se popisuje gotovina.'), who:['police','jtok','macura'], src:['n1jtok','nejtok'] },
+  k6:{ d:L('31 окт.','31. okt.'), h:L('Кто в НБС знал?','Ko je u NBS znao?'),
+    t:L('Вице-губернаторы просят прокуратуру это выяснить. Раньше: 29 октября Milivojević подаёт заявление против Tabaković, 30 октября прокуратура просит полицию проверить ответственных лиц НБС.','Viceguverneri traže od tužilaštva da to utvrdi. Ranije: 29. oktobra Milivojević podnosi prijavu protiv Tabaković, 30. oktobra tužilaštvo traži od policije proveru odgovornih lica u NBS.'),
+    who:VG4.concat(['milivojevic','jtok']), src:['rvg','vg','k021','tokreq'] },
+  m5:{ key:1, d:L('2 нояб.','2. nov.'), h:L('Задержаны владелец и два сотрудника','Zadržani vlasnik i dvoje zaposlenih'),
+    t:L('Подозрение: ≈45 млрд динаров, около €385 млн. Сотрудники подозреваются в том, что дали Macura доступ в хранилище «Depo».','Sumnja: oko 45 milijardi dinara, oko 385 mil. €. Zaposleni su pod sumnjom da su Macuri omogućili pristup trezoru „Depo”.'),
+    who:['macura','gm','ip'], src:['n1jtok','tjtok'] },
+  m6:{ d:L('3 нояб.','3. nov.'), h:L('Суд открывает банкротство','Sud otvara stečaj'),
+    t:L('Управляющий: Агентство. В этот же день Macura допрашивают, он отрицает вину.','Upravnik: Agencija. Istog dana Macura je saslušan i negira krivicu.'), who:['priv','aod'], src:['danas3','tanjug3','tel3'] },
+  m7:{ key:1, d:L('4 нояб.','4. nov.'), h:L('Стража до 30 дней','Pritvor do 30 dana'),
+    t:L('Суд видит риск влияния на свидетелей и повторения деяний, у Macura также риск побега.','Sud vidi rizik uticaja na svedoke i ponavljanja dela, kod Macure i opasnost od bekstva.'), who:['visi','macura','gm','ip'], src:['tanpri','n1pri'] },
+  m8:{ d:L('4 нояб.','4. nov.'), h:L('Губернатор в списке свидетелей','Guvernerka na spisku svedoka'),
+    t:L('По KRIK, там же директор сектора контроля банков, а также члены советов банка и сотрудники хранилища, без имён. Подозрение никому из НБС не объявлено.','Prema KRIK-u, tu su i direktor sektora za kontrolu banaka, kao i članovi odbora banke i zaposleni u trezoru, bez imena. Nikome iz NBS nije saopštena sumnja.'),
+    who:['tabakovic','stamenkovic'], src:['krik','dkrik','nesv'] },
+  m9:{ d:L('Дальше','Dalje'), h:L('Выплаты до €50 000','Isplate do 50.000 €'),
+    t:L('Через Poštanska štedionica. Остальное кредиторы заявляют в банкротстве.','Preko Poštanske štedionice. Ostalo poverioci prijavljuju u stečaju.'), who:['post','aod'], src:['danas3','tan90'] }
+};
+/* Main line in order; an array = child events that fork off and return to the main line */
+const SEQ = ['a1',['k1','k2','k3'],'m2','m3','m4',['k4','k5','k6'],'m5','m6','m7','m8','m9'];
+const P_MORE = [
+  [L('Upravni odbor банка','Upravni odbor banke'),['pantovic','stojanovic','zivkovic','miladinovic']],
+  [L('Izvršni odbor банка','Izvršni odbor banke'),['sikimic','krdzic','kuljak','vicentic']]
+];
+const cap1 = s => s[0].toUpperCase() + s.slice(1);
+function pDot(id){
+  const p = PP[id], full = T(p.n);
+  const name = p.inst ? cap1(T(p.s || p.n)) : (/\./.test(full) ? full : full.split(' ').pop());
+  const face = id === 'macura' ? `<img src="${PHOTO}" alt="">` : `<span>${T(p.ini || '')}</span>`;
+  return `<button type="button" class="dt ${p.st || ''}${p.inst ? ' inst' : ''}" data-p="${id}"><i>${face}</i><b>${name}</b></button>`;
+}
+const pWho = ids => ids.length ? `<div class="pw">${ids.map(pDot).join('')}</div>` : '';
+const pBox = id => `<button type="button" class="pb" data-e="${id}"><span class="pb-d">${T(EV[id].d)}</span><span class="pb-h">${T(EV[id].h)}</span></button>`;
+let psel = null, psev = null, pBack = null;
+function renderSheet(){
+  const el = document.getElementById('psheet');
+  el.hidden = !(psel || psev);
+  if (el.hidden) { el.innerHTML = ''; return; }
+  const close = `<button type="button" class="px" id="pClose" aria-label="${T(U.pClose)}">×</button>`;
+  if (psev) {
+    const e = EV[psev];
+    el.innerHTML = close + `<p class="pdate">${T(e.d)}</p><h3 id="psheetT">${T(e.h)}</h3><p class="ptxt">${T(e.t)}</p>${pWho(e.who)}<span class="src">${links(e.src)}</span>`;
+  } else {
+    const p = PP[psel], evs = Object.keys(EV).filter(k => EV[k].who.includes(psel));
+    el.innerHTML = close + `<h3 id="psheetT">${T(p.n)}</h3><p class="prole">${T(p.role)}</p>${p.st ? `<p class="pst ${p.st}">${T(P_ST[p.st])}</p>` : ''}`
+      + (p.f.length ? `<ul>${p.f.map(([t, k]) => `<li>${T(t)}<span class="src">${links(k)}</span></li>`).join('')}</ul>` : '')
+      + (evs.length ? `<h4>${T(U.pInTl)}</h4><ul>${evs.map(k => `<li><button type="button" class="plink" data-e="${k}"><span class="pdate">${T(EV[k].d)}.</span> ${T(EV[k].h)}</button></li>`).join('')}</ul>` : '');
+  }
+  el.scrollTop = 0;
+}
+function openS(kind, id, from){ psel = kind === 'p' ? id : null; psev = kind === 'e' ? id : null; if (from && !from.closest('#psheet')) pBack = from; renderSheet(); const c = document.getElementById('pClose'); if (c) c.focus({ preventScroll: true }); }
+function closeP(){ psel = psev = null; renderSheet(); if (pBack && pBack.isConnected) pBack.focus({ preventScroll: true }); pBack = null; }
+const pgWide = matchMedia('(min-width: 900px)');
+function pHead(x, y, ang){
+  const h = 10, w = 5, bx = x - h * Math.cos(ang), by = y - h * Math.sin(ang);
+  return `<polygon class="pg-h" points="${x},${y} ${(bx - w * Math.sin(ang)).toFixed(1)},${(by + w * Math.cos(ang)).toFixed(1)} ${(bx + w * Math.sin(ang)).toFixed(1)},${(by - w * Math.cos(ang)).toFixed(1)}"/>`;
+}
+function drawEdges(){
+  const box = document.getElementById('pgraph'), svg = document.getElementById('pgEdges');
+  if (!box || !svg || box.offsetParent === null) return;
+  const B = box.getBoundingClientRect(), wide = pgWide.matches;
+  svg.setAttribute('viewBox', `0 0 ${B.width} ${B.height}`);
+  const R = el => { const r = el.getBoundingClientRect(); return { l:r.left - B.left, r:r.right - B.left, t:r.top - B.top, b:r.bottom - B.top, cx:(r.left + r.right) / 2 - B.left, my:(r.top + r.bottom) / 2 - B.top }; };
+  const boxR = id => R(document.querySelector(`.pb[data-e="${id}"]`));
+  const rowR = id => R(document.getElementById('pn-' + id));
+  let s = '';
+  const main = (a, z) => { s += `<path class="pg-e m" d="M${a.x} ${a.y} L${z.x} ${z.y - 8}"/>` + pHead(z.x, z.y, Math.PI / 2); };
+  const first = boxR(SEQ[0]);
+  main({ x:first.cx, y:first.t - 44 }, { x:first.cx, y:first.t });
+  SEQ.forEach((it, i) => {
+    const next = SEQ[i + 1];
+    if (next === undefined || Array.isArray(it)) return;
+    const A = boxR(it), Af = wide ? A : rowR(it);
+    if (!Array.isArray(next)) { const Z = boxR(next); main({ x:A.cx, y:Af.b }, { x:Z.cx, y:Z.t }); return; }
+    const Z = boxR(SEQ[i + 2]);
+    next.forEach((k, j) => {
+      const K = R(document.getElementById('pn-' + k)), Kb = boxR(k);
+      if (wide) {
+        const sx = A.cx + (j - (next.length - 1) / 2) * (A.r - A.l) * .3, g1 = (K.t - A.b) / 2;
+        s += `<path class="pg-e" d="M${sx} ${A.b} C${sx} ${A.b + g1} ${K.cx} ${K.t - g1} ${K.cx} ${K.t - 8}"/>` + pHead(K.cx, K.t, Math.PI / 2);
+        const g2 = (Z.t - K.b) / 2;
+        s += `<path class="pg-e" d="M${K.cx} ${K.b} C${K.cx} ${K.b + g2} ${Z.cx} ${Z.t - g2} ${Z.cx} ${Z.t - 8}"/>`;
+      } else {
+        const mx = 6, sx = Af.l + 18;
+        s += `<path class="pg-e" d="M${sx} ${Af.b} C${sx} ${Af.b + 16} ${mx} ${Af.b + 6} ${mx} ${Af.b + 24} L${mx} ${Kb.my - 14} C${mx} ${Kb.my - 3} ${mx + 4} ${Kb.my} ${Kb.l - 8} ${Kb.my}"/>` + pHead(Kb.l, Kb.my, 0);
+        const rx = B.width - 6, tx = Z.r - 18;
+        s += `<path class="pg-e" d="M${Kb.r} ${Kb.my} C${rx - 4} ${Kb.my} ${rx} ${Kb.my + 3} ${rx} ${Kb.my + 14} L${rx} ${Z.t - 24} C${rx} ${Z.t - 6} ${tx} ${Z.t - 16} ${tx} ${Z.t - 8}"/>`;
+      }
+    });
+    s += wide ? pHead(Z.cx, Z.t, Math.PI / 2) : pHead(Z.r - 18, Z.t, Math.PI / 2);
+  });
+  svg.innerHTML = s;
+}
+function renderPeople(){
+  if (tab !== 'people') { psel = psev = null; return; }
+  document.getElementById('pgNodes').innerHTML = SEQ.map(it => Array.isArray(it)
+    ? `<div class="pk-row" style="--n:${it.length}">${it.map(k => `<article class="pk" id="pn-${k}">${pBox(k)}${pWho(EV[k].who)}</article>`).join('')}</div>`
+    : `<article class="pm${EV[it].key ? ' key' : ''}" id="pn-${it}"><div class="pm-c">${pBox(it)}</div><div class="pm-r"><span class="pm-l"></span>${pWho(EV[it].who)}</div></article>`).join('');
+  document.getElementById('pmore').innerHTML = P_MORE.map(([t, ids]) => `<div><p>${T(t)}</p>${pWho(ids)}</div>`).join('');
+  renderSheet();
+  drawEdges();
+}
+(function(){
+  const v = document.getElementById('view-people');
+  v.addEventListener('click', e => {
+    if (e.target.closest('#pClose')) { closeP(); return; }
+    const p = e.target.closest('[data-p]'), ev = e.target.closest('[data-e]');
+    if (p) openS('p', p.dataset.p, p); else if (ev) openS('e', ev.dataset.e, ev);
+  });
+  v.addEventListener('keydown', e => { if (e.key === 'Escape' && (psel || psev)) closeP(); });
+  if (window.ResizeObserver) new ResizeObserver(drawEdges).observe(document.getElementById('pgraph'));
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawEdges);
+})();
 
 renderAll();
 if (wideSlip.matches) { pick('banka'); cpick('vault'); } else { slip.hidden = true; cslip.hidden = true; }
