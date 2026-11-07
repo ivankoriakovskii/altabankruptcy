@@ -913,7 +913,7 @@ function renderStatic(){
 }
 /* ---------- Second view: cash ---------- */
 Object.assign(S, {
-  n1jtok:[ L('N1, заявление прокуратуры','N1, saopštenje tužilaštva'), L('Трое задержаны, ≈€385 млн, 02.11.2026','Tri osobe zadržane, oko 385 mil. €, 02.11.2026.'), 'https://n1info.rs/vesti/uhapsene-tri-osobe-sumnja-se-da-je-davor-macura-izneo-iz-banke-45-milijardi-dinara/'],
+  n1jtok:[ L('N1, заявление прокуратуры','N1, saopštenje tužilaštva'), L('Трое задержаны, ≈€390 млн, 02.11.2026','Tri osobe zadržane, oko 390 mil. €, 02.11.2026.'), 'https://n1info.rs/vesti/uhapsene-tri-osobe-sumnja-se-da-je-davor-macura-izneo-iz-banke-45-milijardi-dinara/'],
   nejtok:[ L('Nova Ekonomija, прокуратура','Nova Ekonomija, tužilaštvo'), L('Роли задержанных и обыски, 02.11.2026','Uloge zadržanih i pretresi, 02.11.2026.'), 'https://novaekonomija.rs/vesti-iz-zemlje/macura-iz-trezora-alta-banke-ukrao-380-miliona-evra-u-kesu-sumnja-tok'],
   fcash:[ L('Forbes Srbija, баланс','Forbes Srbija, bilans'), L('Депозиты, кредиты и наличность по годам, 31.10.2026','Depoziti, krediti i gotovina po godinama, 31.10.2026.'), 'https://forbes.n1info.rs/biznis/koliko-novca-su-gradjani-i-privreda-imali-u-alta-banci-i-sta-je-moglo-da-podje-po-zlu/'],
   ksef:[ L('Kamatica, «банк или сейф»','Kamatica, „banka ili sef”'), L('Структура баланса и сравнение с крупными банками, 01.11.2026','Struktura bilansa i poređenje sa velikim bankama, 01.11.2026.'), 'https://www.kamatica.com/analiza/da-li-je-alta-banka-bila-banka-ili-sef-za-novac-brojke-otkrivaju-neobicnu-strukturu-poslovanja/80956'],
@@ -979,8 +979,8 @@ const CASH_SRC = ['krik','n1krik','aodqa','bizag','n1men','n1cg','birn','tanpri'
 Object.assign(U, {
   titlec: L('Структура активов Alta banka', 'Struktura aktive Alta banke'),
   h1c: L('Структура активов Alta banka', 'Struktura aktive Alta banke'),
-  ledec: L('Alta banka в банкротстве с 3 ноября 2026. Суммы до €50 000 платит фонд через Poštanska štedionica, выплаты начинаются 13 ноября 2026. Можно предположить, что сверх лимита вернётся около трети, и на это могут уйти годы.',
-           'Alta banka je u stečaju od 3. novembra 2026. Iznose do 50.000 € isplaćuje fond preko Poštanske štedionice, a isplata počinje 13. novembra 2026. Može se pretpostaviti da će se iznad limita vratiti oko trećine, a to može da potraje godinama.'),
+  ledec: L('Alta banka в банкротстве с 3 ноября 2026. Суммы до €50 000 платит фонд через Poštanska štedionica, выплаты начинаются 13 ноября 2026. Можно предположить, что сверх лимита вернётся около 30%, но разброс большой, и на это могут уйти годы.',
+           'Alta banka je u stečaju od 3. novembra 2026. Iznose do 50.000 € isplaćuje fond preko Poštanske štedionice, a isplata počinje 13. novembra 2026. Može se pretpostaviti da će se iznad limita vratiti oko 30%, ali raspon je veliki, a to može da potraje godinama.'),
   statusc: L('Откуда каждая цифра и насколько она подтверждена, указано рядом с ней. Обвинительного акта нет, по существу суд дело не рассматривал.',
              'Poreklo i potvrđenost svake brojke navedeni su pored nje. Optužnice nema, sud predmet nije razmatrao u meritumu.'),
   bn: L('млн €', 'mil. €'),
@@ -993,8 +993,8 @@ Object.assign(U, {
   tblT: L('Все цифры таблицей', 'Sve brojke u tabeli'),
   rngN: L('Оценки разнятся: Kamatica допускает более консервативный подход, но и спрашивает, был ли это банк или «сейф».', 'Ocene se razlikuju: Kamatica navodi moguć konzervativniji pristup, ali i pita da li je to bila banka ili „sef”.'),
   chartA: L('Наличные и средства в НБС, депозиты банка с 2022 по июнь 2026, млн €', 'Gotovina i sredstva kod centralne banke, depoziti banke od 2022. do juna 2026, mil. €'),
-  h2f: L('Куда двигались деньги в октябре 2026', 'Kuda je novac išao u oktobru'),
-  subf: L('Сумма названа у трёх потоков из шести: выгода по версии прокуратуры, отток клиентов за два дня и снятие в Битоле, отдельном банке группы. Нажмите на поток, чтобы увидеть подробности и ссылки.', 'Iznos je naveden za tri od šest tokova: korist po verziji tužilaštva, odliv klijenata za dva dana i povlačenje u Bitolju, posebnoj banci grupe. Kliknite na tok za detalje i linkove.'),
+  h2f: L('Куда двигались деньги', 'Kuda je novac išao'),
+  subf: L('Сумма названа у трёх потоков из шести: выгода по версии прокуратуры за 2020 – октябрь 2026, отток клиентов за 28–29 октября 2026 и снятие в Битоле, отдельном банке группы. Большая часть суммы прокуратуры, по её версии, в хранилище не поступала и числилась там только на бумаге. Нажмите на поток, чтобы увидеть подробности и ссылки.', 'Iznos je naveden za tri od šest tokova: korist po verziji tužilaštva za 2020 – oktobar 2026, odliv klijenata za 28–29. oktobar 2026. i povlačenje u Bitolju, posebnoj banci grupe. Veći deo iznosa tužilaštva, prema njegovoj verziji, nije ni stigao u trezor, već je tamo postojao samo na papiru. Kliknite na tok za detalje i linkove.'),
   flowA: L('Схема потоков денег из банка', 'Šema tokova novca iz banke'),
   kj: L('Версия прокуратуры, по существу суд не рассматривал', 'Verzija tužilaštva, sud nije razmatrao u meritumu'),
   kp: L('Не подтверждено: СМИ, анонимные сотрудники, заявления без документов', 'Nije potvrđeno: mediji, anonimni zaposleni, tvrdnje bez dokumenata'),
@@ -1085,7 +1085,7 @@ const FLOW = [
     [L('Высший суд в Белграде заключил троих под стражу на срок до 30 дней: риск влияния на свидетелей и повторения деяний, у Davor Macura также риск побега. Обвинительного акта нет, по существу суд дело не рассматривал. Davor Macura отрицает вину, сообщает адвокат. Защитник Isa Spahović: он в Сербии и не сбежал, в первоначальном заявлении было пять составов, полиция потом меняла утверждения. Адвокат Ahmed Delimeđac: сам явился по вызову и сотрудничал с полицией.',
        'Viši sud u Beogradu odredio je pritvor za troje osumnjičenih do 30 dana: rizik uticaja na svedoke i ponavljanja dela, kod Davora Macure i opasnost od bekstva. Optužnice nema, sud predmet nije razmatrao u meritumu. Davor Macura negira krivicu, navodi advokat. Branilac Isa Spahović: on je u Srbiji i nije pobegao, prvobitna prijava sadržala je pet krivičnih dela, a policija je kasnije menjala navode. Advokat Ahmed Delimeđac: sam se odazvao pozivu i sarađivao je sa policijom.'),['tanpri','n1pri','krik','dan','tel3']],
   ]},
-  { id:'clients', lvl:'press', amt:'≈140', name:L('Счета клиентов','Računi klijenata'), when:L('≈€140 млн за 28–29 октября 2026','oko 140 mil. € za 28–29. oktobar 2026'), to:L('Другие банки Сербии','Druge banke u Srbiji'), notes:[
+  { id:'clients', lvl:'off', tol:'press', amt:'≈140', name:L('Счета клиентов','Računi klijenata'), when:L('≈€140 млн за 28–29 октября 2026','oko 140 mil. € za 28–29. oktobar 2026'), to:L('Другие банки Сербии?','Druge banke u Srbiji?'), notes:[
     [L('Сотрудники анонимно: с 27 октября 2026 массовые снятия физлиц и компаний, многомиллионные конверсии и переводы в другие банки Сербии.',
        'Zaposleni anonimno: od 27. oktobra 2026. masovna povlačenja građana i firmi, višemilionske konverzije i prenosi u druge banke u Srbiji.'),['emp']],
     [L('По их словам, большинство клиентов-физлиц банка: граждане России, приехавшие после начала войны в Украине. Ходили слухи, что EPS перевела больше €2,5 млн в Poštanska štedionica.',
@@ -1108,7 +1108,7 @@ const FLOW = [
     [L('27 октября 2026 НБС продлила обменным пунктам срок возврата купленной наличной валюты банкам с 15 до 30 дней. Alta banka в сообщении не упомянута.',
        'NBS je 27. oktobra 2026. menjačima produžila rok za vraćanje kupljenog stranog efektivnog novca bankama sa 15 na 30 dana. Alta banka se u saopštenju ne pominje.'),['fx27']],
   ]},
-  { id:'pay', lvl:'press', amt:'?', name:L('Платежи партнёров Alta Pay','Uplate partnera Alta Pay'), when:L('30 октября 2026, суммы нет','30. oktobar 2026, bez iznosa'), to:L('Poštanska štedionica, OTP','Poštanska štedionica, OTP'), notes:[
+  { id:'pay', lvl:'press', amt:'?', name:L('Входящие платежи Alta Pay','Dolazne uplate Alta Pay'), when:L('30 октября 2026, суммы нет','30. oktobar 2026, bez iznosa'), to:L('В Poštanska štedionica и OTP','U Poštansku štedionicu i OTP'), notes:[
     [L('Незадолго до отзыва лицензии Alta Pay попросила партнёров платить на счета в Poštanska štedionica и OTP, а не в Alta banka.',
        'Neposredno pre oduzimanja dozvole Alta Pay je zatražio od partnera da plaćaju na račune u Poštanskoj štedionici i OTP banci, a ne u Alta banci.'),['vblock','rts']],
     [L('EPS дала новый номер счёта для оплаты электроэнергии, оплата через её приложение временно не работает.',
@@ -1188,7 +1188,8 @@ function buildFlow(){
       tip = `${x2 - 1},${q.dy - h} ${x2 + (heavy ? 8 : 6)},${q.dy} ${x2 - 1},${q.dy + h}`;
     }
     const nx = q.x + q.r + (wide ? 12 : 10), lv1 = wide ? q.y - (heavy ? 14 : 9) : q.y - 3, lv2 = wide ? q.y + (heavy ? 25 : 19) : q.y + 12;
-    s += `<g class="n" data-id="${f.id}" role="button" tabindex="0" aria-label="${T(f.name)}. ${T(f.when)}. ${T(f.to)}. ${T(LVL[lv].t)}">`
+    const tl = f.tol || lv;
+    s += `<g class="n" data-id="${f.id}" role="button" tabindex="0" aria-label="${T(f.name)}. ${T(f.when)}. ${T(f.to)}. ${T(LVL[tl].t)}">`
       + (wide ? `<rect x="${q.x - q.r - 4}" y="${q.y - 38}" width="${W - q.x + q.r + 4}" height="76" fill="transparent"/>` : `<rect x="${q.x - q.r - 2}" y="${q.y - q.r - 2}" width="${W - q.x + q.r + 2}" height="${q.dy + q.dr - q.y + q.r + 16}" fill="transparent"/>`)
       + `<path class="fe ${lv}" d="${edge}"${heavy ? ` style="stroke-width:${sw}"` : ''}/><polygon class="fa ${lv}" points="${tip}"/>`
       + `<circle class="sel" cx="${q.x}" cy="${q.y}" r="${q.r + 4}"/>`
@@ -1196,10 +1197,10 @@ function buildFlow(){
       + `<text class="ft ${lv}" x="${q.x}" y="${q.y}" font-size="${fs}">${f.amt}</text>`
       + `<text class="nm${heavy && wide ? ' big' : ''}" x="${nx}" y="${lv1}">${T(f.name)}</text>`
       + `<text class="wh" x="${nx}" y="${lv2}">${T(f.when)}</text>`
-      + `<circle class="fd ${lv}" cx="${q.dx}" cy="${q.dy}" r="${q.dr}"/>`
-      + (lv === 'off' ? '' : `<text class="ft ${lv}" x="${q.dx}" y="${q.dy}" font-size="14">?</text>`)
+      + `<circle class="fd ${tl}" cx="${q.dx}" cy="${q.dy}" r="${q.dr}"/>`
+      + (tl === 'off' ? '' : `<text class="ft ${tl}" x="${q.dx}" y="${q.dy}" font-size="14">?</text>`)
       + `<text class="nm" x="${q.dx + q.dr + 10}" y="${q.dy - 2}">${T(f.to)}</text>`
-      + `<text class="lv" x="${q.dx + q.dr + 10}" y="${q.dy + 13}">${T(LVL[lv].t)}</text>`
+      + `<text class="lv" x="${q.dx + q.dr + 10}" y="${q.dy + 13}">${T(LVL[tl].t)}</text>`
       + `</g>`;
   });
   flowSvg.setAttribute('viewBox', `0 0 ${W} ${y}`); flowSvg.setAttribute('height', y);
@@ -1214,7 +1215,7 @@ const cslip = document.getElementById('cslip');
 function cpick(id){
   cpicked = id; const f = flowById[id], lv = LVL[f.lvl];
   cslip.innerHTML = `<button type="button" class="x" id="cx" aria-label="${T(U.close)}">×</button>`
-    + `<p class="tag"><i style="background:${lv.c}"></i>${T(lv.t)}</p>`
+    + `<p class="tag"><i style="background:${lv.c}"></i>${T(lv.t)}${f.tol ? T(L('; куда: не подтверждено', '; kuda: nije potvrđeno')) : ''}</p>`
     + `<h3>${T(f.name)}</h3>`
     + `<p class="when">${T(f.when)} → ${T(f.to)}</p>`
     + `<ul class="pts">${f.notes.map(([t, k]) => `<li>${T(t)} <span class="src">${links(k)}</span></li>`).join('')}</ul>`;
@@ -1254,7 +1255,7 @@ const TL = [
   { d:L('1 ноября 2026','1. novembar 2026'), hot:1, it:[
     [L('Центробанк Северной Македонии вводит временное управление в Alta banka Bitola. ЦБ Черногории отзывает разрешение Alta Pay Group Podgorica.','Narodna banka Severne Makedonije uvodi privremenu upravu u Alta banku Bitolj. Centralna banka Crne Gore oduzima odobrenje kompaniji Alta Pay Group Podgorica.'),['ned3']] ]},
   { d:L('2 ноября 2026','2. novembar 2026'), hot:1, end:1, it:[
-    [L('Прокуратура: трое задержаны на срок до 48 часов. Подозрение: незаконная выгода около €385 млн, деньги выносили из хранилища. N1 и защитник подтверждают, что среди задержанных Davor Macura.','Tužilaštvo: troje zadržano do 48 sati. Sumnja: protivpravna korist oko 385 mil. €, novac je iznošen iz trezora. N1 i branilac potvrđuju da je među zadržanima Davor Macura.'),['n1jtok','nejtok','dan']],
+    [L('Прокуратура: трое задержаны на срок до 48 часов. Подозрение: незаконная выгода ≈€390 млн, деньги выносили из хранилища. N1 и защитник подтверждают, что среди задержанных Davor Macura.','Tužilaštvo: troje zadržano do 48 sati. Sumnja: protivpravna korist oko 390 mil. €, novac je iznošen iz trezora. N1 i branilac potvrđuju da je među zadržanima Davor Macura.'),['n1jtok','nejtok','dan']],
     [L('Защитник Isa Spahović: Davor Macura в Сербии и не сбежал, в чём его обвиняют, защита узнает у прокурора 3 ноября 2026.','Branilac Isa Spahović: Davor Macura je u Srbiji i nije pobegao, a šta mu se stavlja na teret odbrana će saznati pred tužiocem 3. novembra 2026.'),['dan']],
     [L('НБС: банковский сектор ликвиден, при необходимости вмешается на валютном рынке.','NBS: bankarski sektor je likvidan, a po potrebi će intervenisati na deviznom tržištu.'),['rfe2']],
     [L('НБС отзывает у Alta Group лицензию на электронные деньги и платёжные услуги. Обменные пункты-агенты должны найти другого партнёра. НБС: большинство поручений клиентов исполнено, остальные ожидались 4 ноября 2026.','NBS oduzima Alta Group dozvolu za elektronski novac i platne usluge. Menjačnice-agenti treba da nađu drugog partnera. NBS: većina naloga klijenata je izvršena, ostali su očekivani 4. novembra 2026.'),['bizag','n1men']] ] },
@@ -1262,7 +1263,7 @@ const TL = [
     [L('Суд открывает банкротство, управляющий: Агентство по страхованию депозитов. Следующий шаг: опись имущества.','Sud otvara stečaj, stečajni upravnik je Agencija za osiguranje depozita. Sledeći korak je popis imovine.'),['danas3','tanjug3','bloom3']],
     [L('Выплаты до €50 000 пойдут через Poštanska štedionica, дату и отделения Агентство опубликует до 6 ноября 2026. Срок начала: 7 рабочих дней.','Isplate do 50.000 € idu preko Poštanske štedionice, a datum i ekspoziture Agencija objavljuje do 6. novembra 2026. Rok za početak je 7 radnih dana.'),['danas3','mondo3']],
     [L('Davor Macura вызван на допрос в прокуратуру. Адвокат: сам явился по вызову и скрываться не пытался.','Davor Macura je pozvan na saslušanje u tužilaštvo. Advokat: sam se odazvao pozivu i nije pokušao da se sakrije.'),['tel3']],
-    [L('Суд: кредиторы подают требования за 90 дней с публикации в Službeni glasnik, заседание не позже чем через 60 дней после этого срока. Опись и начальный баланс Агентство готовит за 60 дней.','Sud: poverioci prijavljuju potraživanja u roku od 90 dana od objavljivanja u Službenom glasniku, ročište je najkasnije 60 dana posle tog roka. Popis i početni bilans Agencija priprema za 60 dana.'),['tan90']],
+    [L('Суд: кредиторы подают требования за 90 дней с публикации в Službeni glasnik. Опись и начальный баланс Агентство готовит за 60 дней.','Sud: poverioci prijavljuju potraživanja u roku od 90 dana od objavljivanja u Službenom glasniku. Popis i početni bilans Agencija priprema za 60 dana.'),['tan90']],
     [L('1 965 пенсионеров получают октябрьскую пенсию в Poštanska štedionica. До 20 ноября 2026 им нужно передать в фонд PIO данные нового счёта.','Oktobarsku penziju 1.965 korisnika prima u Poštanskoj štedionici. Do 20. novembra 2026. treba da dostave PIO fondu podatke o novom računu.'),['tanpio']],
     [L('Центробанк Северной Македонии: из Alta banka Bitola в Сербию после 26 октября 2026 ушло ≈€180 000, миллионных переводов нет. ЦБ Черногории: незавершённых поручений Alta Pay Group нет.','Narodna banka Severne Makedonije: iz Alta banke Bitolj u Srbiju je posle 26. oktobra 2026. otišlo oko 180.000 €, milionskih transfera nema. CB Crne Gore: neizvršenih naloga Alta Pay Group nema.'),['tanmk','tancg']] ]},
   { d:L('4 ноября 2026','4. novembar 2026'), hot:1, end:1, it:[
@@ -1344,7 +1345,7 @@ const BAL = [
     [BS.eq, L('Капитал','Kapital'), '--retail', '--retail-t'] ]},
 ];
 const WHO = [
-  ['--build', L('До €50 000 у застрахованных','Do 50.000 € kod osiguranih'), L('Платит фонд','Isplaćuje fond'), L('Граждане, включая нерезидентов, предприниматели, микро-, малые и средние компании-резиденты. Платит Poštanska štedionica с 13 ноября 2026 до 3 ноября 2029, с гарантией Республики. Нужны паспорт или ID-карта и оригинал документа о вкладе. Граждане получают наличными или переводом, компании только переводом. Пересчёт по курсу НБС на 3 ноября 2026.','Građani, uključujući nerezidente, preduzetnici, mikro, mala i srednja pravna lica rezidenti. Isplata preko Poštanske štedionice od 13. novembra 2026. do 3. novembra 2029, uz jemstvo Republike. Potrebni su pasoš ili lična karta i original dokumenta o depozitu. Građani primaju gotovinu ili uplatu na račun, firme samo uplatu. Preračun po kursu NBS na dan 3. novembra 2026.'), ['aod6','aodqa','aodpdf','injac','zod']],
+  ['--build', L('До €50 000 у застрахованных','Do 50.000 € kod osiguranih'), L('Платит фонд','Isplaćuje fond'), L('Граждане, включая нерезидентов, предприниматели, микро-, малые и средние компании-резиденты. Платит Poštanska štedionica с 13 ноября 2026, с гарантией Республики. Заявление можно подать до 3 ноября 2029. Нужны паспорт или ID-карта и оригинал документа о вкладе. Граждане получают наличными или переводом, компании только переводом. Пересчёт по курсу НБС на 3 ноября 2026.','Građani, uključujući nerezidente, preduzetnici, mikro, mala i srednja pravna lica rezidenti. Isplata preko Poštanske štedionice od 13. novembra 2026, uz jemstvo Republike. Zahtev može da se podnese do 3. novembra 2029. Potrebni su pasoš ili lična karta i original dokumenta o depozitu. Građani primaju gotovinu ili uplatu na račun, firme samo uplatu. Preračun po kursu NBS na dan 3. novembra 2026.'), ['aod6','aodqa','aodpdf','injac','zod']],
   ['--other', L('Сверх €50 000','Iznad 50.000 €'), L('Из конкурсной массы','Iz stečajne mase'), L('Требование надо подать в Хозяйственный суд в Белграде (Privredni sud) за 90 дней с публикации в Službeni glasnik. Возврат зависит от собранных денег.','Potraživanje treba prijaviti Privrednom sudu u Beogradu u roku od 90 dana od objavljivanja u Službenom glasniku. Povraćaj zavisi od naplaćenog novca.'), ['tan90','aodpdf','zod','kur']],
   ['--retail', L('Если у вас кредит','Ako imate kredit'), L('Платить дальше','Nastavljate da plaćate'), L('Долг остаётся. 6 ноября 2026 банк в банкротстве опубликовал на своём сайте, как платить: в динарах, с номером кредита (partija) в назначении платежа. Не прекращайте платежи сами и берите реквизиты только с сайта банка или Агентства, не из SMS: НБС предупредила о поддельных сообщениях. Вклад в залоге не застрахован, если долг не меньше вклада. Зачёт возможен не всегда: спросите юриста.','Dug ostaje. Banka u stečaju je 6. novembra 2026. na svom sajtu objavila kako se plaća: u dinarima, sa brojem partije kredita u pozivu na broj. Ne prekidajte plaćanje sami i podatke za uplatu uzimajte samo sa sajta banke ili Agencije, ne iz SMS poruka: NBS je upozorila na lažne poruke. Depozit dat kao obezbeđenje nije osiguran ako dug nije manji od depozita. Prebijanje nije uvek moguće: pitajte pravnika.'), ['srpl','tansms','kur','zod','injac']],
 ];
@@ -1431,8 +1432,8 @@ function buildScale(){
     [r * BOOK.H, '--b-oth', '--b-oth-t', a(r * BOOK.H), LL(['Прочие активы:','банки, бумаги, здания'],['Ostala aktiva:','banke, hartije, zgrade']), [['bife.ba','bife'],[LL('Баланс','Bilans'),'bs26']]],
     [m.cash, '--b-cash', '--b-cash-t', a(m.cash), LL(['Наличные и средства','в НБС'],['Gotovina i sredstva','kod NBS']), [['Forbes','fq3'],['BIRN','birn'],['N1','n1jtok']]] ];
   const itemsR = [
-    [m.I, '--d-ins', '--d-ins-t', a(m.I), LL(['Застрахованные','до €50 000'],['Osigurani iznosi','do 50.000 €']), [['N1','n1gav'],[LL('Закон','Zakon'),'zst']]],
-    [U1, '--d-over', '--d-over-t', a(U1), LL(['Всё, что выше','€50 000'],['Sve iznad','50.000 €']), [['N1','n1gav'],[LL('Закон','Zakon'),'zst']]] ];
+    [m.I, '--d-ins', '--d-ins-t', a(m.I), LL(['Застрахованные','до €50 000'],['Osigurani iznosi','do 50.000 €']), [['BIRN','birn'],[LL('Закон','Zakon'),'zod']]],
+    [U1, '--d-over', '--d-over-t', a(U1), LL(['Всё, что выше','€50 000'],['Sve iznad','50.000 €']), [['BIRN','birn'],[LL('Закон','Zakon'),'zst']]] ];
   const blockH = lab => fn + (one ? 1 : lab.length) * lh + fs + 8;
   const hOf = items => items.reduce((sum, [v, , , , lab]) => sum + Math.max(v * k, blockH(lab) + 8) + 3, 0);
   /* the heavier pan drops far enough that everything on it, its top included, sits below the other side */
@@ -1481,8 +1482,8 @@ function renderFace(m){
   faceM = m; buildScale();
   const a = v => '≈' + mEur(v), U1 = m.U - PUBLIC_DEP;
   document.getElementById('scaleN').innerHTML = LL(
-    `* Ориентировочные данные на 7 ноября 2026. По отчёту на 30 сентября 2026: наличные и средства в НБС €754 млн, кредиты €953 млн, прочие активы ≈€270 млн. Кредиты и прочие активы показаны при сборе ${SCN.mid.r}%, это допущение.`,
-    `* Okvirni podaci na dan 7. novembra 2026. Prema izveštaju na dan 30. septembra 2026: gotovina i sredstva kod NBS 754 mil. €, krediti 953 mil. €, ostala aktiva oko 270 mil. €. Krediti i ostala aktiva prikazani su uz naplatu ${SCN.mid.r}%, to je pretpostavka.`);
+    `* Ориентировочные данные на 7 ноября 2026. По отчёту на 30 сентября 2026: наличные и средства в НБС €754 млн, кредиты €953 млн, прочие активы ≈€270 млн. Кредиты и прочие активы показаны при сборе ${SCN.mid.r}%. Сумму застрахованных вкладов Агентство не раскрыло, поэтому ${a(m.I)} застрахованных и ${a(U1)} сверх лимита тоже допущения. ${'<span class="src">' + links(['n1gav']) + '</span>'}`,
+    `* Okvirni podaci na dan 7. novembra 2026. Prema izveštaju na dan 30. septembra 2026: gotovina i sredstva kod NBS 754 mil. €, krediti 953 mil. €, ostala aktiva oko 270 mil. €. Krediti i ostala aktiva prikazani su uz naplatu ${SCN.mid.r}%. Agencija nije objavila iznos osiguranih depozita, pa su i ${a(m.I)} osiguranih i ${a(U1)} iznad limita pretpostavke. ${'<span class="src">' + links(['n1gav']) + '</span>'}`);
   const lo = payModel({ ...SCN.mid, r:50 }), hi = payModel({ ...SCN.mid, r:70 });
   const ring = (f, c) => { const r = 27, l = 2 * Math.PI * r; return `<svg width="68" height="68" viewBox="0 0 68 68" aria-hidden="true"><circle cx="34" cy="34" r="${r}" fill="none" stroke="var(--rule)" stroke-width="9"/><circle cx="34" cy="34" r="${r}" fill="none" stroke="var(${c})" stroke-width="9" stroke-dasharray="${(l * f).toFixed(1)} ${l.toFixed(1)}" transform="rotate(-90 34 34)"/></svg>`; };
   document.getElementById('tot').innerHTML =
@@ -1494,8 +1495,8 @@ function renderFace(m){
     `<svg width="154" height="34" viewBox="0 0 154 34" aria-hidden="true">${people}</svg><span><b>${LL('56 390','56.390')}</b> ${LL('граждан','građana')}</span>`
     + `<svg width="26" height="34" viewBox="0 0 26 34" aria-hidden="true"><path d="M3 34V8L13 2l10 6v26z" fill="currentColor"/></svg><span><b>${LL('10 091','10.091')}</b> ${LL('компания, конец 2025','firma, kraj 2025.')}</span>`;
   document.getElementById('q1N').innerHTML = LL(
-    `Одна фигурка: примерно 10 000 клиентов. Часть компаний крупные и вне страхования, разбивки депозитов на граждан и бизнес в найденных источниках нет. Вся первая очередь не больше ≈€1,09 млрд: депозиты €1,63 млрд минус ≈€400 млн госсектора и банков в банкротстве минус известный отток ≈€140 млн.`,
-    `Jedna figura: oko 10.000 klijenata. Deo firmi je velik i van osiguranja, podele depozita na građane i firme u pronađenim izvorima nema. Ceo prvi red nije veći od oko 1,09 mlrd €: depoziti 1,63 mlrd € minus oko 400 mil. € javnog sektora i banaka u stečaju minus poznati odliv oko 140 mil. €.`)
+    `Одна фигурка: примерно 10 000 клиентов. Часть компаний крупные и вне страхования, разбивки депозитов на граждан и бизнес в найденных источниках нет. Требования фонда и 1-й очереди вместе не больше ≈€1,09 млрд: депозиты €1,63 млрд минус ≈€400 млн госсектора и банков в банкротстве минус известный отток ≈€140 млн.`,
+    `Jedna figura: oko 10.000 klijenata. Deo firmi je velik i van osiguranja, podele depozita na građane i firme u pronađenim izvorima nema. Potraživanja fonda i prvog reda zajedno nisu veća od oko 1,09 mlrd €: depoziti 1,63 mlrd € minus oko 400 mil. € javnog sektora i banaka u stečaju minus poznati odliv oko 140 mil. €.`)
     + ` <span class="src">${links(['ned1','birn','fq3'])}</span>`;
   const fring = (parts) => { let s = '<svg width="92" height="92" viewBox="0 0 92 92" aria-hidden="true">'; parts.forEach(([f, c, r]) => { const l = 2 * Math.PI * r; s += `<circle cx="46" cy="46" r="${r}" fill="none" stroke="var(--rule)" stroke-width="8"/><circle cx="46" cy="46" r="${r}" fill="none" stroke="var(${c})" stroke-width="8" stroke-dasharray="${(l * f).toFixed(1)} ${l.toFixed(1)}" transform="rotate(-90 46 46)"/>`; }); return s + '</svg>'; };
   const dots = (pairs) => { let x = 0, s = ''; const r0 = pairs.map(([v]) => 15 * Math.sqrt(v)); r0.forEach((r, i) => { s += `<circle cx="${(x + r).toFixed(1)}" cy="${(46 + 28 - r).toFixed(1)}" r="${r.toFixed(1)}" fill="var(${pairs[i][1]})"/>`; x += 2 * r + 5; }); return `<svg width="${Math.ceil(x)}" height="92" viewBox="0 0 ${Math.ceil(x)} 92" aria-hidden="true">${s}</svg>`; };
@@ -1511,7 +1512,7 @@ const STEPS6 = [
   [L('6 ноября 2026','6. novembar 2026'), L('Агентство объявило дату начала выплат. Список отделений Poštanska štedionica на aod.rs и posted.co.rs.','Agencija je objavila datum početka isplate. Spisak ekspozitura Poštanske štedionice je na aod.rs i posted.co.rs.'), ['aod6']],
   [L('С 13 ноября 2026','Od 13. novembra 2026'), L('Выплаты до €50 000. Заявление можно подать до 3 ноября 2029.','Isplata do 50.000 €. Zahtev može da se podnese do 3. novembra 2029.'), ['aod6','zod']],
   [L('60 дней','60 dana'), L('Агентство готовит опись имущества и начальный баланс с обзором значимых операций за 6 месяцев.','Agencija priprema popis imovine i početni bilans sa pregledom značajnih operacija za 6 meseci.'), ['tan90']],
-  [L('90 дней, затем проверка','90 dana, zatim provera'), L('Подача требований сверх лимита в Хозяйственный суд в Белграде (Privredni sud), считая с публикации в Službeni glasnik. Даты публикации пока нет. Опоздавшим могут отказать. Закон даёт Агентству до 6 месяцев на проверку и до 60 дней на заседание. Tanjug сообщает о заседании не позже 60 дней после окончания подачи.','Prijava potraživanja iznad limita Privrednom sudu u Beogradu, od objavljivanja u Službenom glasniku. Datuma objavljivanja još nema. Zakasnele prijave mogu da budu odbijene. Zakon daje Agenciji do 6 meseci za proveru i do 60 dana za ročište. Tanjug navodi ročište najkasnije 60 dana po isteku roka za prijavu.'), ['tan90','zst','injac']],
+  [L('90 дней, затем проверка','90 dana, zatim provera'), L('Подача требований сверх лимита в Хозяйственный суд в Белграде (Privredni sud), считая с публикации в Službeni glasnik. Даты публикации пока нет. Опоздавшим могут отказать. Затем Агентство до 6 месяцев проверяет требования, и не позже чем через 60 дней после этого суд проводит заседание по их списку.','Prijava potraživanja iznad limita Privrednom sudu u Beogradu, od objavljivanja u Službenom glasniku. Datuma objavljivanja još nema. Zakasnele prijave mogu da budu odbijene. Zatim Agencija do 6 meseci proverava potraživanja, a sud najkasnije 60 dana posle toga održava ispitno ročište.'), ['tan90','zst','injac']],
   [L('Годы','Godine'), L('Выплаты по мере продажи активов. Банкротство Agrobanka длилось около 12 лет.','Isplate kako se aktiva prodaje. Stečaj Agrobanke trajao je oko 12 godina.'), ['agro']],
 ];
 const NOT_IN = [L('Не учтено','Nije uključeno'), [L('Расходы на процедуру банкротства','Troškovi postupka'), L('Долги очередей 2–3','Dugovi iz redova 2–3'), L('Зачёт кредитов','Prebijanje kredita'), L('Состав прочих активов на 30 сентября 2026: сумма посчитана как разница','Struktura ostale aktive na dan 30. septembra 2026: iznos je izračunat kao razlika'), L('Внебалансовые обязательства: ≈€501 млн на 30 июня 2026','Vanbilans: oko 501 mil. € budućih obaveza na dan 30. juna 2026')]];
